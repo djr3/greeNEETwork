@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Casa_Rossi" id="Casa_Rossi">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Casa_Rossi</name>
+  <Placemark>
+	<name>Casa Rossi</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Casa_Rossi">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2649259,40.8799841,0 14.2648535,40.8799881,0 14.2648696,40.8800611,0 14.2650922,40.8800398,0 14.2650828,40.8800013,0 14.2650721,40.8800013,0 14.265056,40.8799182,0 14.2651217,40.8799151,0 14.2651525,40.8799932,0 14.2651311,40.8799932,0 14.2651579,40.8800905,0 14.264777,40.8801351,0 14.2647636,40.8800733,0 14.2647878,40.8800682,0 14.2647784,40.8800388,0 14.2647931,40.8800277,0 14.2647717,40.8799476,0 14.2649071,40.8799232,0 14.2649259,40.8799841,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

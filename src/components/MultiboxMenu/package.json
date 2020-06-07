@@ -1,0 +1,4 @@
+{
+  "main": "./MultiboxMenu.tsx",
+  "types": "./types.d.ts"
+}

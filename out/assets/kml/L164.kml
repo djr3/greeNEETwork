@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Chiesa_Santa_Maria_di_Montevergine" id="Chiesa_Santa_Maria_di_Montevergine">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Chiesa_Santa_Maria_di_Montevergine</name>
+  <Placemark>
+	<name>CHIESA SANTA MARIA DI MONTEVERGINE</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Chiesa_Santa_Maria_di_Montevergine">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2019158,40.845439,0 14.2019239,40.8454045,0 14.2019507,40.8453842,0 14.2019883,40.8453801,0 14.2020499,40.8453842,0 14.2020741,40.8454085,0 14.2020902,40.8454349,0 14.2020821,40.8454511,0 14.2020768,40.8454735,0 14.2020982,40.8454937,0 14.2021358,40.8455039,0 14.202168,40.8455222,0 14.202176,40.8455445,0 14.2021653,40.8455729,0 14.2021867,40.8455952,0 14.2021706,40.8456378,0 14.202168,40.8456885,0 14.2021224,40.8457453,0 14.2020714,40.8457778,0 14.2020607,40.8457768,0 14.2020406,40.8457656,0 14.2020191,40.8457656,0 14.2020043,40.8457585,0 14.2019909,40.8457585,0 14.2019748,40.8457585,0 14.2019614,40.8457677,0 14.2019266,40.8457524,0 14.2019373,40.8457382,0 14.2019319,40.8457251,0 14.2019064,40.8457017,0 14.2019011,40.8456926,0 14.201881,40.8457027,0 14.2018622,40.8457058,0 14.2018448,40.8457007,0 14.20183,40.8456916,0 14.201822,40.8456804,0 14.2018246,40.8456642,0 14.201834,40.84565,0 14.2018474,40.8456439,0 14.2018635,40.8456398,0 14.2018769,40.8456398,0 14.2018702,40.8455932,0 14.2018783,40.8455313,0 14.2019051,40.8454623,0 14.2018863,40.8454369,0 14.2019158,40.845439,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="masseria_perrone" id="masseria_perrone">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>masseria_perrone</name>
+  <Placemark>
+	<name>MASSERIA PERRONE</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#masseria_perrone">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.1422535,40.8591471,0 14.1425432,40.8592983,0 14.1425754,40.8592455,0 14.14268,40.8593175,0 14.1428664,40.8591542,0 14.1429858,40.8592567,0 14.1429361,40.8593054,0 14.1429844,40.8593338,0 14.1429428,40.8593825,0 14.1430367,40.8594727,0 14.142912,40.8595518,0 14.1429428,40.8595752,0 14.1428932,40.8596015,0 14.1427846,40.8595194,0 14.1426518,40.8596218,0 14.1424708,40.8594778,0 14.1424265,40.8595113,0 14.1421114,40.8593084,0 14.1422535,40.8591471,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

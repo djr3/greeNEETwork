@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_Costi_di_Sotto</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2070653,40.8731897,0 14.2070707,40.8732008,0 14.207017,40.8732008,0 14.2069754,40.8730234,0 14.2071163,40.8730041,0 14.2071216,40.8730193,0 14.2071994,40.8730112,0 14.2072329,40.8731765,0 14.2070653,40.8731897,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -1,0 +1,41 @@
+.menu {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  margin: auto;
+  padding-top: 20px;
+  border: 5px solid transparent;
+  border-radius: 100%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.bar {
+  height: 5px;
+  width: 70%;
+  display: block;
+  margin: 10px auto;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  transition: 0.4s;
+}
+
+/* @keyframes rotateL {
+  from{
+    transform(translateY(0px) rotate(0))
+  }
+  to{@include transform(translateY(-15px) rotate(-45deg))}
+} */
+
+.bar:nth-of-type(1) {
+  animation: rotateR 1.5s cubic-bezier(0.5, 0.2, 0.2, 1);
+}
+
+.bar:nth-of-type(2) {
+  animation: fade 1.5s cubic-bezier(0.1, 0.8, 0.1, 1);
+}
+
+.bar:nth-of-type(3) {
+  animation: rotateL 1.5s cubic-bezier(0.5, 0.2, 0.2, 1);
+}

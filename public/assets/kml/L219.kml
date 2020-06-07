@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Villa_Paradiso</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2255237,40.8606114,0 14.2255988,40.8605354,0 14.2257142,40.8606003,0 14.2258228,40.860508,0 14.2258349,40.8604806,0 14.2257343,40.8604664,0 14.2257169,40.8604938,0 14.2256619,40.8604857,0 14.2256619,40.8604613,0 14.2255278,40.860439,0 14.22556,40.8603579,0 14.2255264,40.8603427,0 14.2255532,40.8603153,0 14.2262734,40.8605557,0 14.2262372,40.8606114,0 14.2260253,40.8605384,0 14.2259891,40.8606074,0 14.2258362,40.8607382,0 14.2257491,40.8606764,0 14.2257115,40.86072,0 14.2255237,40.8606114,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

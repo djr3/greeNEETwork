@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Santa_Maria_delle_Grazie_a_Capodimonte</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>14.2491908,40.8700676,0 14.2491385,40.8700058,0 14.2490017,40.8700727,0 14.2489481,40.8700108,0 14.2492337,40.8698638,0 14.2492887,40.8699277,0 14.2491908,40.8700676,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

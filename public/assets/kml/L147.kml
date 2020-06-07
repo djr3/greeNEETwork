@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_Di_Marino</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>14.1916404,40.8686394,0 14.1919502,40.8685776,0 14.191977,40.8686344,0 14.1918751,40.8686739,0 14.192036,40.8688909,0 14.191926,40.8689295,0 14.1917302,40.8686861,0 14.1916766,40.8687023,0 14.1916404,40.8686394,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

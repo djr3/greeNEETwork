@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_Mauri</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2118546,40.8825325,0 14.2119324,40.8825173,0 14.2119538,40.8826258,0 14.2119713,40.8826238,0 14.2119833,40.882857,0 14.2116869,40.8828357,0 14.2115609,40.8827819,0 14.2115662,40.8826806,0 14.211876,40.8826927,0 14.2118546,40.8825325,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

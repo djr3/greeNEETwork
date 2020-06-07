@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Masseria_del_Borro" id="Masseria_del_Borro">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Masseria_del_Borro</name>
+  <Placemark>
+	<name>MASSERIA DEL BORRO</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Masseria_del_Borro">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.1799505,40.8414972,0 14.1797735,40.8415053,0 14.1797332,40.8413268,0 14.1797788,40.8413288,0 14.1797842,40.8412314,0 14.1800175,40.8412294,0 14.1800149,40.8412497,0 14.1800873,40.8412415,0 14.1800792,40.8412639,0 14.1801248,40.84127,0 14.1801275,40.8413146,0 14.1801329,40.8415053,0 14.1801543,40.8416027,0 14.1799263,40.8416393,0 14.1799076,40.8415277,0 14.1799478,40.8415236,0 14.1799505,40.8414972,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

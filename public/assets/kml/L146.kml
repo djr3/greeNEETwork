@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_Giovine</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2162175,40.872164,0 14.2161813,40.8720798,0 14.216129,40.8720808,0 14.2160687,40.8719581,0 14.2160633,40.8719104,0 14.2161076,40.8718983,0 14.2161277,40.8719551,0 14.2162899,40.8719338,0 14.2163168,40.8719297,0 14.2162966,40.8718831,0 14.2163691,40.8718729,0 14.2163731,40.8719348,0 14.2164267,40.8719135,0 14.2164643,40.8719662,0 14.2164911,40.8720007,0 14.2165877,40.8719551,0 14.2166185,40.8719784,0 14.2166279,40.8720676,0 14.216758,40.872098,0 14.216766,40.8721822,0 14.2165997,40.872168,0 14.2165461,40.8722096,0 14.216239,40.8722349,0 14.2162296,40.8722076,0 14.2165568,40.8721579,0 14.2165434,40.8721112,0 14.2162175,40.872164,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Clinica_Hermitage" id="Clinica_Hermitage">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Clinica_Hermitage</name>
+  <Placemark>
+	<name>CLINICA HERMITAGE</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Clinica_Hermitage">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2467343,40.880347,0 14.2467879,40.8803906,0 14.2467745,40.8804383,0 14.2467142,40.8804575,0 14.2465251,40.8804666,0 14.2463333,40.8804991,0 14.2464446,40.8807303,0 14.2461737,40.8808013,0 14.2460745,40.8805711,0 14.2458914,40.8806426,0 14.2457097,40.8807242,0 14.245652,40.880711,0 14.2456225,40.8806755,0 14.2456399,40.8806269,0 14.245943,40.8804869,0 14.2463829,40.8803713,0 14.2467343,40.880347,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

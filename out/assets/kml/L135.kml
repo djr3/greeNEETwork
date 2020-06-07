@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_Costi_di_Sopra</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2046798,40.8712529,0 14.2046919,40.8712255,0 14.2043754,40.8711606,0 14.2043794,40.8711373,0 14.2043942,40.8710937,0 14.2044183,40.871039,0 14.2048287,40.8711241,0 14.2047683,40.8712864,0 14.2046798,40.8712529,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

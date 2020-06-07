@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Masseria_Torre_di_S" id="Masseria_Torre_di_S">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Masseria_Torre_di_S</name>
+  <Placemark>
+	<name>MASSERIA TORRE DI S. DOMENICO</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Masseria_Torre_di_S">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2109604,40.8437526,0 14.2111615,40.843781,0 14.2110891,40.844057,0 14.2110811,40.8440854,0 14.2111159,40.8440894,0 14.2110221,40.844406,0 14.2105527,40.8443248,0 14.2105634,40.8442822,0 14.2103757,40.844266,0 14.2104293,40.8440854,0 14.2105017,40.8440164,0 14.2105688,40.8440205,0 14.210601,40.8438561,0 14.2105232,40.8438419,0 14.2105473,40.8437607,0 14.2105688,40.8437668,0 14.2105929,40.8436755,0 14.2107538,40.8436999,0 14.2107243,40.8437952,0 14.2108048,40.8438115,0 14.2108263,40.8437891,0 14.2108906,40.8437993,0 14.2108504,40.8438947,0 14.2107056,40.8438703,0 14.2106814,40.8440144,0 14.2105956,40.8440022,0 14.2105473,40.8442274,0 14.2109255,40.8442964,0 14.2109309,40.8442639,0 14.2109496,40.8442639,0 14.2109684,40.8441625,0 14.2109175,40.8441564,0 14.210947,40.8440651,0 14.2110408,40.8440813,0 14.2110784,40.8438723,0 14.2110516,40.8438602,0 14.2110516,40.843846,0 14.210955,40.8438236,0 14.2109604,40.8437526,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

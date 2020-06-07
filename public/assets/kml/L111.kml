@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Villa_La_Loggetta</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2322491,40.8606813,0 14.232174,40.8603912,0 14.2323376,40.8603547,0 14.2323698,40.8604358,0 14.2324288,40.8604318,0 14.232461,40.8605007,0 14.2323993,40.860517,0 14.2324449,40.8606407,0 14.2322491,40.8606813,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

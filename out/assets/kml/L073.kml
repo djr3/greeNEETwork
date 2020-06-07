@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Villa_Famiglietti" id="Villa_Famiglietti">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Villa_Famiglietti</name>
+  <Placemark>
+	<name>Villa Famiglietti</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Villa_Famiglietti">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2572393,40.8632624,0 14.2572581,40.863236,0 14.2572232,40.8632259,0 14.2572634,40.8631488,0 14.2576416,40.8632462,0 14.2576094,40.8633131,0 14.2576416,40.8633273,0 14.2575853,40.8634328,0 14.2576779,40.8634388,0 14.2576872,40.8634389,0 14.2576604,40.8635099,0 14.25747,40.863518,0 14.2574968,40.8634652,0 14.2573493,40.8634247,0 14.2573399,40.8634419,0 14.2572125,40.8634105,0 14.2572366,40.8633527,0 14.257364,40.86338,0 14.2574069,40.863302,0 14.2572393,40.8632624,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_Morano</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2041862,40.8723594,0 14.2041916,40.8722488,0 14.2041996,40.8722154,0 14.2042707,40.8718624,0 14.2045899,40.8719456,0 14.2044893,40.8722407,0 14.2045564,40.8722579,0 14.2045282,40.8723137,0 14.2044437,40.8722955,0 14.204445,40.8722823,0 14.2043914,40.872405,0 14.2041862,40.8723594,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2050231,40.8722488,0 14.2051008,40.8721434,0 14.2052484,40.8722012,0 14.2051598,40.8723097,0 14.2050231,40.8722488,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

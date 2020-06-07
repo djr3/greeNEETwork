@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Villa_Visocchi</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2343181,40.8566853,0 14.2339291,40.8569145,0 14.233846,40.8568334,0 14.2337923,40.8568577,0 14.2337172,40.8567867,0 14.2338084,40.8567279,0 14.2338782,40.8567887,0 14.2342349,40.856596,0 14.2343181,40.8566853,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

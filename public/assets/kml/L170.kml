@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_Ballante</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2095105,40.8948065,0 14.209481,40.8946757,0 14.2095628,40.8946595,0 14.2095856,40.8947294,0 14.2097721,40.894697,0 14.2098163,40.8947091,0 14.209827,40.8948065,0 14.2097466,40.8948237,0 14.2097345,40.8947811,0 14.2095105,40.8948065,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

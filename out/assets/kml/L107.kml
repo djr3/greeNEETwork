@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Edificio_su_Cupa_Imparato</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><outerBoundaryIs><LinearRing><coordinates>14.228837,40.8691304,0 14.2289282,40.8691912,0 14.228837,40.8692338,0 14.2287699,40.8692379,0 14.2286814,40.8692561,0 14.2286224,40.8692358,0 14.2285232,40.8692237,0 14.228491,40.8691912,0 14.2284642,40.8692074,0 14.2283998,40.8691385,0 14.2284722,40.8690938,0 14.22855,40.8691628,0 14.2286144,40.8691851,0 14.228837,40.8691304,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

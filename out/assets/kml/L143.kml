@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Masseria_della_Corte</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.217743,40.8762065,0 14.2177309,40.8759144,0 14.2178221,40.8759154,0 14.2178315,40.8760696,0 14.2178918,40.8760726,0 14.2178945,40.8762044,0 14.217743,40.8762065,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2091426,40.8776723,0 14.209148,40.8774685,0 14.2094524,40.8774624,0 14.2094497,40.877578,0 14.2095637,40.877579,0 14.2095678,40.8776956,0 14.2091453,40.8776916,0 14.2091426,40.8776723,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2179803,40.8762044,0 14.2179723,40.8759996,0 14.2178623,40.8760037,0 14.2178583,40.8758698,0 14.2180246,40.8758668,0 14.2180273,40.8759601,0 14.2180474,40.8759631,0 14.2180608,40.8762044,0 14.2179803,40.8762044,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

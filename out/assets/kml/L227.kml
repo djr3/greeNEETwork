@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Villa_Clara" id="Villa_Clara">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Villa_Clara</name>
+  <Placemark>
+	<name>VILLA CLARA</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Villa_Clara">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2389573,40.8665773,0 14.2389479,40.8665803,0 14.2386596,40.8667122,0 14.2386234,40.8666594,0 14.2382881,40.8665174,0 14.2383029,40.8664799,0 14.2381714,40.8664343,0 14.2382305,40.8663227,0 14.2382492,40.8663247,0 14.2382707,40.8662933,0 14.2382439,40.8662862,0 14.238272,40.8661189,0 14.2385309,40.8661939,0 14.2384115,40.8663744,0 14.2385671,40.8664505,0 14.2387589,40.8662406,0 14.2388165,40.86627,0 14.2386368,40.8665053,0 14.2387884,40.8665722,0 14.2389077,40.8665235,0 14.2389573,40.8665773,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

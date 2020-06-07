@@ -1,0 +1,52 @@
+version: "3"
+
+networks:
+  directus:
+
+services:
+  # pgsql:
+  #   image: postgis/postgis:12-3.0-alpine
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: directus
+  #     POSTGRES_PORT: 5432
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - directus
+
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: "greeneetwork"
+      MYSQL_USER: "directus"
+      MYSQL_PASSWORD: "directus"
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
+    networks:
+      - directus
+
+  directus:
+    depends_on:
+      - mysql
+    restart: always
+    image: directus/directus:v8-apache
+    ports:
+      - "8080:80"
+    environment:
+      DIRECTUS_APP_ENV: "production"
+      DIRECTUS_AUTH_PUBLICKEY: "Sj3bCF7WAWo1ETEcqCnMCocPhMIgruhL"
+      DIRECTUS_AUTH_SECRETKEY: "m8MFt7Og4rxlhWiDNXmte0Rej1EvGKXb"
+      DIRECTUS_DATABASE_HOST: "mysql"
+      DIRECTUS_DATABASE_PORT: "3306"
+      DIRECTUS_DATABASE_NAME: "greeneetwork"
+      DIRECTUS_DATABASE_USERNAME: "directus"
+      DIRECTUS_DATABASE_PASSWORD: "directus"
+    volumes:
+      - ./directus/config:/var/directus/config
+      - ./directus/uploads:/var/directus/public/uploads
+    networks:
+      - directus

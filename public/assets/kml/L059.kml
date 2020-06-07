@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Masseria_Cavaliere" id="Masseria_Cavaliere">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Masseria_Cavaliere</name>
+  <Placemark>
+	<name>MASSERIA CAVALIERE</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Masseria_Cavaliere">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2041058,40.8491133,0 14.2041353,40.8492107,0 14.2041541,40.8493324,0 14.2041326,40.8493324,0 14.2041434,40.8494258,0 14.2038644,40.849444,0 14.2038483,40.8493608,0 14.2037142,40.8493629,0 14.2037142,40.849304,0 14.2037062,40.8492716,0 14.203674,40.849022,0 14.2034674,40.8490504,0 14.2034433,40.8489794,0 14.2038376,40.8489327,0 14.2038537,40.8489794,0 14.2039529,40.8489632,0 14.2039717,40.849022,0 14.2038885,40.8490382,0 14.2038939,40.8491255,0 14.2041058,40.8491133,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

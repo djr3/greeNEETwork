@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Chiesa_e_ritiro_dell_Immacolata_e_San_Vincenzo" id="Chiesa_e_ritiro_dell_Immacolata_e_San_Vincenzo">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Chiesa_e_ritiro_dell_Immacolata_e_San_Vincenzo</name>
+  <Placemark>
+	<name>CHIESA E RITIRO DELL'IMMACOLATA E SAN VINCENZO</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Chiesa_e_ritiro_dell_Immacolata_e_San_Vincenzo">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2466963,40.8606454,0 14.2467003,40.8606231,0 14.2467124,40.860613,0 14.2466829,40.8605663,0 14.2468948,40.8605054,0 14.2469095,40.8605298,0 14.2470946,40.8604527,0 14.2471335,40.8604923,0 14.2473145,40.8604476,0 14.2474326,40.8605379,0 14.2473414,40.8606048,0 14.2475734,40.8607418,0 14.2474674,40.8608422,0 14.2473896,40.8607986,0 14.2473172,40.8608635,0 14.2473561,40.8608888,0 14.2472864,40.8609497,0 14.2472408,40.8609081,0 14.24723,40.8609223,0 14.2470919,40.8608209,0 14.2469739,40.8609162,0 14.2467955,40.8607834,0 14.2468116,40.8607692,0 14.2466963,40.8606454,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

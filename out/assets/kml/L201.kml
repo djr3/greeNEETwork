@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Palazzo_della_Pazzaria_Vecchia" id="Palazzo_della_Pazzaria_Vecchia">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Palazzo_della_Pazzaria_Vecchia</name>
+  <Placemark>
+	<name>Palazzo della &quot; PAZZARIA VECCHIA&quot;</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Palazzo_della_Pazzaria_Vecchia">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.251659,40.8854669,0 14.2521954,40.8853046,0 14.2522544,40.8853006,0 14.2523027,40.8853046,0 14.2523617,40.885329,0 14.25241,40.8853574,0 14.2524475,40.8853939,0 14.2523885,40.8854344,0 14.252292,40.8854101,0 14.2522866,40.8854547,0 14.2521847,40.8854709,0 14.2521686,40.8854222,0 14.2517019,40.8855358,0 14.251659,40.8854669,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

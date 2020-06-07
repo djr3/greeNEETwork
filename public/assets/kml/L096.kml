@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Villa_Ferretti" id="Villa_Ferretti">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Villa_Ferretti</name>
+  <Placemark>
+	<name>VILLA FERRETTI</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Villa_Ferretti">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2479973,40.8800261,0 14.2479948,40.8801092,0 14.2480377,40.8801112,0 14.2480391,40.8801477,0 14.2481692,40.8801508,0 14.2481504,40.8803718,0 14.2480592,40.8803678,0 14.2480512,40.8804215,0 14.2480284,40.88046,0 14.2479801,40.8804621,0 14.2479747,40.8805401,0 14.2478875,40.8805401,0 14.2478902,40.8804844,0 14.2478258,40.8804803,0 14.2478324,40.8804286,0 14.2478445,40.880021,0 14.2479973,40.8800261,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

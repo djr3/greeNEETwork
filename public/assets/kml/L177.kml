@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Folder><name>Ex_Area_della_Masseria_Paratina</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.2132645,40.8864594,0 14.2131733,40.8861795,0 14.2129309,40.8862128,0 14.2129416,40.8861406,0 14.2134191,40.886081,0 14.2134351,40.8861783,0 14.2135505,40.886231,0 14.2138536,40.8861905,0 14.2138884,40.886377,0 14.2132645,40.8864594,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>

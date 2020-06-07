@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Masseria_Cintia" id="Masseria_Cintia">
+	<SimpleField name="timestamp" type="string"></SimpleField>
+	<SimpleField name="begin" type="string"></SimpleField>
+	<SimpleField name="end" type="string"></SimpleField>
+	<SimpleField name="altitudeMode" type="string"></SimpleField>
+	<SimpleField name="tessellate" type="int"></SimpleField>
+	<SimpleField name="extrude" type="int"></SimpleField>
+	<SimpleField name="visibility" type="int"></SimpleField>
+	<SimpleField name="drawOrder" type="int"></SimpleField>
+	<SimpleField name="icon" type="string"></SimpleField>
+</Schema>
+<Folder><name>Masseria_Cintia</name>
+  <Placemark>
+	<name>MASSERIA CINTIA</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Masseria_Cintia">
+		<SimpleData name="tessellate">-1</SimpleData>
+		<SimpleData name="extrude">0</SimpleData>
+		<SimpleData name="visibility">-1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Polygon><altitudeMode>clampToGround</altitudeMode><outerBoundaryIs><LinearRing><altitudeMode>clampToGround</altitudeMode><coordinates>14.18461,40.8445718,0 14.1847629,40.8444906,0 14.1848461,40.844584,0 14.1848783,40.8445941,0 14.1849882,40.8446732,0 14.1851304,40.844659,0 14.1851921,40.8445941,0 14.185302,40.844659,0 14.1852296,40.8447321,0 14.1851411,40.8448173,0 14.185302,40.8449086,0 14.1854254,40.844797,0 14.1855649,40.8449248,0 14.1851545,40.8452637,0 14.1848568,40.8449492,0 14.1849024,40.8449228,0 14.1849346,40.8448985,0 14.1848434,40.8448417,0 14.1848595,40.8448254,0 14.1847844,40.8447848,0 14.1847495,40.8448072,0 14.1846127,40.8446083,0 14.18461,40.8445718,0</coordinates></LinearRing></outerBoundaryIs></Polygon>
+  </Placemark>
+</Folder>
+</Document></kml>
