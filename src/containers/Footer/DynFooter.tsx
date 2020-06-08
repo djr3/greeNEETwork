@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 // import Link from "next/link";
 import { useRouter } from "next/router";
-import { Credits } from "@/components/Credits/";
+import { Credits } from "components/Credits/";
 
 // Container stylesheets
 import { useStyletron } from "styletron-react";
@@ -9,7 +9,7 @@ import { Icon } from "atomize";
 
 // Container animation
 import { motion, useCycle } from "framer-motion";
-import { useComponentDimensions } from "@/core/hooks";
+import { useComponentDimensions } from "core/hooks";
 
 type Props = {
   className?: string;

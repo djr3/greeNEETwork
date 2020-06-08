@@ -1,21 +1,21 @@
 // Core Components
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { directus } from "@/core/cli";
+import { directus } from "core/cli";
 
 // Page Layout
-import Page from "@/containers/Main";
+import Page from "containers/Main";
 import { useStyletron } from "styletron-react";
 
 // Page Components
-import { Image } from "@/components/Image";
-import { Slideshow } from "@/components/Slideshow";
-import { DynamicMap } from "@/components/Map";
-import { getCoordinates } from "@/components/Map/utils";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Image } from "components/Image";
+import { Slideshow } from "components/Slideshow";
+import { DynamicMap } from "components/Map";
+import { getCoordinates } from "components/Map/utils";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { Container, Row, Col, Div, Text, Anchor, Icon } from "atomize";
-import { SocialShare, SocialMenu } from "@/components/Social";
-import { Contacts } from "@/components/Contacts";
+import { SocialShare, SocialMenu } from "components/Social";
+import { Contacts } from "components/Contacts";
 
 // Carousel
 import Carousel from "@brainhubeu/react-carousel";
@@ -77,7 +77,6 @@ export async function getStaticProps({ params }) {
     )
   ).json();
 
-  //@ts-ignore
   return {
     props: {
       luogo: {

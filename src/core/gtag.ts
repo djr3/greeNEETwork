@@ -1,5 +1,5 @@
 // Add your GA tracking id in the .env file or hardcode it here
-export const { GA_TRACKING_ID } = process.env;
+export const { NEXT_PUBLIC_GA_TRACKING_ID } = process.env;
 
 const isProduction = process.env.NODE_ENV.toLowerCase() === "production";
 
@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV.toLowerCase() === "production";
 export const trackPageView = (url) => {
   if (isProduction) {
     // @ts-ignore
-    window.gtag("config", GA_TRACKING_ID, {
+    window.gtag("config", NEXT_PUBLIC_GA_TRACKING_ID, {
       page_path: url,
     });
   }

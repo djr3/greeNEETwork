@@ -3,13 +3,13 @@
  */
 import { ThemeProvider, StyleReset } from "atomize";
 import { useStyletron } from "styletron-react";
-import { theme } from "@/styletron";
+import { theme } from "styletron";
 
 /**
  * Containers
  */
-import { AniHeader } from "@/containers/Header";
-import Footer from "@/containers/Footer";
+import { AniHeader } from "containers/Header";
+import Footer from "containers/Footer";
 
 /**
  * Data & Constants
@@ -18,7 +18,7 @@ import {
   defaultMenuItems,
   // defaultSocialItems,
   // defaultMediaQuery,
-} from "@/core/constants";
+} from "core/constants";
 // const { xs, sm, md, lg, xl } = defaultMediaQuery;
 
 export const SiteLayout = (props) => {

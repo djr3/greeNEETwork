@@ -2,7 +2,7 @@
  * App Theme
  */
 import { ThemeProvider, StyleReset } from "atomize";
-import { theme } from "@/styletron";
+import { theme } from "styletron";
 import { useStyletron } from "styletron-react";
 
 export const AuthLayout = (props) => {

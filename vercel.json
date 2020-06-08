@@ -6,8 +6,6 @@
   },
   "build": {
     "env": {
-      "API_USER": "@gnw_api_user",
-      "API_PWD": "@gnw_api_pwd",
       "API_TOKEN": "@gnw_api_token",
       "API_URL": "http://api.agritettura.org",
       "APP_URL": "https://greeneetwork.agritettura.org",

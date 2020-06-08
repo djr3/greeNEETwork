@@ -4,11 +4,11 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { menuItem } from "@/interfaces";
+import { menuItem } from "interfaces";
 
 // Container components
-import { SocialMenu, TSocialMenu } from "@/components/Social";
-import { Image } from "@/components/Image";
+import { SocialMenu, TSocialMenu } from "components/Social";
+import { Image } from "components/Image";
 
 // Container stylesheets
 import { useStyletron } from "styletron-react";
@@ -20,7 +20,7 @@ import { motion, useCycle } from "framer-motion";
 export type PageHeaderProps = {
   navMenu: menuItem[];
   socialMenu?: TSocialMenu;
-  onClick?: Function;
+  onClick?: any;
   className?: string | undefined;
 };
 

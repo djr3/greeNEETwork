@@ -6,9 +6,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 // Container components
-// import { MultiboxMenu } from "@/components/MultiboxMenu";
-import { SocialMenu } from "@/components/Social";
-import { Image } from "@/components/Image";
+// import { MultiboxMenu } from "components/MultiboxMenu";
+import { SocialMenu } from "components/Social";
+import { Image } from "components/Image";
 
 // Container stylesheets
 import { useStyletron } from "styletron-react";

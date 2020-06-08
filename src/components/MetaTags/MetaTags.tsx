@@ -1,7 +1,7 @@
 import React, { Fragment, FunctionComponent } from "react";
 import Head from "next/head";
 
-import { TMetaTags } from "@/interfaces";
+import { TMetaTags } from "interfaces";
 
 type Props = {
   tags: TMetaTags;

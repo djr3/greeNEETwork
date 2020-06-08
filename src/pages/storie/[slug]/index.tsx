@@ -1,14 +1,14 @@
 // Core Components
 // import Head from 'next/head'
-import { directus } from "@/core/cli";
+import { directus } from "core/cli";
 
 // Page Layout
-import Page from "@/containers/Main";
+import Page from "containers/Main";
 import { useStyletron } from "styletron-react";
 
 // Page Components
 import { Container, Row, Col, Div, Text, Icon } from "atomize";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import ReactPlayer from "react-player";
 
 export async function getStaticPaths() {

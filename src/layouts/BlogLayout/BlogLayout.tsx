@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 /**
  * Persistent Components
  */
-import Page from "@/containers/Main";
+import Page from "containers/Main";
 import { Container, Row } from "atomize";
 
 interface ActiveLinkProps {

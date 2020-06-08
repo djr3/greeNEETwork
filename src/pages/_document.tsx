@@ -6,12 +6,13 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 /**
  * Google Analytics
  */
-import { GA_TRACKING_ID } from "../core/gtag";
+import { NEXT_PUBLIC_GA_TRACKING_ID } from "../core/gtag";
 
 /**
  * Styletron
  */
 import { Provider as StyletronProvider } from "styletron-react";
+import { Server } from "styletron-engine-atomic";
 import { engine } from "../styletron";
 
 type Props = {
@@ -28,8 +29,9 @@ export default class extends Document<Props> {
         <App {...props} />
       </StyletronProvider>
     ));
-    //@ts-ignore
-    const stylesheets = engine.getStylesheets ? engine.getStylesheets() : [];
+    const stylesheets = (engine as Server).getStylesheets
+      ? (engine as Server).getStylesheets()
+      : [];
     // const stylesheets = engine.renderStyle() || [];
     // const initialProps = await Document.getInitialProps(ctx);
     return {
@@ -39,13 +41,13 @@ export default class extends Document<Props> {
     };
   }
 
-  setGoogleTags(GA_TRACKING_ID) {
+  setGoogleTags(NEXT_PUBLIC_GA_TRACKING_ID) {
     return {
       __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}');
+                gtag('config', '${NEXT_PUBLIC_GA_TRACKING_ID}');
             `,
     };
   }
@@ -68,11 +70,13 @@ export default class extends Document<Props> {
             <>
               <script
                 async
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_TRACKING_ID}`}
               />
               {/* We call the function above to inject the contents of the script tag */}
               <script
-                dangerouslySetInnerHTML={this.setGoogleTags(GA_TRACKING_ID)}
+                dangerouslySetInnerHTML={this.setGoogleTags(
+                  NEXT_PUBLIC_GA_TRACKING_ID
+                )}
               />
             </>
           )}

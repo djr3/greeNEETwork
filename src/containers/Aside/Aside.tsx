@@ -1,4 +1,4 @@
-import { defaultMediaQuery } from "@/core/constants";
+import { defaultMediaQuery } from "core/constants";
 import { styled, useStyletron } from "styletron-react";
 import { FC, ComponentProps } from "react";
 

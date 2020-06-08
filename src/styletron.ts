@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { Client, Server } from "styletron-engine-atomic";
 import { DebugEngine } from "styletron-react";
 
@@ -11,7 +10,9 @@ const scalingText = { min: 14, max: 16 };
 export const engine =
   typeof window === "undefined"
     ? new Server()
-    : new Client({ hydrate: getHydrateClass() });
+    : new Client({
+        hydrate: getHydrateClass() as HTMLCollectionOf<HTMLStyleElement>,
+      });
 
 export const debug =
   process.env.NODE_ENV === "production" ? void 0 : new DebugEngine();

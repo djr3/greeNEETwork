@@ -2,13 +2,13 @@
 // PAGE Main Section
 // ------------------------------------------------
 import React, { ReactNode, CSSProperties } from "react";
-import { MetaTags } from "@/components/MetaTags";
-import { TMetaTags } from "@/interfaces";
+import { MetaTags } from "components/MetaTags";
+import { TMetaTags } from "interfaces";
 
 /**
  * PAGE Layout // Inversion of Control
  */
-import { SiteLayout } from "@/layouts";
+import { SiteLayout } from "layouts";
 import { motion } from "framer-motion";
 import { useStyletron } from "styletron-react";
 

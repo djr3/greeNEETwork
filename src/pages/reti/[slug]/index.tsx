@@ -1,17 +1,17 @@
 // Core Components
 // import Head from "next/head";
 import Link from "next/link";
-import { directus } from "@/core/cli";
+import { directus } from "core/cli";
 
 // Page Layout
-import Page from "@/containers/Main/Main";
+import Page from "containers/Main/Main";
 
 // Page Components
 import { useStyletron } from "styletron-react";
-import { Image } from "@/components/Image";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { Image } from "components/Image";
+import { Breadcrumbs } from "components/Breadcrumbs";
 import { Container, Row, Col, Div, Text, Anchor, Icon } from "atomize";
-import { PlacePreview } from "@/components/Map";
+import { PlacePreview } from "components/Map";
 
 // Generate static pages
 export async function getStaticPaths() {

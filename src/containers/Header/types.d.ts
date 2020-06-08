@@ -1,5 +1,5 @@
-import { TSocialMenu } from "@/components/Social";
-import { menuItem } from "@/interfaces";
+import { TSocialMenu } from "components/Social";
+import { menuItem } from "interfaces";
 
 export type PageHeaderProps = {
   navMenu: menuItem[];

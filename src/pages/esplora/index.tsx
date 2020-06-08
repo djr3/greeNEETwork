@@ -1,18 +1,18 @@
 // Core Components
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import { directus } from "@/core/cli";
+import { directus } from "core/cli";
 // import forceUpdate from "use-force-update";
 
 // Page Layout & Style
-import Page from "@/containers/Main";
-import Aside from "@/containers/Aside";
+import Page from "containers/Main";
+import Aside from "containers/Aside";
 import { useStyletron, styled } from "styletron-react";
 
 // Page Components
 import { Row, Col, Text, Icon, Div } from "atomize";
-import { Filter } from "@/components/Filters";
-import { DynamicMap, PlacePreview } from "@/components/Map";
+import { Filter } from "components/Filters";
+import { DynamicMap, PlacePreview } from "components/Map";
 
 // Static Props
 export async function getStaticProps() {

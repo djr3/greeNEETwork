@@ -1,16 +1,16 @@
 // Core Components
 // import Head from "next/head";
 import Link from "next/link";
-import { directus } from "@/core/cli";
+import { directus } from "core/cli";
 
 // Page Layout
-import Page from "@/containers/Main";
+import Page from "containers/Main";
 import { useStyletron } from "styletron-react";
 
 // Page Components
 import { Container, Row, Col, Div, Text, Anchor, Button } from "atomize";
-import { Breadcrumbs } from "@/components/Breadcrumbs";
-// import { Image } from "@/components/Image";
+import { Breadcrumbs } from "components/Breadcrumbs";
+// import { Image } from "components/Image";
 
 export async function getStaticProps() {
   const reti = await (await directus.getItems("reti_territoriali")).data;
