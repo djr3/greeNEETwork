@@ -1,15 +1,19 @@
-export enum SocialNetworks {
-  behance = "Behance",
-  dribble = "Dribbble",
-  facebook = "Facebook",
-  github = "Github",
-  instagram = "Instagram",
-  linkedin = "Linkedin",
-  twitter = "Twitter",
-}
+export type SocialNetworks =
+  | "Behance"
+  | "Dribbble"
+  | "Facebook"
+  | "Github"
+  | "Instagram"
+  | "Linkedin"
+  | "Twitter"
+  | "Email"
+  | "Info"
+  | "Home";
+
 export type TSocialMenuItem = {
-  name: SocialNetworks;
+  name: SocialNetworks | string;
   link: string;
+  // type: "links" | "icons";
 };
 
 export type TSocialMenu = TSocialMenuItem[];

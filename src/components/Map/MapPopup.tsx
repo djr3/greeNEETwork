@@ -12,8 +12,8 @@ export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
 }) => {
   const center = getCoordinates(place.geo_json);
 
-  console.log("Popup Place : ", place);
-  console.log("Popup Place Coord : ", center);
+  // console.log("Popup Place : ", place);
+  // console.log("Popup Place Coord : ", center);
 
   return (
     <Popup
@@ -29,7 +29,7 @@ export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
         </Text>
         <p>{place.descrizione}</p>
         <Contacts place={place} />
-        <Link href={`/esplora/${place.slug}`}>
+        <Link href="/esplora/[slug]" as={`/esplora/${place.slug}`}>
           <Anchor>
             <Button
               h="2rem"

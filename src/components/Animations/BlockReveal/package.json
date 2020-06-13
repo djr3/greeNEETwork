@@ -1,0 +1,9 @@
+{
+  "main": "BlockReveal.tsx",
+  "dependencies": {
+    "framer-motion": "^1.10.3"
+  },
+  "devDependencies": {
+    "sass": "^1.26.8"
+  }
+}

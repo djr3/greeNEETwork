@@ -33,40 +33,35 @@ export default function Credits() {
                   La mappatura del Parco (Luoghi, Itinerari, Reti Attive e
                   Storie), il documentario URBANORURALE e la pagina internet che
                   li ospita sono stati realizzati dall’associazione di
-                  promozione sociale Agritettura 2.0 come partner del progetto
+                  promozione sociale Agritettura 2.0 come partner del
+                  progetto&nbsp;
                   <a
                     href="http://www.greeneetwork.it"
                     target="_blank"
                     rel="noreferrer"
-                    style={{ textDecoration: "underline" }}
+                    className="l1"
                   >
-                    <span> GreeNEETwork</span>
+                    GreeNEETwork
                   </a>
                   , Programma ANCI Restart.
                 </p>
                 <p>
                   Il Progetto promuove un modello di valorizzazione sostenibile{" "}
                   <a
+                    className="l1"
                     href="http://www.parcometropolitanocollinenapoli.it/"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Parco Metropolitano delle Colline di Napoli
                   </a>
-                  ed ha come Capofila il&nbpsp;
-                  <a
-                    href="http://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/26080"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Comune di Napoli - Assessorato ai Giovani
-                  </a>
-                  , Politiche giovanili, Creatività e Innovazione e Servizio
-                  Giovani e Pari Opportunità. Le attività ideate e coordinate da
-                  Agritettura 2.0 sono state realizzate con il coinvolgimento di
-                  giovani NEET, studenti universitari e professionisti under 40,
-                  e grazie alla collaborazione con operatori sociali ed
-                  economici del territorio.
+                  &nbsp;ed ha come Capofila il Comune di Napoli - Assessorato ai
+                  Giovani, Politiche giovanili, Creatività e Innovazione e
+                  Servizio Giovani e Pari Opportunità. Le attività ideate e
+                  coordinate da Agritettura 2.0 sono state realizzate con il
+                  coinvolgimento di giovani NEET, studenti universitari e
+                  professionisti under 40, e grazie alla collaborazione con
+                  operatori sociali ed economici del territorio.
                 </p>
               </Col>
             </Row>

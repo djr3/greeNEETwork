@@ -1,0 +1,49 @@
+@keyframes moveFw {
+  47% {
+    transform-origin: left;
+    animation-mode: forwards;
+    transform: scaleX(1);
+  }
+  50% {
+    transform-origin: right;
+    transform: scaleX(1);
+  }
+  100% {
+    transform-origin: right;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes moveBw {
+  47% {
+    transform-origin: right;
+    animation-mode: forwards;
+    transform: scaleX(1);
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  100% {
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

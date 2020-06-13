@@ -137,7 +137,7 @@ export default function Esplora({ accessibilita, luoghi, servizi, tipologie }) {
   const findPlace = (arr, placeId) => arr[findPlaceIdx(arr, placeId)];
 
   const handleFilters = (property, value) => {
-    console.log(`Filtering by ${property}: ${value}`);
+    // console.log(`Filtering by ${property}: ${value}`);
     setState((prevState) => ({
       ...prevState,
       [property]: value,

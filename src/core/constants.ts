@@ -1,6 +1,6 @@
 import { EPageType, ERobotsContent, TMetaTags } from "../interfaces";
 import { concatenateStrings } from "./helper";
-import { TSocialMenu, SocialNetworks } from "../components/Social";
+// import { TSocialMenu } from "../components/Social";
 
 export const defaultBreakPoints = {
   sm: 576,
@@ -38,17 +38,17 @@ export const defaultMenuItems = [
   { name: "Credits", link: "/credits" },
 ];
 
-export const defaultSocialItems: TSocialMenu = [
+export const defaultSocialItems = [
   {
-    name: SocialNetworks.facebook,
+    name: "Facebook",
     link: "https://facebook.com/gardenet.napoli",
   },
   {
-    name: SocialNetworks.twitter,
+    name: "Twitter",
     link: "https://twitter.com/agritettura2_0",
   },
   {
-    name: SocialNetworks.instagram,
+    name: "Instagram",
     link: "https://www.instagram.com/agritettura",
   },
 ];

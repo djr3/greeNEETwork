@@ -24,7 +24,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Blog(props) {
+export default function Storie(props) {
   const [css] = useStyletron();
   // const posts = JSON.parse(props.posts);
   const { posts } = props;
@@ -39,28 +39,36 @@ export default function Blog(props) {
     >
       <Container>
         <Row justify="center">
-          <Col size={10}>
+          <Col size={{ xs: 12, md: 10 }}>
+            <Breadcrumbs />
             <Div tag="hgroup">
-              <Text textSize="h1" tag="h1" fontFamily="primary">
+              <Text textSize="display3" tag="h1" fontFamily="primary">
                 Storie
               </Text>
-              <Text textSize="h5" tag="h5">
+              <Text
+                textSize="body"
+                tag="h5"
+                textWeight="400"
+                textTransform="uppercase"
+                style={{
+                  letterSpacing: "1px",
+                }}
+              >
                 Racconti dal Parco Metropolitano delle Colline di Napoli
               </Text>
-              <Breadcrumbs />
             </Div>
           </Col>
         </Row>
         {posts.map((post) => (
           <Row key={post.id} justify="Center" m={{ y: "2rem" }}>
-            <Col size={{ xs: 10, md: 4 }}>
+            <Col size={{ xs: 12, md: 4 }}>
               <ReactPlayer
                 url={post.video_pillola}
                 width="100%"
                 height="240px"
               />
             </Col>
-            <Col size={{ xs: 10, md: 6 }}>
+            <Col size={{ xs: 12, md: 6 }}>
               <Div tag="article" m={{ y: "1rem" }}>
                 <Text textSize="h4" tag="h3">
                   {post.titolo}
@@ -68,9 +76,16 @@ export default function Blog(props) {
                 <div>
                   <Text m={{ b: "1rem" }}>{post.descrizione}</Text>
                   {/* <div dangerouslySetInnerHTML={{ __html: post.contenuto }} /> */}
-                  <Link href={"storie/" + post.slug}>
+                  <Link href="storie/[slug]" as={`storie/${post.slug}`}>
                     <Anchor>
-                      <Button>Leggi la storia</Button>
+                      <Button
+                        h="2rem"
+                        p={{ x: "0.75rem" }}
+                        textSize="caption"
+                        bg="teal"
+                      >
+                        Leggi la storia
+                      </Button>
                     </Anchor>
                   </Link>
                 </div>

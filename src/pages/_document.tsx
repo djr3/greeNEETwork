@@ -6,7 +6,12 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 /**
  * Google Analytics
  */
-import { NEXT_PUBLIC_GA_TRACKING_ID } from "../core/gtag";
+import { GoogleTags, setGoogleTagsAMP } from "core/gtag";
+
+/**
+ * AMP - Accelerated Mobile Pages
+ */
+import { AmpWrapper, AmpAnalytics } from "core/amp";
 
 /**
  * Styletron
@@ -41,16 +46,16 @@ export default class extends Document<Props> {
     };
   }
 
-  setGoogleTags(NEXT_PUBLIC_GA_TRACKING_ID) {
-    return {
-      __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${NEXT_PUBLIC_GA_TRACKING_ID}');
-            `,
-    };
-  }
+  // setGoogleTags(NEXT_PUBLIC_GA_TRACKING_ID) {
+  //   return {
+  //     __html: `
+  //               window.dataLayer = window.dataLayer || [];
+  //               function gtag(){dataLayer.push(arguments);}
+  //               gtag('js', new Date());
+  //               gtag('config', '${NEXT_PUBLIC_GA_TRACKING_ID}');
+  //           `,
+  //   };
+  // }
 
   render() {
     const language = "it";
@@ -63,23 +68,6 @@ export default class extends Document<Props> {
           <base href="/" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
-
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
-          {/* We only want to add the scripts if in production */}
-          {isProduction && (
-            <>
-              <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_TRACKING_ID}`}
-              />
-              {/* We call the function above to inject the contents of the script tag */}
-              <script
-                dangerouslySetInnerHTML={this.setGoogleTags(
-                  NEXT_PUBLIC_GA_TRACKING_ID
-                )}
-              />
-            </>
-          )}
 
           {/** FavIcon & PWA MetaTags */}
           {isProduction && (
@@ -128,14 +116,6 @@ export default class extends Document<Props> {
             />
           ))}
 
-          {/* Favicon */}
-          {/* <link
-            key="favicon"
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="/favicon.ico"
-          /> */}
-
           {/* Progressive Web App Meta */}
           {/* <link key="manifest" rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icon-192.png" />
@@ -171,6 +151,20 @@ export default class extends Document<Props> {
         <body>
           <Main />
           <NextScript />
+
+          {/* Google Analytics - Tag Manager (gtag.js)*/}
+          {/* We only want to add the scripts if in production */}
+          {isProduction && (
+            <AmpWrapper
+              ampOnly={
+                <AmpAnalytics
+                  type="googleanalytics"
+                  script={setGoogleTagsAMP()}
+                />
+              }
+              nonAmp={<GoogleTags />}
+            />
+          )}
 
           {/** Google AdSense */}
           {/* {isProduction && (

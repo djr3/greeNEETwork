@@ -14,7 +14,7 @@ export class Polyline extends PureComponent<{
       lineWidth = 2,
       renderWhileDragging = true,
     } = this.props;
-    console.log("Path Points : ", points);
+    // console.log("Path Points : ", points);
     ctx.clearRect(0, 0, width, height);
     ctx.globalCompositeOperation = "lighter";
 

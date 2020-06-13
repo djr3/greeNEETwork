@@ -51,7 +51,7 @@ const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
         align="center"
         p={{ x: "12px" }}
         // w={{ xs: "90%", sm: "62%" }}
-        bg={bg === "dark" ? "#4c4c4c" : "#ececec"}
+        bg={bg === "dark" ? "#1c1c1c" : "#ececec"}
         fontSize="0.75rem"
         // lineHeight={1}
         textColor="#ccc"
@@ -68,24 +68,32 @@ const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
             src={`/img/cdm${isDark}.svg`}
             alt="Logo Consiglio dei Ministri"
           />
-          <img
-            className={css({
-              height: "3rem",
-              width: "auto",
-              margin: ".5rem",
-            })}
-            src={`/img/anci${isDark}.png`}
-            alt="Logo ANCI"
-          />
-          <img
-            className={css({
-              height: "3rem",
-              width: "auto",
-              margin: ".5rem",
-            })}
-            src={`/img/comune${isDark}.png`}
-            alt="Logo Comune di Napoli"
-          />
+          <a href="http://www.anci.it" target="_blank" rel="noreferrer">
+            <img
+              className={css({
+                height: "3rem",
+                width: "auto",
+                margin: ".5rem",
+              })}
+              src={`/img/anci${isDark}.png`}
+              alt="Logo ANCI"
+            />
+          </a>
+          <a
+            href="https://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/26080"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              className={css({
+                height: "3rem",
+                width: "auto",
+                margin: ".5rem",
+              })}
+              src={`/img/comune${isDark}.png`}
+              alt="Logo Comune di Napoli"
+            />
+          </a>
         </Div>
         <Div className={css({ maxWidth: "20rem" })}>
           <small style={{ lineHeight: 1.2 }}>

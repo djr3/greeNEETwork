@@ -9,16 +9,27 @@ import { useStyletron } from "styletron-react";
 
 // Page Components
 import { Image } from "components/Image";
-import { Slideshow } from "components/Slideshow";
+// import { Slideshow } from "components/Slideshow";
 import { DynamicMap } from "components/Map";
-import { getCoordinates } from "components/Map/utils";
+// import { getCoordinates } from "components/Map/utils";
 import { Breadcrumbs } from "components/Breadcrumbs";
-import { Container, Row, Col, Div, Text, Anchor, Icon } from "atomize";
+import { Container, Row, Col, Div, Text, Anchor } from "atomize";
 import { SocialShare, SocialMenu } from "components/Social";
-import { Contacts } from "components/Contacts";
 
 // Carousel
 import Carousel from "@brainhubeu/react-carousel";
+
+// const getAddress = (address) => {
+//   return [
+//     address.road,
+//     address.suburb,
+//     address.city,
+//     address.state,
+//     address.country,
+//   ]
+//     .filter((i) => i != undefined)
+//     .join(", ");
+// };
 
 // Generate static pages
 export async function getStaticPaths() {
@@ -65,23 +76,28 @@ export async function getStaticProps({ params }) {
     })
   ).data[0];
 
-  const { latitude, longitude } = getCoordinates(luogo.geo_json);
+  // const { latitude, longitude } = getCoordinates(luogo.geo_json);
 
-  const { address: indirizzo } = await (
-    await fetch(
-      "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
-        latitude +
-        "&lon=" +
-        longitude +
-        "&accept-language=it-IT&zoom=18"
-    )
-  ).json();
+  // const { address } = await (
+  //   await fetch(
+  //     "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+  //       latitude +
+  //       "&lon=" +
+  //       longitude +
+  //       "&accept-language=it-IT&zoom=18"
+  //   )
+  // ).json();
+
+  // const indirizzo = await (
+  //   await directus.updateItem("luoghi", luogo.id, {
+  //     indirizzo: getAddress(address),
+  //   })
+  // ).data.indirizzo;
 
   return {
     props: {
       luogo: {
         ...luogo,
-        indirizzo,
         galleria_immagini:
           luogo.galleria_immagini && luogo.galleria_immagini.length > 0
             ? luogo.galleria_immagini.map(
@@ -107,7 +123,6 @@ export default function Luogo({ luogo }) {
     id,
     nome,
     contenuto,
-    contatti,
     indirizzo,
     accessibilita,
     galleria_immagini,
@@ -115,8 +130,6 @@ export default function Luogo({ luogo }) {
     servizi,
     tipologie,
   } = luogo;
-
-  const contacts = [];
 
   /**
    * Utility functions
@@ -133,25 +146,32 @@ export default function Luogo({ luogo }) {
     );
   };
 
-  const getAddress = (address) => {
-    return [
-      address.road,
-      address.suburb,
-      address.city,
-      address.state,
-      address.country,
-    ].map((i) => (i ? i + ", " : null));
+  const formatLink = (s: string) => {
+    if (s.includes("http")) return s;
+    if (s.includes("@")) return "mailto:" + s;
+    return "tel:+39" + s;
   };
 
-  const getContacts = (place) => {
-    return [
-      place.telefono,
-      place.email,
-      place.pagina_web,
-      place.pagina_facebook,
-      place.pagina_instagram,
-    ].map((c) => (c ? <p key={c}>{c}</p> : null));
+  const checkLength = (string) => (string && string.length > 7 ? true : false);
+
+  const makeMenu = (obj): { name: string; link: string }[] => {
+    const menu = [];
+
+    if (checkLength(obj.telefono))
+      menu.push({ name: "Info", link: formatLink(obj.telefono) });
+    if (checkLength(obj.email))
+      menu.push({ name: "Email", link: formatLink(obj.email) });
+    if (checkLength(obj.pagina_web))
+      menu.push({ name: "Home", link: formatLink(obj.pagina_web) });
+    if (checkLength(obj.pagina_facebook))
+      menu.push({ name: "Facebook", link: formatLink(obj.pagina_facebook) });
+    if (checkLength(obj.pagina_instagram))
+      menu.push({ name: "Instagram", link: formatLink(obj.pagina_instagram) });
+
+    return menu;
   };
+
+  const socialMenu = makeMenu(luogo);
 
   return (
     <Page
@@ -192,7 +212,7 @@ export default function Luogo({ luogo }) {
               <Text textSize="h1" tag="h1">
                 {nome}
               </Text>
-              <Text textSize="caption">{getAddress(indirizzo)}</Text>
+              <Text textSize="caption">{indirizzo}</Text>
             </Div>
 
             {/* <Text tag="h3" textSize="h3">
@@ -225,24 +245,28 @@ export default function Luogo({ luogo }) {
                   })}
                 >
                   <Text textSize="h5" tag="h5">
-                    Appartenente alle reti territoriali :
+                    Reti territoriali di appartenenza :
                   </Text>
                 </Col>
                 {reti_territoriali.map(({ rete_territoriale }) => (
                   <Col
                     key={rete_territoriale.id}
-                    m={{ y: "3rem" }}
                     tag="article"
                     size={{ xs: 6, md: 4, lg: 3 }}
                   >
-                    <Link href={`/reti/${rete_territoriale.slug}`}>
-                      <Anchor m={{ y: "3rem" }}>
+                    <Link
+                      href="/reti/[slug]"
+                      as={`/reti/${rete_territoriale.slug}`}
+                    >
+                      <Anchor d="flex" align="center" justify="center" h="100%">
                         {/* <Text textSize="h6" tag="h6">
                           {rete.nome}
                         </Text> */}
                         <Image
                           src={`/img/reti/${rete_territoriale.id}.webp`}
                           alt={rete_territoriale.nome}
+                          maxH="100%"
+                          w="auto"
                         />
                       </Anchor>
                     </Link>
@@ -316,7 +340,7 @@ export default function Luogo({ luogo }) {
                 <Text tag="h6" textSize="h6">
                   Contatti
                 </Text>
-                <Contacts luogo={luogo} />
+                <SocialMenu menu={socialMenu} type="icons" d="flex" />
               </Div>
             )}
           </Col>

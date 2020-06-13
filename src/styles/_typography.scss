@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+$underlineColor: #00b388;
+$underlineHeight: 5%;
+
+a.l1 {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+  padding: 0 1px;
+  transition: color ease 0.3s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: $underlineHeight;
+    left: 0;
+    bottom: 0;
+    background-color: $underlineColor;
+    transition: all ease 0.3s;
+  }
+
+  &:hover {
+    color: white;
+
+    &::after {
+      height: 100%;
+    }
+  }
+}
+
+h1,
+h2 {
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -1px;
+}

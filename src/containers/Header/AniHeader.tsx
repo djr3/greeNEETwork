@@ -67,7 +67,7 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
         },
       }}
     >
-      <Link href={item.link}>
+      <Link href={item.link} as={item.link}>
         <a className={css({ color: "#fff" })}>{item.name}</a>
       </Link>
     </motion.li>

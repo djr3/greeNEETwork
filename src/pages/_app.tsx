@@ -7,16 +7,16 @@ import { defaultMetaTags } from "../core/constants";
 // Global Components
 import { SiteLayout } from "../layouts";
 import { MetaTags } from "../components/MetaTags";
-import { trackPageView } from "../core/gtag";
+import { trackPageView, trackVitals } from "../core/gtag";
 
 // Style & Animation Providers
 import { AnimatePresence } from "framer-motion";
 import { Provider as StyletronProvider } from "styletron-react";
 import { engine, debug } from "../styletron";
-// import "../styles/app.sass";
-import "../styles/reset.css";
 // Carousel styles
 import "@brainhubeu/react-carousel/lib/style.css";
+// App Styles
+import "styles/app.scss";
 
 // Typings
 import { Page } from "../interfaces";
@@ -33,6 +33,10 @@ Router.events.on("routeChangeComplete", (url) => trackPageView(url));
 //   // enabled: process.env.NODE_ENV === "production"
 // });
 
+export function reportWebVitals({ id, name, label, value }) {
+  trackVitals({ id, name, label, value });
+}
+
 export default class GreeNEETwork extends App {
   // componentDidMount() {}
 
@@ -44,7 +48,7 @@ export default class GreeNEETwork extends App {
       : (page) => <SiteLayout>{page}</SiteLayout>;
 
     return (
-      <StyletronProvider value={engine} debug={debug} debugAfterHydration>
+      <StyletronProvider value={engine} debug={debug}>
         <MetaTags tags={defaultMetaTags} />
         {getLayout(
           <AnimatePresence exitBeforeEnter>

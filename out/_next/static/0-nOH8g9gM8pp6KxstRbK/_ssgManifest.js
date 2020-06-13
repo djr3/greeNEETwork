@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Fstorie","\u002Freti","\u002Fesplora","\u002Fitinerari","\u002Fesplora\u002F[slug]","\u002Fstorie\u002F[slug]","\u002Freti\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

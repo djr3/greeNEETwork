@@ -26,7 +26,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
     display: "flex",
     alignItems: "center",
     width: "100%",
-    // margin: "1.4rem 0",
+    margin: withBorders ? "1.4rem 0" : null,
     borderTop: withBorders ? "1px solid #ccc" : "none",
     borderBottom: withBorders ? "1px solid #ccc" : "none",
   }));
@@ -37,7 +37,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
         style={{
           listStyle: "none",
           display: "flex",
-          padding: 0,
+          padding: withBorders ? "1rem" : 0,
           margin: 0,
           // marginLeft: "1rem",
         }}
@@ -51,7 +51,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
               className={isLast ? "is-active" : undefined}
               style={{ marginLeft: idx === 0 ? undefined : "10px" }}
             >
-              <Link href={isFirst ? curr : getPath(arr, idx)}>
+              <Link href={isLast ? "#" : isFirst ? curr : getPath(arr, idx)}>
                 <Anchor
                   aria-current={isLast ? "page" : undefined}
                   textColor="#666"

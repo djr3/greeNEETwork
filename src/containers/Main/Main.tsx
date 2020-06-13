@@ -4,6 +4,7 @@
 import React, { ReactNode, CSSProperties } from "react";
 import { MetaTags } from "components/MetaTags";
 import { TMetaTags } from "interfaces";
+import { defaultMetaTags } from "core/constants";
 
 /**
  * PAGE Layout // Inversion of Control
@@ -26,6 +27,8 @@ type MainProps = {
 const PageMain: React.FC<MainProps> = (props) => {
   const { id, children, className, metaTags, style, ...rest } = props;
   const [css] = useStyletron();
+  const meta = { ...defaultMetaTags, ...metaTags };
+
   return (
     <motion.main
       id={id || "main"}
@@ -41,7 +44,7 @@ const PageMain: React.FC<MainProps> = (props) => {
       }
       {...rest}
     >
-      {metaTags && <MetaTags tags={metaTags} />}
+      {meta && <MetaTags tags={meta} />}
       {children}
     </motion.main>
   );

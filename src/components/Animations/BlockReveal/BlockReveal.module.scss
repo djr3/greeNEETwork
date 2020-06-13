@@ -1,0 +1,72 @@
+@keyframes moveFw {
+  47% {
+    transform-origin: left;
+    animation-mode: forwards;
+    transform: scaleX(1);
+  }
+  50% {
+    transform-origin: right;
+    transform: scaleX(1);
+  }
+  100% {
+    transform-origin: right;
+    transform: scaleX(0);
+  }
+}
+@keyframes moveBw {
+  47% {
+    transform-origin: right;
+    animation-mode: forwards;
+    transform: scaleX(1);
+  }
+  50% {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+  100% {
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+// @keyframes hide {
+//   from {
+//     opacity: 1;
+//   }
+//   to {
+//     opacity: 0;
+//   }
+// }
+
+.br {
+  position: relative;
+  display: inline-block;
+
+  &__element {
+    opacity: 0;
+    animation-name: reveal;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+
+  &__block {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+    animation-name: moveFw;
+    animation-fill-mode: both;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+}

@@ -9,6 +9,7 @@ import { useStyletron } from "styletron-react";
 import { Slideshow } from "../components/Slideshow";
 import { Container, Row, Col, Div, Text, Image } from "atomize";
 import { motion } from "framer-motion";
+import { FadeIn, BlockReveal } from "components/Animations";
 
 export default function Home() {
   const [css] = useStyletron();
@@ -18,8 +19,6 @@ export default function Home() {
     images.push(`/img/slides/${index + 1}.webp`);
   }
 
-  const isShown = true;
-
   return (
     <Page id="index" className={css({})}>
       <Container>
@@ -27,7 +26,7 @@ export default function Home() {
           <Col size={{ xs: 12, sm: 10 }}>
             <motion.div
               initial={"closed"}
-              animate={isShown ? "open" : "closed"}
+              animate={"open"}
               className={css({
                 width: "100%",
                 display: "grid",
@@ -46,7 +45,13 @@ export default function Home() {
                   position: "relative",
                 })}
                 variants={{
-                  open: { width: "100%", height: "100%", opacity: 1, y: 0 },
+                  open: {
+                    width: "100%",
+                    height: "100%",
+                    opacity: 1,
+                    y: 0,
+                    transition: { staggerChildren: 0.3 },
+                  },
                   closed: { width: "0%", height: "0%", opacity: 0, y: -50 },
                 }}
               >
@@ -79,54 +84,62 @@ export default function Home() {
             </motion.div>
 
             <Row>
+              <FadeIn>
+                <Col p={{ y: "1rem" }}>
+                  <Text tag="h3" textSize="h3">
+                    Il polmone verde di Napoli
+                  </Text>
+                  <Text>
+                    Il Parco Metropolitano delle Colline di Napoli è un parco
+                    regionale istituito nel 2003. Assieme al Parco Nazionale del
+                    Vesuvio, al Parco Regionale dei Campi Flegrei, alla Riserva
+                    degli Astroni e al Bosco di Capodimonte, rappresenta
+                    l’infrastruttura verde dell’area metropolitana di Napoli.
+                    Occupa un quinto del territorio comunale, 2.215 ettari sui
+                    11.750 totali. Comprende la conca dei Pisani, la collina dei
+                    Camaldoli, la selva di Chiaiano, lo Scudillo, il vallone San
+                    Rocco, Capodimonte e la vigna di San Martino.
+                  </Text>
+                </Col>
+              </FadeIn>
+            </Row>
+            <Row>
               <Col p={{ y: "1rem" }}>
-                <Text tag="h3" textSize="h3">
-                  Il polmone verde di Napoli
-                </Text>
-                <Text>
-                  Il Parco Metropolitano delle Colline di Napoli è un parco
-                  regionale istituito nel 2003. Assieme al Parco Nazionale del
-                  Vesuvio, al Parco Regionale dei Campi Flegrei, alla Riserva
-                  degli Astroni e al Bosco di Capodimonte, rappresenta
-                  l’infrastruttura verde dell’area metropolitana di Napoli.
-                  Occupa un quinto del territorio comunale, 2.215 ettari sui
-                  11.750 totali. Comprende la conca dei Pisani, la collina dei
-                  Camaldoli, la selva di Chiaiano, lo Scudillo, il vallone San
-                  Rocco, Capodimonte e la vigna di San Martino.
-                </Text>
+                <BlockReveal>
+                  <Div
+                    h="auto"
+                    pos="relative"
+                    d="flex"
+                    justify="center"
+                    align="center"
+                  >
+                    <Slideshow images={images} />
+                  </Div>
+                </BlockReveal>
               </Col>
             </Row>
             <Row>
               <Col p={{ y: "1rem" }}>
-                <Div
-                  h="auto"
-                  pos="relative"
-                  d="flex"
-                  justify="center"
-                  align="center"
-                >
-                  <Slideshow images={images} />
-                </Div>
-              </Col>
-            </Row>
-            <Row>
-              <Col p={{ y: "1rem" }}>
-                <Text tag="h3" textSize="h3">
-                  Un&apos;opportunità per la città e i suoi abitanti
-                </Text>
-                <Text>
-                  Un’area poco conosciuta dai cittadini, interessata da fenomeni
-                  di incuria ed abbandono, eppure popolata da aziende agricole,
-                  fattorie didattiche, antiche masserie, dimore e complessi
-                  storici, cave, sentieri, cupe, boschi, costoni, selve,
-                  valloni, flora e fauna selvatica. La consapevolezza di tale
-                  patrimonio indica la strada per la sopravvivenza della città e
-                  degli abitanti di oggi e domani: ripartire dai valori
-                  naturali, rurali e culturali del territorio; recuperare
-                  ossigeno, cibo di qualità, senso di comunità, spazio vitale,
-                  benessere; costruire conoscenze, opportunità sostenibili di
-                  lavoro, turismo e svago. Collaborare
-                </Text>
+                <BlockReveal>
+                  <Text tag="h3" textSize="h3">
+                    Un&apos;opportunità per la città e i suoi abitanti
+                  </Text>
+                </BlockReveal>
+                <BlockReveal>
+                  <Text>
+                    Un’area poco conosciuta dai cittadini, interessata da
+                    fenomeni di incuria ed abbandono, eppure popolata da aziende
+                    agricole, fattorie didattiche, antiche masserie, dimore e
+                    complessi storici, cave, sentieri, cupe, boschi, costoni,
+                    selve, valloni, flora e fauna selvatica. La consapevolezza
+                    di tale patrimonio indica la strada per la sopravvivenza
+                    della città e degli abitanti di oggi e domani: ripartire dai
+                    valori naturali, rurali e culturali del territorio;
+                    recuperare ossigeno, cibo di qualità, senso di comunità,
+                    spazio vitale, benessere; costruire conoscenze, opportunità
+                    sostenibili di lavoro, turismo e svago. Collaborare
+                  </Text>
+                </BlockReveal>
               </Col>
             </Row>
             <Row>

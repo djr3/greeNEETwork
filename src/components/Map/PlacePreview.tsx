@@ -8,7 +8,7 @@ import { Slideshow } from "../Slideshow/Slideshow";
 
 export const PlacePreview = ({ place }) => {
   const [css] = useStyletron();
-  console.log("Preview of : ", place);
+  // console.log("Preview of : ", place);
   return (
     <Div
       // minH="120px"
@@ -44,7 +44,7 @@ export const PlacePreview = ({ place }) => {
         {place.descrizione}
       </Text>
       {/* <Contacts place={place} /> */}
-      <Link href={`/esplora/${place.slug}`}>
+      <Link href="/esplora/[slug]" as={`/esplora/${place.slug}`}>
         <Anchor>
           <Button
             h="2rem"
