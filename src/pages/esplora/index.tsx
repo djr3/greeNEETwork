@@ -212,16 +212,24 @@ export default function Esplora({ accessibilita, luoghi, servizi, tipologie }) {
             })}
           >
             <Div
-              // bg="#799d43"
-              bg="#ABC77F"
+              bg="#111"
               h="3rem"
-              m={{ b: "1rem", l: "90px" }}
+              m={{ b: "1rem", l: "100px" }}
               d="flex"
               align="center"
               justify="center"
             >
-              <Text tag="h5" textSize="h5" textWeight="600" color="white">
-                Mappa dei luoghi
+              <Text
+                tag="h5"
+                textSize="h5"
+                className={css({
+                  color: "#fff",
+                  fontWeight: 300,
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                })}
+              >
+                Esplora
               </Text>
             </Div>
             <Div

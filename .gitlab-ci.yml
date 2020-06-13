@@ -1,3 +1,5 @@
+image: node:12.18.0
+
 pages:
   stage: deploy
   script:

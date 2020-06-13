@@ -61,12 +61,12 @@ export const trackVitals = ({ id, name, label, value }) => {
   if (isProduction) {
     // @ts-ignore
     window.gtag("event", name, {
-      eventCategory:
+      event_category:
         label === "web-vital" ? "Web Vital" : "NextJS Custom Metric",
-      eventAction: name,
-      eventValue: Math.round(name === "CLS" ? value * 1000 : value), // values must be integers
-      eventLabel: id, // id unique to current page load
-      nonInteraction: true, // avoids affecting bounce rate.
+      event_action: name,
+      value: Math.round(name === "CLS" ? value * 1000 : value), // values must be integers
+      event_label: id, // id unique to current page load
+      non_interaction: true, // avoids affecting bounce rate.
     });
   }
 };
