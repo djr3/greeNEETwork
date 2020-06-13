@@ -16,7 +16,7 @@
     "build:sitemap": "babel-node -x \".ts\" -r dotenv/config ./utils/index.ts",
     "dev": "next dev",
     "start": "next start",
-    "export": "yarn build && next export",
+    "export": "yarn && yarn build && next export",
     "pretty:quick": "pretty-quick --pattern '**/*.*(ts|tsx|jsx)' --staged",
     "pretty:write": "prettier \"{data,src,public,utils}/**/*.{ts,tsx,js,jsx,json,md,css,geojson}\" --write",
     "pretty:test": "prettier \"{data,src,public,utils}/**/*.{ts,tsx,js,jsx,json,md,css,geojson}\" --list-different",
@@ -26,12 +26,11 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "type-check": "tsc",
-    "git:add": "git add ."
+    "type-check": "tsc"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pretty:quick && yarn git:add",
+      "pre-commit": "yarn pretty:quick && git add .",
       "pre-push": "yarn type-check && yarn test --passWithNoTests"
     }
   },
