@@ -1,6 +1,7 @@
 pages:
   stage: deploy
   script:
+    - yarn export
     - mkdir .public
     - cp -r ./out/* .public
     - mv .public public

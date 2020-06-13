@@ -1,6 +1,11 @@
 import { useAmp } from "next/amp";
 
-export function AmpWrapper({ ampOnly, nonAmp }) {
+type AmpWrapperProps = {
+  ampOnly?: any;
+  nonAmp?: any;
+};
+
+export function AmpWrapper({ ampOnly, nonAmp }: AmpWrapperProps) {
   const isAmp = useAmp();
   return (
     <>

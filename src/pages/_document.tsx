@@ -105,6 +105,10 @@ export default class extends Document<Props> {
             </>
           )}
 
+          {/* Google Analytics - Tag Manager (gtag.js)*/}
+          {/* We only want to add the scripts if in production */}
+          {isProduction && <GoogleTags />}
+
           {/* Styletron SSR Styles */}
           {stylesheets.map((sheet, i) => (
             <style
@@ -152,8 +156,7 @@ export default class extends Document<Props> {
           <Main />
           <NextScript />
 
-          {/* Google Analytics - Tag Manager (gtag.js)*/}
-          {/* We only want to add the scripts if in production */}
+          {/** Google Analytics AMP  */}
           {isProduction && (
             <AmpWrapper
               ampOnly={
@@ -162,10 +165,8 @@ export default class extends Document<Props> {
                   script={setGoogleTagsAMP()}
                 />
               }
-              nonAmp={<GoogleTags />}
             />
           )}
-
           {/** Google AdSense */}
           {/* {isProduction && (
             <script

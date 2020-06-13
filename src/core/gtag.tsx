@@ -1,4 +1,5 @@
-import Head from "next/head";
+import React from "react";
+// import Head from "next/head";
 
 // Add your GA tracking id in the .env file or hardcode it here
 export const { NEXT_PUBLIC_GA_TRACKING_ID } = process.env;
@@ -72,12 +73,13 @@ export const trackVitals = ({ id, name, label, value }) => {
 
 export const GoogleTags = () => {
   return (
-    <Head>
+    <React.Fragment key="googletags">
       <script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_TRACKING_ID}`}
+        key="gtag"
       />
       <script dangerouslySetInnerHTML={setGoogleTags()} />
-    </Head>
+    </React.Fragment>
   );
 };
