@@ -66,12 +66,16 @@ The end product had to:
 
 ## License
 
-[greeNEETwork](https://greeneetwork.agritettura.org) by [Danilo Panaro](https://www.jr3.it) is licensed under CC BY-NC-ND 4.0[![](https://search.creativecommons.org/static/img/cc_icon.svg)![](https://search.creativecommons.org/static/img/cc-by_icon.svg)![](https://search.creativecommons.org/static/img/cc-nc_icon.svg)![](https://search.creativecommons.org/static/img/cc-nd_icon.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0)
+[greeNEETwork](https://greeneetwork.agritettura.org) by [Danilo Panaro](https://www.jr3.it) is licensed under [CC BY-NC-ND 4.0! [](https://search.creativecommons.org/static/img/cc_icon.svg)![](https://search.creativecommons.org/static/img/cc-by_icon.svg)![](https://search.creativecommons.org/static/img/cc-nc_icon.svg)![](https://search.creativecommons.org/static/img/cc-nd_icon.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0)
 
-This resource can be used and redistributed freely for non-commercial purposes. Any modified version of this opera, such as websites, web apps and web templates shall be redistributed with the same license or one that is compatible with it. It is not allowed to take the resource "as-is" and sell it, redistribute, re-publish it, or sell "pluginized" versions of it. Free plugins built using this resource should have a visible mention and link to the original work. Always consider the licenses of all included libraries, scripts and images used.
+The material can be used, copied and redistributed freely for non-commercial purposes only.
 
-## Misc
+In order to use, share or redistribute this opera you must give appropriate credit, provide a link to the license, and indicate if changes were made.
 
-Follow me via: [LinkedIn](https://www.linkedin.com/in/danilojr3panaro) - [Twitter](http://www.twitter.com/danilojr3panaro) - [Facebook](http://www.facebook.com/danilo.jr3.panaro) - [GitLab](https://gitlab.com/djr3) - [Instagram](https://www.instagram.com/danilo.jr3/)
+If you modify, remix, transform, or build upon the material, you may not distribute the modified material.
 
-[© Danilo JR3 Panaro 2020](https://www.jr3.it)
+## Copyright
+
+Copyright 2020 [Danilo JR3 Panaro](https://www.jr3.it). All rights reserved
+
+Follow the author via: [LinkedIn](https://www.linkedin.com/in/danilojr3panaro) - [Twitter](http://www.twitter.com/danilojr3panaro) - [Facebook](http://www.facebook.com/danilo.jr3.panaro) - [GitLab](https://gitlab.com/djr3)
