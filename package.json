@@ -31,7 +31,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn git:add && yarn pretty:quick",
+      "pre-commit": "yarn pretty:quick && yarn git:add",
       "pre-push": "yarn type-check && yarn test --passWithNoTests"
     }
   },
