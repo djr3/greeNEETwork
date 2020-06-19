@@ -62,7 +62,7 @@ export const trackVitals = ({ id, name, label, value }) => {
     // @ts-ignore
     window.gtag("event", name, {
       event_category:
-        label === "web-vital" ? "Web Vital" : "NextJS Custom Metric",
+        label === "web-vital" ? "Web Vitals" : "NextJS Custom Metrics",
       event_action: name,
       value: Math.round(name === "CLS" ? value * 1000 : value), // values must be integers
       event_label: id, // id unique to current page load

@@ -77,38 +77,25 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
     <motion.header
       animate={isOpen ? "open" : "closed"}
       className={`${css({
-        height: "70px",
+        height: "4rem",
         display: "flex",
         justifyContent: "space-between",
-        alignContent: "center",
+        alignItems: "center",
         background: "transparent",
+        position: "fixed",
+        width: "100%",
       })} ${className}`}
     >
-      <Div
-        m={{ y: ".5rem" }}
-        bg="#fff"
-        d="flex"
-        align="center"
-        h="3rem"
-        w="auto"
-        maxW="100px"
-        // className={css({
-        //   marginTop: "8px",
-        //   marginBottom: "8px",
-        //   height: "48px",
-        //   width: "auto",
-        //   maxWidth: "100px",
-        //   background: "#fff",
-        //   display: "flex",
-        //   alignItems: "center",
-        // })}
-      >
+      <Div bg="#799d43" d="flex" align="center" h="4rem" w="auto" maxW="100px">
         <a href="/home">
           <Image
             alt="greeNEETwork Logo"
-            src="/img/logo2x.png"
+            src="/img/logo-t.png"
             key="logo"
-            className={css({ width: "auto" })}
+            className={css({
+              backgroundPosition: "0 20px",
+              width: "150px",
+            })}
           />
         </a>
       </Div>
@@ -132,6 +119,7 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
       <Div
         h="38%"
         zIndex={10}
+        pos="absolute"
         className={css({
           // filter: "drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5))",
           right: 0,
@@ -146,8 +134,10 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
             zIndex: "inherit",
             color: "#fff",
             textAlign: "right",
-            margin: "80px 30px",
+            // margin: "80px 30px",
             position: "relative",
+            top: "5rem",
+            right: "2rem",
           })}
         >
           <motion.ul
@@ -159,7 +149,7 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
           </motion.ul>
         </nav>
         <motion.div
-          initial={isOpen}
+          // initial={isOpen}
           animate={isOpen ? "open" : "closed"}
           className={css({
             width: "100vw",
@@ -178,14 +168,13 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Open Menu"
         className={css({
-          padding: 0,
-          width: "40px",
-          height: "40px",
-          position: "absolute",
-          right: "21px",
-          top: "18px",
+          background: "#ABC77F",
           zIndex: 1000,
-          background: "transparent",
+          borderRadius: "50% 0 50% 50%",
+          height: "4rem",
+          width: "4rem",
+          padding: ".5rem",
+          // marginRight: ".5rem",
         })}
       >
         <Icon name={isOpen ? "Close" : "Menu"} size="32px" color="#FFF" />

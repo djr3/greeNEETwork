@@ -194,6 +194,7 @@ export default function Esplora({ accessibilita, luoghi, servizi, tipologie }) {
         height: "100vh",
         overflow: "hidden",
         paddingBottom: 0,
+        paddingTop: 0,
       }}
     >
       <Head>
@@ -208,24 +209,24 @@ export default function Esplora({ accessibilita, luoghi, servizi, tipologie }) {
         <Col size={3} h="100vh">
           <Aside
             className={css({
-              padding: ".5rem .5rem 4rem .5rem",
+              // padding: ".5rem .5rem 4rem .5rem",
             })}
           >
             <Div
               bg="#111"
-              h="3rem"
-              m={{ b: "1rem", l: "100px" }}
+              h="4rem"
+              m={{ b: ".5rem", l: "6.25rem" }}
               d="flex"
               align="center"
               justify="center"
             >
               <Text
-                tag="h5"
-                textSize="h5"
+                tag="h1"
+                textSize="h6"
                 className={css({
                   color: "#fff",
                   fontWeight: 300,
-                  letterSpacing: "3px",
+                  letterSpacing: "4px",
                   textTransform: "uppercase",
                 })}
               >
@@ -234,9 +235,10 @@ export default function Esplora({ accessibilita, luoghi, servizi, tipologie }) {
             </Div>
             <Div
               d="flex"
+              p=".5rem"
               flexDir="column"
               justify="space-between"
-              h="calc(100% - 4rem)"
+              h="calc(100% - 8rem)"
             >
               <Div>
                 <Text

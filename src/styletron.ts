@@ -40,12 +40,19 @@ export const theme = {
     // secondaryDark: "#98cc32",
   },
   grid: {
+    // containerMaxWidth: {
+    //   xs: "430px",
+    //   sm: "620px",
+    //   md: "850px",
+    //   lg: "1040px",
+    //   xl: "1200px",
+    // },
     containerMaxWidth: {
       xs: "430px",
       sm: "620px",
-      md: "850px",
-      lg: "1040px",
-      xl: "1200px",
+      md: "calc(100vw - 200px)",
+      lg: "calc(100vw - 200px)",
+      xl: "calc(100vw - 200px)",
     },
     gutterWidth: "12px",
   },

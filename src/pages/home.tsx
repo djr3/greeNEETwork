@@ -1,4 +1,5 @@
 // Core Components
+import React from "react";
 
 // Page Layout
 import Page from "../containers/Main";
@@ -6,7 +7,8 @@ import Page from "../containers/Main";
 // Page Components
 import Player from "react-player";
 import { useStyletron } from "styletron-react";
-import { Slideshow } from "../components/Slideshow";
+import { Slideshow } from "components/Slideshow";
+import { Hero } from "components/Hero";
 import { Container, Row, Col, Div, Text, Image } from "atomize";
 import { motion } from "framer-motion";
 import { FadeIn, BlockReveal } from "components/Animations";
@@ -20,69 +22,26 @@ export default function Home() {
   }
 
   return (
-    <Page id="index" className={css({})}>
+    <Page
+      id="index"
+      className={css({
+        color: "white",
+        background:
+          "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/parco_satellite.jpg'), left top",
+      })}
+      style={{
+        paddingTop: 0,
+        backgroundAttachment: "fixed",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <BlockReveal>
+        <Hero />
+      </BlockReveal>
       <Container>
         <Row justify="center">
           <Col size={{ xs: 12, sm: 10 }}>
-            <motion.div
-              initial={"closed"}
-              animate={"open"}
-              className={css({
-                width: "100%",
-                display: "grid",
-                gridGap: "12px",
-                gridTemplateColumns: "repeat(6, 1fr)",
-                gridTemplateRows: "repeat(4, 1fr)",
-                gridTemplateAreas: "auto repeat(6, 1fr)",
-              })}
-            >
-              <motion.div
-                className={css({
-                  gridArea: "1 / 1 / span 3 / span 3",
-                  background: "#C8DCC5",
-                  padding: "2rem",
-                  zIndex: 1,
-                  position: "relative",
-                })}
-                variants={{
-                  open: {
-                    width: "100%",
-                    height: "100%",
-                    opacity: 1,
-                    y: 0,
-                    transition: { staggerChildren: 0.3 },
-                  },
-                  closed: { width: "0%", height: "0%", opacity: 0, y: -50 },
-                }}
-              >
-                <Text
-                  tag="h1"
-                  textSize={{ xs: "2rem", sm: "3rem", md: "4rem", lg: "5rem" }}
-                  // className={css({
-                  //   backgroundClip: "text",
-                  //   filter: "invert(1) grayscale(1) contrast(9)",
-                  // })}
-                >
-                  IL PARCO METROPOLITANO DELLE COLLINE DI NAPOLI
-                </Text>
-              </motion.div>
-              <motion.div
-                className={css({
-                  gridArea: "2 / 3 / span 4 / span 4",
-                  position: "relative",
-                })}
-                variants={{
-                  open: { width: "100%", height: "100%", opacity: 1 },
-                  closed: { width: "0%", height: "0%", opacity: 0 },
-                }}
-              >
-                <Image
-                  alt="Parco delle Colline, vista dal satellite"
-                  src="/img/parco_satellite.webp"
-                />
-              </motion.div>
-            </motion.div>
-
             <Row>
               <FadeIn>
                 <Col p={{ y: "1rem" }}>
@@ -105,7 +64,7 @@ export default function Home() {
             </Row>
             <Row>
               <Col p={{ y: "1rem" }}>
-                <BlockReveal>
+                <BlockReveal color="#ccc">
                   <Div
                     h="auto"
                     pos="relative"

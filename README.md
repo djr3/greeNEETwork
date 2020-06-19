@@ -66,7 +66,7 @@ The end product had to:
 
 ## License
 
-[greeNEETwork](https://greeneetwork.agritettura.org) by [Danilo Panaro](https://www.jr3.it) is licensed under [CC BY-NC-ND 4.0! [](https://search.creativecommons.org/static/img/cc_icon.svg)![](https://search.creativecommons.org/static/img/cc-by_icon.svg)![](https://search.creativecommons.org/static/img/cc-nc_icon.svg)![](https://search.creativecommons.org/static/img/cc-nd_icon.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0)
+[greeNEETwork](https://greeneetwork.agritettura.org) by [Danilo Panaro](https://www.jr3.it) is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0) [![CC](https://search.creativecommons.org/static/img/cc_icon.svg)![BY](https://search.creativecommons.org/static/img/cc-by_icon.svg)![NC](https://search.creativecommons.org/static/img/cc-nc_icon.svg)![ND](https://search.creativecommons.org/static/img/cc-nd_icon.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0)
 
 The material can be used, copied and redistributed freely for non-commercial purposes only.
 

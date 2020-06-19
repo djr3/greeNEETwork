@@ -35,6 +35,7 @@ Router.events.on("routeChangeComplete", (url) => trackPageView(url));
 
 export function reportWebVitals({ id, name, label, value }) {
   trackVitals({ id, name, label, value });
+  console.warn("Metrics : ", { id, name, label, value });
 }
 
 export default class GreeNEETwork extends App {

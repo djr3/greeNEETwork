@@ -84,7 +84,7 @@ export default function Rete({ rete }) {
             </Row>
 
             <Row>
-              <Breadcrumbs separator="/" />
+              <Breadcrumbs separator="/" withBorders />
             </Row>
 
             <Row>

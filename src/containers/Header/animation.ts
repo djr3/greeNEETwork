@@ -1,7 +1,7 @@
 export const variants = {
   background: {
     open: {
-      clipPath: `circle(300px at calc(100% - 40px) 35px )`,
+      clipPath: `circle(300px at calc(100% - 32px) 32px )`,
       transition: {
         duration: 500,
         type: "spring",
@@ -10,7 +10,7 @@ export const variants = {
       },
     },
     closed: {
-      clipPath: `circle(30px at calc(100% - 40px) 35px )`,
+      clipPath: `circle(24px at calc(100% - 32px) 32px )`,
       transition: {
         delay: 0.5,
         type: "spring",

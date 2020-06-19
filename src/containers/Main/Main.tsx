@@ -37,8 +37,14 @@ const PageMain: React.FC<MainProps> = (props) => {
       exit={{ opacity: 0 }}
       className={
         css({
-          paddingBottom: "70px",
+          paddingBottom: "5rem",
+          paddingTop: "6rem",
           zIndex: -1,
+          ":after": {
+            content: "",
+            display: "table",
+            clear: "both",
+          },
           ...style,
         }) + ` ${className}`
       }

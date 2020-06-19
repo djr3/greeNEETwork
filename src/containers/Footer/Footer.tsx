@@ -2,7 +2,7 @@ import React from "react";
 
 // Container stylesheets
 import { useStyletron } from "styletron-react";
-import { Div, Text } from "atomize";
+import { Row, Col, Div, Text } from "atomize";
 
 type Props = {
   className?: string;
@@ -22,43 +22,47 @@ const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
   const isDark = bg === "dark" ? "_n" : "";
 
   return (
-    <footer
+    <Row
+      tag="footer"
       className={`
         ${css({
+          // position: "fixed",
+          // position: "initial",
+          bottom: 0,
+          height: "4rem",
+          width: "100vw",
           display: "flex",
           justifyContent: "space-between",
+          background: "#fff",
         })} ${className}
       `}
     >
-      <Div
+      <Col
+        d={{ xs: "none", sm: "block" }}
+        size={{ sm: 3 }}
+        p={{ x: ".75rem", y: ".25rem" }}
         className={css({
-          position: "fixed",
-          bottom: 0,
-          left: 0,
           lineHeight: 1.2,
           fontSize: "0.75rem",
-          margin: "8px",
         })}
       >
         <Text tag="h6">Agritettura2.0</Text>
         <small>CF: 95207960634</small>
         <br />
         <small>&copy; Copyright 2019.</small>
-      </Div>
-      <Div
+      </Col>
+      <Col
         d="flex"
-        h="70px"
         align="center"
-        p={{ x: "12px" }}
-        // w={{ xs: "90%", sm: "62%" }}
+        justify="center"
+        p={{ x: { xs: ".5rem", sm: ".75rem" } }}
         bg={bg === "dark" ? "#1c1c1c" : "#ececec"}
         fontSize="0.75rem"
-        // lineHeight={1}
         textColor="#ccc"
         textSize=".75rem"
+        size={{ xs: 12, sm: 9 }}
       >
-        <Div d="flex" flexDir="row" justify="space-around" align="center">
-          {/* <h4 className="sr-only">Enti Finanziatori</h4> */}
+        <Div d="flex" justify="space-around" align="center">
           <img
             className={css({
               height: "3rem",
@@ -95,16 +99,15 @@ const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
             />
           </a>
         </Div>
-        <Div className={css({ maxWidth: "20rem" })}>
+        <Div className={css({ maxWidth: "16rem" })}>
           <small style={{ lineHeight: 1.2 }}>
             Iniziativa co-finanziata dalla Presidenza del Consiglio dei Ministri
-            - <br />
-            Dipartimento della Gioventù e del Servizio Civile Nazionale e dal
+            - Dipartimento della Gioventù e del Servizio Civile Nazionale e dal
             Comune di Napoli
           </small>
         </Div>
-      </Div>
-    </footer>
+      </Col>
+    </Row>
   );
 };
 

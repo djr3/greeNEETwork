@@ -34,15 +34,18 @@ export default function Storie(props) {
       className={css({
         maxHeight: "100%",
         overflowY: "auto",
-        paddingBottom: "80px",
       })}
     >
-      <Container>
+      <Container
+      // className={css({ maxWidth: "calc(100vw - 200px)" })}
+      >
         <Row justify="center">
-          <Col size={{ xs: 12, md: 10 }}>
+          <Col
+          // size={{ xs: 12, md: 10 }}
+          >
             <Breadcrumbs />
             <Div tag="hgroup">
-              <Text textSize="display3" tag="h1" fontFamily="primary">
+              <Text textSize="display2" tag="h1" fontFamily="primary">
                 Storie
               </Text>
               <Text
@@ -60,15 +63,15 @@ export default function Storie(props) {
           </Col>
         </Row>
         {posts.map((post) => (
-          <Row key={post.id} justify="Center" m={{ y: "2rem" }}>
-            <Col size={{ xs: 12, md: 4 }}>
+          <Row key={post.id} justify="Center" m={{ y: "2rem" }} shadow={3}>
+            <Col size={{ xs: 12, md: 5 }}>
               <ReactPlayer
                 url={post.video_pillola}
                 width="100%"
                 height="240px"
               />
             </Col>
-            <Col size={{ xs: 12, md: 6 }}>
+            <Col size={{ xs: 12, md: 7 }}>
               <Div tag="article" m={{ y: "1rem" }}>
                 <Text textSize="h4" tag="h3">
                   {post.titolo}

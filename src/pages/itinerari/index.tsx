@@ -93,7 +93,8 @@ export default function Itinerari(props: Props) {
         top: 0,
         left: 0,
         overflow: "hidden",
-        paddingBottom: "0",
+        paddingBottom: 0,
+        paddingTop: 0,
       }}
     >
       <Head>
@@ -112,18 +113,18 @@ export default function Itinerari(props: Props) {
               overflowY: "auto",
             })}
           >
-            <Div bg="#fff" pos="sticky" top="0" p=".5rem">
+            <Div bg="#fff" pos="sticky" top="0" shadow={2}>
               <Div
                 bg="#111"
-                h="3rem"
-                m={{ b: "1rem", l: "100px" }}
+                h="4rem"
+                m={{ l: "6.25rem" }}
                 d="flex"
                 align="center"
                 justify="center"
               >
                 <Text
-                  tag="h5"
-                  textSize="h5"
+                  tag="h1"
+                  textSize="h6"
                   className={css({
                     color: "#fff",
                     fontWeight: 300,
@@ -134,7 +135,7 @@ export default function Itinerari(props: Props) {
                   Itinerari
                 </Text>
               </Div>
-              <Div p={{ x: ".5rem" }}>
+              <Div p={{ x: "1rem", y: ".5rem" }}>
                 <Text className={css({ fontSize: ".8rem", lineHeight: 1.2 })}>
                   Restituzione digitale del ‘viaggio’ di Leonardo Recchia e
                   Renato Ruotolo nel Parco Metropolitano delle Colline di
