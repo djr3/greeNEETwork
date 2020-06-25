@@ -3,10 +3,10 @@ export const variants = {
     open: {
       clipPath: `circle(300px at calc(100% - 32px) 32px )`,
       transition: {
-        duration: 500,
+        duration: 350,
         type: "spring",
-        stiffness: 20,
-        restDelta: 2,
+        stiffness: 50,
+        // restDelta: 2,
       },
     },
     closed: {
@@ -23,7 +23,12 @@ export const variants = {
     open: {
       opacity: 1,
       // display: "block",
-      transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+      transition: {
+        delay: 0.25,
+        staggerChildren: 0.07,
+        // delayChildren: 0.2,
+        delayChildren: 0.25,
+      },
     },
     closed: {
       opacity: 0,

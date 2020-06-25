@@ -1,21 +1,38 @@
 // Core Components
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { directus } from "core/cli";
-
-// import { Filters } from "components/Filters";
-import { DynamicMap } from "components/Map";
 
 // Page Layout & Style
 import Page from "containers/Main";
-import { useStyletron } from "styletron-react";
+import { getLayout } from "layouts/Horizontal";
+import { useStyletron, styled } from "styletron-react";
 
 // Page Components
-import { Row, Col, Div, Text } from "atomize";
+import { DynamicMap, PlacePreview } from "components/Map";
+import { Row, Col, Div, Text, Collapse, Icon } from "atomize";
 
 // Typings
 import { Itinerario, Luogo, Percorso } from "interfaces";
 import Aside from "containers/Aside/Aside";
+
+const StyledItem = styled("li", {
+  ":hover": {
+    background: "#69b6d5AA",
+  },
+  ":before": {
+    content: " ",
+    position: "relative",
+    left: "-1rem",
+    display: "inline-block",
+    width: "15px",
+    height: "15px",
+    borderRadius: "7.5px",
+    backgroundColor: "#69b6d5",
+  },
+  padding: ".5rem 1rem",
+  borderLeft: "1px solid green",
+});
 
 // Static Props
 export async function getStaticProps() {
@@ -68,14 +85,19 @@ interface Props {
   percorsi: Percorso[];
 }
 
-export default function Itinerari(props: Props) {
+const Itinerari = (props: Props) => {
   const { itinerari, luoghi, percorsi } = props;
 
   const [selItinerary, setSelItinerary] = useState("");
+  const [selPlace, setSelPlace] = useState(undefined);
 
   const [css] = useStyletron();
 
-  const handleClick = (v) => setSelItinerary(v);
+  // const handleClick = (v) => setSelItinerary(v);
+  const handleItin = (v) =>
+    v === selItinerary ? setSelItinerary("") : setSelItinerary(v);
+  const handlePlace = (v) =>
+    v.id === selPlace ? setSelPlace(undefined) : setSelPlace(v);
 
   function filterPlaces(items) {
     return items.filter((i) => i.itinerari.some((t) => selItinerary === t));
@@ -106,7 +128,7 @@ export default function Itinerari(props: Props) {
         />
       </Head>
       <Row h="100%">
-        <Col size={3} p={{ b: "4rem" }} h="100vh">
+        <Col size={4} p={{ b: "4rem" }} h="100vh">
           <Aside
             className={css({
               // height: "calc(100% - 4rem)",
@@ -143,17 +165,21 @@ export default function Itinerari(props: Props) {
                 </Text>
               </Div>
             </Div>
-            <Div p=".5rem">
+            <Div>
               {itinerari
                 .filter((i) => i.itinerario === null)
                 .map((i) => (
-                  <Div key={i.id} cursor="pointer" p=".75rem">
+                  <Div
+                    key={i.id}
+                    cursor="pointer"
+                    p={{ x: "1rem", y: ".5rem" }}
+                  >
                     <Text
                       tag="h5"
                       textSize="subheader"
                       textWeight="600"
-                      m={{ b: ".75rem" }}
-                      onClick={() => handleClick(i.id)}
+                      m={{ b: "1rem" }}
+                      onClick={() => handleItin(i.id)}
                     >
                       {i.id}. {i.nome}
                     </Text>
@@ -161,15 +187,43 @@ export default function Itinerari(props: Props) {
                       i.children.map((child) => (
                         <Div
                           key={child.id}
-                          m={{ b: ".5rem" }}
+                          m={{ b: ".75rem" }}
                           p={{ l: ".75rem" }}
                         >
-                          <Text
-                            onClick={() => handleClick(child.id)}
-                            className={css({ lineHeight: 1.2 })}
+                          <Div
+                            d="flex"
+                            justify="space-between"
+                            onClick={() => handleItin(child.id)}
                           >
-                            {(child.id as string).slice(-2)}. {child.nome}
-                          </Text>
+                            <Text
+                              tag="h6"
+                              textSize="paragraph"
+                              m={{ b: ".5rem" }}
+                              className={css({ lineHeight: 1.2 })}
+                            >
+                              {(child.id as string).slice(-2)}. {child.nome}
+                            </Text>
+                            <Icon
+                              name={
+                                selItinerary === child.id
+                                  ? "UpArrow"
+                                  : "DownArrow"
+                              }
+                              size="1.5rem"
+                            />
+                          </Div>
+                          <Collapse isOpen={selItinerary === child.id}>
+                            <Div tag="ul">
+                              {filteredPlaces.map((place) => (
+                                <StyledItem
+                                  key={place.id}
+                                  onClick={() => handlePlace(place)}
+                                >
+                                  <Div d="flex">{place.nome}</Div>
+                                </StyledItem>
+                              ))}
+                            </Div>
+                          </Collapse>
                         </Div>
                       ))}
                   </Div>
@@ -177,10 +231,14 @@ export default function Itinerari(props: Props) {
             </Div>
           </Aside>
         </Col>
-        <Col size={9}>
-          <DynamicMap places={filteredPlaces} withPopup={true} />
+        <Col size={8}>
+          <DynamicMap places={filteredPlaces} selPlace={selPlace} withPopup />
         </Col>
       </Row>
     </Page>
   );
-}
+};
+
+Itinerari.getLayout = getLayout;
+
+export default Itinerari;

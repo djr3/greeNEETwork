@@ -39,11 +39,12 @@ export default function Storie(props) {
       <Container
       // className={css({ maxWidth: "calc(100vw - 200px)" })}
       >
-        <Row justify="center">
+        <Row justify="center" m={{ b: "1rem" }}>
           <Col
           // size={{ xs: 12, md: 10 }}
           >
             <Breadcrumbs />
+
             <Div tag="hgroup">
               <Text textSize="display2" tag="h1" fontFamily="primary">
                 Storie
@@ -62,23 +63,22 @@ export default function Storie(props) {
             </Div>
           </Col>
         </Row>
-        {posts.map((post) => (
-          <Row key={post.id} justify="Center" m={{ y: "2rem" }} shadow={3}>
-            <Col size={{ xs: 12, md: 5 }}>
-              <ReactPlayer
-                url={post.video_pillola}
-                width="100%"
-                height="240px"
-              />
-            </Col>
-            <Col size={{ xs: 12, md: 7 }}>
-              <Div tag="article" m={{ y: "1rem" }}>
-                <Text textSize="h4" tag="h3">
-                  {post.titolo}
-                </Text>
-                <div>
-                  <Text m={{ b: "1rem" }}>{post.descrizione}</Text>
-                  {/* <div dangerouslySetInnerHTML={{ __html: post.contenuto }} /> */}
+        <Row>
+          {posts.map((post) => (
+            <Col key={post.id} size={{ xs: 12, sm: 6, lg: 4 }} tag="article">
+              <Div m={{ b: "1rem" }} shadow={3}>
+                <Div tag="header">
+                  <ReactPlayer
+                    url={post.video_pillola}
+                    width="100%"
+                    height="240px"
+                  />
+                </Div>
+                <Div p={{ x: ".5rem", y: "1rem" }}>
+                  <Text textSize="h5" tag="h3" m={{ b: ".5rem" }}>
+                    {post.titolo}
+                  </Text>
+                  <Text m={{ b: ".5rem" }}>{post.descrizione}</Text>
                   <Link href="storie/[slug]" as={`storie/${post.slug}`}>
                     <Anchor>
                       <Button
@@ -91,11 +91,11 @@ export default function Storie(props) {
                       </Button>
                     </Anchor>
                   </Link>
-                </div>
+                </Div>
               </Div>
             </Col>
-          </Row>
-        ))}
+          ))}
+        </Row>
       </Container>
     </Page>
   );

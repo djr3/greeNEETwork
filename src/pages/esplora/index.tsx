@@ -7,6 +7,7 @@ import { directus } from "core/cli";
 // Page Layout & Style
 import Page from "containers/Main";
 import Aside from "containers/Aside";
+import { getLayout } from "layouts/Horizontal";
 import { useStyletron, styled } from "styletron-react";
 
 // Page Components
@@ -77,7 +78,7 @@ const PagButton = styled("button", {
   fontSize: "12px",
 });
 
-export default function Esplora({ accessibilita, luoghi, servizi, tipologie }) {
+const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
   /**
    * Props Data Processing
    */
@@ -319,4 +320,8 @@ export default function Esplora({ accessibilita, luoghi, servizi, tipologie }) {
       </Row>
     </Page>
   );
-}
+};
+
+Esplora.getLayout = getLayout;
+
+export default Esplora;

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 // Container stylesheets
 import { useStyletron } from "styletron-react";
@@ -14,7 +15,7 @@ type Props = {
 //   { name: "Cookies", link: "/cookies" },
 // ];
 
-const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
+const Footer: React.FC<Props> = ({ bg = "dark", className, ...rest }) => {
   // Container props
 
   // Container state & hooks
@@ -24,18 +25,13 @@ const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
   return (
     <Row
       tag="footer"
-      className={`
-        ${css({
-          // position: "fixed",
-          // position: "initial",
-          bottom: 0,
-          height: "4rem",
-          width: "100vw",
-          display: "flex",
-          justifyContent: "space-between",
-          background: "#fff",
-        })} ${className}
-      `}
+      m={{ xs: 0 }}
+      h="4rem"
+      w="100%"
+      d="flex"
+      justify="space-between"
+      bg="#fff"
+      className={className}
     >
       <Col
         d={{ xs: "none", sm: "block" }}
@@ -60,7 +56,7 @@ const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
         fontSize="0.75rem"
         textColor="#ccc"
         textSize=".75rem"
-        size={{ xs: 12, sm: 9 }}
+        size={{ xs: 12, sm: 9, md: 6 }}
       >
         <Div d="flex" justify="space-around" align="center">
           <img
@@ -106,6 +102,36 @@ const Footer: React.FC<Props> = ({ className, bg = "dark" }) => {
             Comune di Napoli
           </small>
         </Div>
+      </Col>
+      <Col
+        d={{ xs: "none", md: "block" }}
+        textAlign={{ xs: "left", md: "right" }}
+        size={{ sm: 3 }}
+        p={{ x: ".75rem", y: ".25rem" }}
+        className={css({
+          lineHeight: 1.2,
+          fontSize: "0.75rem",
+        })}
+      >
+        <Link href="/privacy">
+          <a className="l1">Privacy</a>
+        </Link>
+        <br />
+        <Link href="/cookies">
+          <a className="l1">Cookies</a>
+        </Link>
+        <br />
+        <span>
+          Made with love by&nbsp;
+          <a
+            href="https://digitalia.net.pl"
+            target="_blank"
+            rel="noreferrer"
+            className="l1"
+          >
+            DigItalia
+          </a>
+        </span>
       </Col>
     </Row>
   );

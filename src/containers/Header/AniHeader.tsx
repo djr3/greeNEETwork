@@ -76,15 +76,17 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
   return (
     <motion.header
       animate={isOpen ? "open" : "closed"}
-      className={`${css({
-        height: "4rem",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        background: "transparent",
-        position: "fixed",
-        width: "100%",
-      })} ${className}`}
+      className={[
+        css({
+          height: "4rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          background: "transparent",
+          width: "100%",
+        }),
+        className,
+      ].join(" ")}
     >
       <Div bg="#799d43" d="flex" align="center" h="4rem" w="auto" maxW="100px">
         <a href="/home">
@@ -149,7 +151,7 @@ export const AniHeader: React.FC<PageHeaderProps> = (props) => {
           </motion.ul>
         </nav>
         <motion.div
-          // initial={isOpen}
+          initial={isOpen}
           animate={isOpen ? "open" : "closed"}
           className={css({
             width: "100vw",

@@ -2,7 +2,7 @@
 import React from "react";
 
 // Page Layout
-import Page from "../containers/Main";
+import Page from "containers/Main";
 
 // Page Components
 import Player from "react-player";

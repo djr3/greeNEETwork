@@ -38,4 +38,5 @@ export interface Itinerario {
   descrizione: string;
   itinerario: string | null;
   children?: Itinerario[];
+  [x: string]: any;
 }

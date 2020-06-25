@@ -44,11 +44,17 @@ export const Hero = () => {
             >
               Il Parco Metropolitano delle Colline di Napoli
             </motion.h1>
-            <Div d="flex" h="4rem" maxW="12rem" m={{ b: ".5rem" }}>
+            <Div
+              d="flex"
+              h="4rem"
+              maxW="12rem"
+              m={{ b: ".5rem" }}
+              justify="space-between"
+            >
               <Image
                 className={css({
                   height: "100%",
-                  maxWidth: "4rem",
+                  width: "auto",
                 })}
                 src="/img/cdm_n.svg"
                 alt="Presidenza del Consiglio dei Ministri - Logo"
@@ -56,7 +62,7 @@ export const Hero = () => {
               <Image
                 className={css({
                   height: "100%",
-                  maxWidth: "4rem",
+                  width: "auto",
                 })}
                 src="/img/comune_w.png"
                 alt="Comune di Napoli - Logo"
@@ -64,7 +70,7 @@ export const Hero = () => {
               <Image
                 className={css({
                   height: "100%",
-                  maxWidth: "4rem",
+                  width: "auto",
                 })}
                 src="/img/anci_n.png"
                 alt="Comune di Napoli - Logo"

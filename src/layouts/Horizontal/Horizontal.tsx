@@ -21,14 +21,18 @@ import {
 } from "core/constants";
 // const { xs, sm, md, lg, xl } = defaultMediaQuery;
 
-export const SiteLayout = (props) => {
+export const Horizontal = (props) => {
   const [css] = useStyletron();
 
   return (
     <ThemeProvider theme={theme}>
       <StyleReset />
       <AniHeader
-        className={css({ position: "sticky", top: 0, zIndex: 1000 })}
+        className={css({
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
+        })}
         navMenu={defaultMenuItems}
         // socialMenu={defaultSocialItems}
       />
@@ -38,10 +42,6 @@ export const SiteLayout = (props) => {
         className={css({
           position: "fixed",
           bottom: 0,
-          right: 0,
-          // width: "100%",
-          // justifyContent: "flex-end",
-          // backgroundColor: "white",
           zIndex: 1000,
         })}
       />
@@ -49,4 +49,4 @@ export const SiteLayout = (props) => {
   );
 };
 
-export const getLayout = (page) => <SiteLayout>{page}</SiteLayout>;
+export const getLayout = (page) => <Horizontal>{page}</Horizontal>;

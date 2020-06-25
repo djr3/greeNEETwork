@@ -2,11 +2,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 // Page Layout
-import { getLayout } from "../layouts/AuthLayout";
+import { getLayout } from "layouts/AuthLayout";
 
 // Page Components
 import { Div, Input, Icon, Button, Container, Row, Col } from "atomize";
-import { Image } from "../components/Image";
+import { Image } from "components/Image";
 import { useStyletron } from "styletron-react";
 
 const Index = () => {

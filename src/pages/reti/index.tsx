@@ -28,33 +28,30 @@ export async function getStaticProps() {
 export default function Reti({ reti }) {
   const [css] = useStyletron();
   return (
-    <Page id="reti" className={css({})}>
+    <Page id="reti">
       <Container
       // className={css({ maxWidth: "calc(100vw - 200px" })}
       >
-        <Row justify="center" m={{ b: "1.5rem" }}>
-          {/* <Col size={{ xs: 12, sm: 10, lg: 9 }}> */}
-          <Col size={{ xs: 12, sm: 11 }}>
-            <Breadcrumbs />
-            <Div tag="hgroup" m={{ b: "1rem" }}>
-              <Text textSize="display2" tag="h1" fontFamily="primary">
-                Reti Territoriali
-              </Text>
-              <Text
-                textSize="body"
-                tag="h5"
-                textWeight="400"
-                textTransform="uppercase"
-                style={{
-                  letterSpacing: "1px",
-                }}
-              >
-                Reti locali, nazionali e internazionali attive nel Parco
-                Metropolitano delle Colline di Napoli
-              </Text>
-            </Div>
-          </Col>
-        </Row>
+        <Div justify="center" m={{ b: "1.5rem" }}>
+          <Breadcrumbs />
+          <Div tag="hgroup" m={{ b: "1rem" }}>
+            <Text textSize="display2" tag="h1" fontFamily="primary">
+              Reti Territoriali
+            </Text>
+            <Text
+              textSize="body"
+              tag="h5"
+              textWeight="400"
+              textTransform="uppercase"
+              style={{
+                letterSpacing: "1px",
+              }}
+            >
+              Reti locali, nazionali e internazionali attive nel Parco
+              Metropolitano delle Colline di Napoli
+            </Text>
+          </Div>
+        </Div>
 
         <Div
           className={css({

@@ -9,7 +9,7 @@ import { defaultMetaTags } from "core/constants";
 /**
  * PAGE Layout // Inversion of Control
  */
-import { SiteLayout } from "layouts";
+import { Vertical } from "layouts";
 import { motion } from "framer-motion";
 import { useStyletron } from "styletron-react";
 
@@ -35,10 +35,11 @@ const PageMain: React.FC<MainProps> = (props) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={
+      className={[
         css({
-          paddingBottom: "5rem",
+          paddingBottom: "6rem",
           paddingTop: "6rem",
+          minHeight: "calc(100vh - 8rem)",
           zIndex: -1,
           ":after": {
             content: "",
@@ -46,8 +47,9 @@ const PageMain: React.FC<MainProps> = (props) => {
             clear: "both",
           },
           ...style,
-        }) + ` ${className}`
-      }
+        }),
+        className,
+      ].join(" ")}
       {...rest}
     >
       {meta && <MetaTags tags={meta} />}
@@ -56,6 +58,6 @@ const PageMain: React.FC<MainProps> = (props) => {
   );
 };
 
-export const getLayout = (page) => <SiteLayout>{page}</SiteLayout>;
+// export const getLayout = (page) => <Vertical>{page}</Vertical>;
 
 export default PageMain;

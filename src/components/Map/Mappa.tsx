@@ -127,8 +127,12 @@ export const Mappa: React.FC<MappaProps> = (props) => {
               <div
                 style={{
                   color: "#fff",
-                  width: `${32 + (pointCount / clusters.length) * 30}px`,
-                  height: `${32 + (pointCount / clusters.length) * 30}px`,
+                  width: `${
+                    32 + (pointCount / clusters.length) * pointCount
+                  }px`,
+                  height: `${
+                    32 + (pointCount / clusters.length) * pointCount
+                  }px`,
                   background: "#04A29B",
                   borderRadius: "50%",
                   padding: "10px",

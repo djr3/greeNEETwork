@@ -5,7 +5,7 @@ import Router from "next/router";
 import { defaultMetaTags } from "../core/constants";
 
 // Global Components
-import { SiteLayout } from "../layouts";
+import { Vertical } from "../layouts";
 import { MetaTags } from "../components/MetaTags";
 import { trackPageView, trackVitals } from "../core/gtag";
 
@@ -46,10 +46,13 @@ export default class GreeNEETwork extends App {
 
     const getLayout = (Component as Page).getLayout
       ? (Component as Page).getLayout
-      : (page) => <SiteLayout>{page}</SiteLayout>;
+      : (page) => <Vertical>{page}</Vertical>;
 
     return (
-      <StyletronProvider value={engine} debug={debug}>
+      <StyletronProvider
+        value={engine}
+        // debug={debug}
+      >
         <MetaTags tags={defaultMetaTags} />
         {getLayout(
           <AnimatePresence exitBeforeEnter>
