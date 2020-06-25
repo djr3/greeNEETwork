@@ -17,8 +17,8 @@ import { DynamicMap, PlacePreview } from "components/Map";
 
 // Static Props
 export async function getStaticProps() {
-  const accessibilita = await (await directus.getItems("accessibilita")).data;
-  const luoghi = await (
+  const accessibilita = (await directus.getItems("accessibilita")).data;
+  const luoghi = (
     await directus.getItems<
       { accessibilita; servizi; tipologie; galleria_immagini }[]
     >("luoghi", {
@@ -40,8 +40,8 @@ export async function getStaticProps() {
       ],
     })
   ).data;
-  const servizi = await (await directus.getItems("servizi")).data;
-  const tipologie = await (await directus.getItems("tipologie")).data;
+  const servizi = (await directus.getItems("servizi")).data;
+  const tipologie = (await directus.getItems("tipologie")).data;
 
   return {
     props: {

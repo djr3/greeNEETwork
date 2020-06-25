@@ -7,10 +7,8 @@ import { getLayout } from "layouts/AuthLayout";
 // Page Components
 import { Div, Input, Icon, Button, Container, Row, Col } from "atomize";
 import { Image } from "components/Image";
-import { useStyletron } from "styletron-react";
 
 const Index = () => {
-  const [css] = useStyletron();
   const router = useRouter();
 
   const [auth, setAuth] = useState({ username: "", password: "" });

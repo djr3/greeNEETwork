@@ -12,7 +12,7 @@ import { trackPageView, trackVitals } from "../core/gtag";
 // Style & Animation Providers
 import { AnimatePresence } from "framer-motion";
 import { Provider as StyletronProvider } from "styletron-react";
-import { engine, debug } from "../styletron";
+import { engine } from "../styletron";
 // Carousel styles
 import "@brainhubeu/react-carousel/lib/style.css";
 // App Styles

@@ -14,7 +14,7 @@ import ReactPlayer from "react-player";
 import { PlacePreview } from "components/Map";
 
 export async function getStaticPaths() {
-  const posts = await (
+  const posts = (
     await directus.getItems<{ slug }[]>("articoli", {
       filter: { status: { eq: "published" } },
       fields: ["*", "luoghi.*.*"],
@@ -32,7 +32,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const post = await (
+  const post = (
     await directus.getItems("articoli", {
       filter: { slug: { eq: params.slug } },
       fields: ["*", "luoghi.luogo.*"],
@@ -56,7 +56,6 @@ export default function Post({ post }) {
     slug,
     video_pillola,
     luoghi,
-    ...rest
   } = post;
   // console.log("Rest : ", rest);
   return (

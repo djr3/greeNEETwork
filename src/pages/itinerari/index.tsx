@@ -36,13 +36,13 @@ const StyledItem = styled("li", {
 
 // Static Props
 export async function getStaticProps() {
-  const itinerari = await (
+  const itinerari = (
     await directus.getItems<{ id; itinerario }[]>("itinerari", {
       fields: ["id", "nome", "itinerario"],
     })
   ).data;
 
-  const luoghi = await (
+  const luoghi = (
     await directus.getItems<{ itinerari }[]>("luoghi", {
       fields: ["id", "nome", "slug", "geo_json", "itinerari.itinerario"],
     })
@@ -51,7 +51,7 @@ export async function getStaticProps() {
     itinerari: l.itinerari.map(({ itinerario }) => itinerario),
   }));
 
-  const percorsi = await (
+  const percorsi = (
     await directus.getItems<{ itinerari }[]>("percorsi", {
       fields: ["id", "nome", "geo_json", "itinerari.itinerario"],
     })
@@ -202,7 +202,7 @@ const Itinerari = (props: Props) => {
                               m={{ b: ".5rem" }}
                               className={css({ lineHeight: 1.2 })}
                             >
-                              {(child.id as string).slice(-2)}. {child.nome}
+                              {child.id.slice(-2)}. {child.nome}
                             </Text>
                             <Icon
                               name={

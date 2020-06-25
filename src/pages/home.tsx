@@ -9,8 +9,7 @@ import Player from "react-player";
 import { useStyletron } from "styletron-react";
 import { Slideshow } from "components/Slideshow";
 import { Hero } from "components/Hero";
-import { Container, Row, Col, Div, Text, Image } from "atomize";
-import { motion } from "framer-motion";
+import { Container, Row, Col, Div, Text } from "atomize";
 import { FadeIn, BlockReveal } from "components/Animations";
 
 export default function Home() {

@@ -8,9 +8,8 @@ import Page from "containers/Main";
 import { useStyletron } from "styletron-react";
 
 // Page Components
-import { Container, Row, Col, Div, Text, Anchor, Button } from "atomize";
+import { Container, Div, Text, Anchor, Button } from "atomize";
 import { Breadcrumbs } from "components/Breadcrumbs";
-import { Masonry } from "components/Masonry";
 // import { Image } from "components/Image";
 
 // Helpers
@@ -18,7 +17,7 @@ import { defaultMediaQuery } from "core/constants";
 const { xs, sm, md, lg, xl } = defaultMediaQuery;
 
 export async function getStaticProps() {
-  const reti = await (await directus.getItems("reti_territoriali")).data;
+  const reti = (await directus.getItems("reti_territoriali")).data;
 
   return {
     props: { reti },

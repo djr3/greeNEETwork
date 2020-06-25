@@ -37,8 +37,6 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.18.2",
-    "@emotion/core": "^10.0.28",
-    "@emotion/styled": "^10.0.27",
     "@turf/centroid": "^6.0.2",
     "atomize": "^1.0.26",
     "d3-ease": "^1.0.6",
