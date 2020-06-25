@@ -16,7 +16,7 @@
     "build:sitemap": "babel-node -x \".ts\" -r dotenv/config ./utils/index.ts",
     "dev": "next dev",
     "start": "next start",
-    "export": "yarn && yarn build && next export",
+    "export": "yarn build && next export",
     "pretty:quick": "pretty-quick --pattern '**/*.*(ts|tsx|jsx)' --staged",
     "pretty:write": "prettier \"{data,src,public,utils}/**/*.{ts,tsx,js,jsx,json,md,css,geojson}\" --write",
     "pretty:test": "prettier \"{data,src,public,utils}/**/*.{ts,tsx,js,jsx,json,md,css,geojson}\" --list-different",
@@ -37,6 +37,8 @@
   "browserslist": "last 2 versions",
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.18.2",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@turf/centroid": "^6.0.2",
     "atomize": "^1.0.26",
     "d3-ease": "^1.0.6",

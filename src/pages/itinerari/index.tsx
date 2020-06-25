@@ -9,7 +9,7 @@ import { getLayout } from "layouts/Horizontal";
 import { useStyletron, styled } from "styletron-react";
 
 // Page Components
-import { DynamicMap, PlacePreview } from "components/Map";
+import { DynamicMap } from "components/Map";
 import { Row, Col, Div, Text, Collapse, Icon } from "atomize";
 
 // Typings
@@ -128,7 +128,7 @@ const Itinerari = (props: Props) => {
         />
       </Head>
       <Row h="100%">
-        <Col size={4} p={{ b: "4rem" }} h="100vh">
+        <Col size={3} p={{ b: "4rem" }} h="100vh">
           <Aside
             className={css({
               // height: "calc(100% - 4rem)",
@@ -198,6 +198,7 @@ const Itinerari = (props: Props) => {
                             <Text
                               tag="h6"
                               textSize="paragraph"
+                              textWeight="500"
                               m={{ b: ".5rem" }}
                               className={css({ lineHeight: 1.2 })}
                             >
@@ -209,12 +210,17 @@ const Itinerari = (props: Props) => {
                                   ? "UpArrow"
                                   : "DownArrow"
                               }
+                              color="black"
+                              // p=".5rem"
                               size="1.5rem"
+                              className={css({
+                                border: "1px solid black",
+                              })}
                             />
                           </Div>
                           <Collapse isOpen={selItinerary === child.id}>
                             <Div tag="ul">
-                              {filteredPlaces.map((place) => (
+                              {filterPlaces(luoghi).map((place) => (
                                 <StyledItem
                                   key={place.id}
                                   onClick={() => handlePlace(place)}
@@ -231,7 +237,7 @@ const Itinerari = (props: Props) => {
             </Div>
           </Aside>
         </Col>
-        <Col size={8}>
+        <Col size={9}>
           <DynamicMap places={filteredPlaces} selPlace={selPlace} withPopup />
         </Col>
       </Row>
