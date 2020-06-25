@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
-import { getLayout as getSiteLayout } from "../SiteLayout";
+import { getLayout as getSiteLayout } from "../Vertical";
 import { useRouter } from "next/router";
 
 /**
