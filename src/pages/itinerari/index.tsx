@@ -1,68 +1,84 @@
 // Core Components
 import Head from "next/head";
-import { useState } from "react";
+import { SyntheticEvent, useMemo, useState } from "react";
 import { directus } from "core/cli";
 
 // Page Layout & Style
 import Page from "containers/Main";
-import { getLayout } from "layouts/Horizontal";
-import { useStyletron, styled } from "styletron-react";
+// import { getLayout } from "layouts/Horizontal";
 
 // Page Components
 import { DynamicMap } from "components/Map";
-import { Row, Col, Div, Text, Collapse, Icon } from "atomize";
+import { Row, Col, Text, Collapse } from "@geist-ui/react";
 
 // Typings
-import { Itinerario, Luogo, Percorso } from "interfaces";
-import Aside from "containers/Aside/Aside";
+import type { IItinerario, ILuogo, IPercorso } from "@types";
+// import Aside from "containers/Aside/Aside";
 
-const StyledItem = styled("li", {
-  ":hover": {
-    background: "#69b6d5AA",
-  },
-  ":before": {
-    content: " ",
-    position: "relative",
-    left: "-1rem",
-    display: "inline-block",
-    width: "15px",
-    height: "15px",
-    borderRadius: "7.5px",
-    backgroundColor: "#69b6d5",
-  },
-  padding: ".5rem 1rem",
-  borderLeft: "1px solid green",
-});
+// Styled Items
+const StyledItem = (props) => (
+  <li {...props}>
+    {props.children}
+    <style jsx>{`
+      li {
+        padding: 0.5rem 1rem;
+        border-left: 1px solid green;
+        cursor: pointer;
+      }
+      li:hover {
+        background: #69b6d5aa;
+      }
+      li:before {
+        content: " ";
+        // position: relative;
+        // left: -1rem;
+        // display: inline-block;
+        // width: 15px;
+        // height: 15px;
+        // border-radius: 7.5px;
+        // background-color: #69b6d5;
+      }
+    `}</style>
+  </li>
+);
+export const stripeKeys = (keys: string[], object: object) => {
+  for (const key in object) {
+    if (keys.includes(key)) delete object[key];
+  }
+  return object;
+};
 
 // Static Props
 export async function getStaticProps() {
   const itinerari = (
-    await directus.getItems<{ id; itinerario }[]>("itinerari", {
-      fields: ["id", "nome", "itinerario"],
-    })
+    await directus.getItems<IItinerario[]>("itinerari", { limit: 50 })
   ).data;
 
   const luoghi = (
-    await directus.getItems<{ itinerari }[]>("luoghi", {
+    await directus.getItems<ILuogo[]>("luoghi", {
+      limit: 500,
       fields: ["id", "nome", "slug", "geo_json", "itinerari.itinerario"],
     })
   ).data.map((l) => ({
     ...l,
+    geo_json: { ...l.geo_json, properties: stripeKeys(["geo_json"], l) },
     itinerari: l.itinerari.map(({ itinerario }) => itinerario),
   }));
 
   const percorsi = (
-    await directus.getItems<{ itinerari }[]>("percorsi", {
+    await directus.getItems<IPercorso[]>("percorsi", {
+      limit: 50,
       fields: ["id", "nome", "geo_json", "itinerari.itinerario"],
     })
   ).data.map((p) => ({
     ...p,
+    geo_json: { ...p.geo_json, properties: stripeKeys(["geo_json"], p) },
     itinerari: p.itinerari.map(({ itinerario }) => itinerario),
   }));
 
   function reshapeItin(items) {
     return items
-      .filter((i) => i.itinerario === null)
+      .filter((i) => !i.itinerario)
       .map((i) =>
         Object.assign(i, {
           children: itinerari.filter((i2) => i2.itinerario === i.id),
@@ -80,43 +96,74 @@ export async function getStaticProps() {
 }
 
 interface Props {
-  itinerari: Itinerario[];
-  luoghi: Luogo[];
-  percorsi: Percorso[];
+  itinerari: IItinerario[];
+  luoghi: ILuogo[];
+  percorsi: IPercorso[];
 }
 
 const Itinerari = (props: Props) => {
   const { itinerari, luoghi, percorsi } = props;
 
-  const [selItinerary, setSelItinerary] = useState("");
-  const [selPlace, setSelPlace] = useState(undefined);
+  const [selItinerary, setSelItinerary] = useState(null);
+  const [selPlace, setSelPlace] = useState(null);
 
-  const [css] = useStyletron();
+  /**
+   * User Interactivity handles
+   */
+  const handleItin = (
+    type: "main" | "child",
+    e: SyntheticEvent<HTMLUListElement, MouseEvent>,
+    v: string
+  ) => {
+    if (type === "child") e.stopPropagation();
+    v === selItinerary ? setSelItinerary(null) : setSelItinerary(v);
+  };
 
-  // const handleClick = (v) => setSelItinerary(v);
-  const handleItin = (v) =>
-    v === selItinerary ? setSelItinerary("") : setSelItinerary(v);
-  const handlePlace = (v) =>
-    v.id === selPlace ? setSelPlace(undefined) : setSelPlace(v);
+  const handlePlace = (
+    e: SyntheticEvent<HTMLLIElement, MouseEvent>,
+    v: ILuogo
+  ) => {
+    if (e.stopPropagation) e.stopPropagation();
+    if (v && v.id && (selPlace === null || selPlace.id !== v.id))
+      setSelPlace(v);
+  };
 
-  function filterPlaces(items) {
-    return items.filter((i) => i.itinerari.some((t) => selItinerary === t));
-  }
+  // function filterPlaces(items) {
+  //   return items.filter((i) => i.itinerari.some((t) => selItinerary === t));
+  // }
+
+  const filterPlaces = (items) =>
+    useMemo(
+      () => items.filter((i) => i.itinerari.some((t) => selItinerary === t)),
+      [selItinerary]
+    );
 
   const filteredPlaces = [...filterPlaces(luoghi), ...filterPlaces(percorsi)];
+
+  // useEffect(() => {
+  //   console.log("State : ", { selItinerary, selPlace });
+  //   console.log("Filtered Places : ", filteredPlaces);
+  // }, [selItinerary]);
+
+  // const MemoMap = () => {
+  //   const filteredPlaces = useMemo(
+  //     () => [...filterPlaces(luoghi), ...filterPlaces(percorsi)],
+  //     [selItinerary, selPlace]
+  //   );
+  //   return <Map places={filteredPlaces} selPlace={selPlace} />;
+  // };
 
   return (
     <Page
       id="itinerari"
       style={{
-        height: "100vh",
-        width: "100%",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        overflow: "hidden",
+        // width: "100%",
+        // position: "fixed",
+        // top: 0,
+        // left: 0,
+        // overflow: "hidden",
         paddingBottom: 0,
-        paddingTop: 0,
+        marginTop: 0,
       }}
     >
       <Head>
@@ -127,124 +174,103 @@ const Itinerari = (props: Props) => {
           rel="stylesheet"
         />
       </Head>
-      <Row h="100%">
-        <Col size={3} p={{ b: "4rem" }} h="100vh">
-          <Aside
-            className={css({
-              // height: "calc(100% - 4rem)",
-              overflowY: "auto",
-            })}
-          >
-            <Div bg="#fff" pos="sticky" top="0" shadow={2}>
-              <Div
-                bg="#111"
-                h="4rem"
-                m={{ l: "6.25rem" }}
-                d="flex"
-                align="center"
-                justify="center"
+      <Row style={{ height: "100%" }}>
+        <Col span={6} style={{ height: "100vh" }}>
+          <aside style={{ height: "100%", overflowY: "auto" }}>
+            <div style={{ background: "#fff", position: "sticky", top: 0 }}>
+              <div
+                style={{
+                  background: "#111",
+                  height: "4rem",
+                  // marginBottom: ".5rem",
+                  marginLeft: "6.25rem",
+                  display: "flex",
+                  alignItems: "center",
+                  alignContent: "center",
+                  justifyContent: "center",
+                }}
               >
                 <Text
-                  tag="h1"
-                  textSize="h6"
-                  className={css({
+                  h1
+                  style={{
                     color: "#fff",
+                    fontSize: "1.125rem",
                     fontWeight: 300,
                     letterSpacing: "3px",
                     textTransform: "uppercase",
-                  })}
+                    marginBottom: 0,
+                  }}
                 >
                   Itinerari
                 </Text>
-              </Div>
-              <Div p={{ x: "1rem", y: ".5rem" }}>
-                <Text className={css({ fontSize: ".8rem", lineHeight: 1.2 })}>
+              </div>
+              <div style={{ padding: ".5rem", paddingBlock: "1rem" }}>
+                <Text style={{ fontSize: ".8rem", lineHeight: 1.2 }}>
                   Restituzione digitale del ‘viaggio’ di Leonardo Recchia e
                   Renato Ruotolo nel Parco Metropolitano delle Colline di
                   Napoli.
                 </Text>
-              </Div>
-            </Div>
-            <Div>
+              </div>
+            </div>
+            <div style={{ height: "100%" }}>
               {itinerari
-                .filter((i) => i.itinerario === null)
+                .filter((i) => !i.itinerario)
                 .map((i) => (
-                  <Div
-                    key={i.id}
-                    cursor="pointer"
-                    p={{ x: "1rem", y: ".5rem" }}
-                  >
-                    <Text
-                      tag="h5"
-                      textSize="subheader"
-                      textWeight="600"
-                      m={{ b: "1rem" }}
-                      onClick={() => handleItin(i.id)}
+                  <Collapse.Group key={i.id}>
+                    <Collapse
+                      title={i.id.slice(0, -2)}
+                      subtitle={i.nome}
+                      onClick={(e) => handleItin("main", e, i.id)}
                     >
-                      {i.id}. {i.nome}
-                    </Text>
-                    {i.children &&
-                      i.children.map((child) => (
-                        <Div
-                          key={child.id}
-                          m={{ b: ".75rem" }}
-                          p={{ l: ".75rem" }}
-                        >
-                          <Div
-                            d="flex"
-                            justify="space-between"
-                            onClick={() => handleItin(child.id)}
-                          >
-                            <Text
-                              tag="h6"
-                              textSize="paragraph"
-                              textWeight="500"
-                              m={{ b: ".5rem" }}
-                              className={css({ lineHeight: 1.2 })}
-                            >
-                              {child.id.slice(-2)}. {child.nome}
-                            </Text>
-                            <Icon
-                              name={
-                                selItinerary === child.id
-                                  ? "UpArrow"
-                                  : "DownArrow"
+                      {i.children && (
+                        <Collapse.Group>
+                          {i.children.map((child) => (
+                            <Collapse
+                              key={child.id}
+                              title={
+                                child.id.slice(0, 3) +
+                                "." +
+                                child.id.slice(3, 5)
                               }
-                              color="black"
-                              // p=".5rem"
-                              size="1.5rem"
-                              className={css({
-                                border: "1px solid black",
-                              })}
-                            />
-                          </Div>
-                          <Collapse isOpen={selItinerary === child.id}>
-                            <Div tag="ul">
-                              {filterPlaces(luoghi).map((place) => (
-                                <StyledItem
-                                  key={place.id}
-                                  onClick={() => handlePlace(place)}
-                                >
-                                  <Div d="flex">{place.nome}</Div>
-                                </StyledItem>
-                              ))}
-                            </Div>
-                          </Collapse>
-                        </Div>
-                      ))}
-                  </Div>
+                              subtitle={child.nome}
+                              onClick={(e) => handleItin("child", e, child.id)}
+                            >
+                              <ul style={{ margin: 0 }}>
+                                {filterPlaces(luoghi).map((place) => (
+                                  <StyledItem
+                                    key={place.id}
+                                    onClick={(e) => handlePlace(e, place)}
+                                  >
+                                    {place.nome}
+                                  </StyledItem>
+                                ))}
+                              </ul>
+                            </Collapse>
+                          ))}
+                        </Collapse.Group>
+                      )}
+                    </Collapse>
+                  </Collapse.Group>
                 ))}
-            </Div>
-          </Aside>
+            </div>
+          </aside>
         </Col>
-        <Col size={9}>
-          <DynamicMap places={filteredPlaces} selPlace={selPlace} withPopup />
+        <Col span={18}>
+          <DynamicMap
+            places={filteredPlaces}
+            selPlace={selPlace}
+            onClick={handlePlace}
+            withPopup
+            // onMarkerClick={handlePlace}
+          />
+          {/* <MemoMap /> */}
         </Col>
       </Row>
     </Page>
   );
 };
 
-Itinerari.getLayout = getLayout;
+// Itinerari.getLayout = getLayout;
+Itinerari.noFooter = true;
 
 export default Itinerari;

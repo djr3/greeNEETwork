@@ -2,97 +2,83 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { directus } from "core/cli";
-// import forceUpdate from "use-force-update";
+import { getImageHashes } from "core/utils";
 
 // Page Layout & Style
 import Page from "containers/Main";
-import Aside from "containers/Aside";
-import { getLayout } from "layouts/Horizontal";
-import { useStyletron, styled } from "styletron-react";
 
 // Page Components
-import { Row, Col, Text, Icon, Div } from "atomize";
+import Card from "components/Card";
 import { Filter } from "components/Filters";
-import { DynamicMap, PlacePreview } from "components/Map";
+import { DynamicMap } from "components/Map";
+import { Row, Col, Text, Button, Grid, useMediaQuery } from "@geist-ui/react";
+import { ChevronLeft, ChevronRight } from "@geist-ui/react-icons";
+
+// Typings
+import type { ILuogo } from "@types";
 
 // Static Props
 export async function getStaticProps() {
-  const accessibilita = (await directus.getItems("accessibilita")).data;
-  const luoghi = (
-    await directus.getItems<
-      { accessibilita; servizi; tipologie; galleria_immagini }[]
-    >("luoghi", {
-      fields: [
-        "id",
-        "nome",
-        "slug",
-        "descrizione",
-        "telefono",
-        "email",
-        "pagina_web",
-        "pagina_facebook",
-        "pagina_instagram",
-        "geo_json",
-        "accessibilita.id",
-        "servizi.servizio",
-        "galleria_immagini.directus_file.filename_download",
-        "tipologie.tipologia",
-      ],
-    })
-  ).data;
-  const servizi = (await directus.getItems("servizi")).data;
-  const tipologie = (await directus.getItems("tipologie")).data;
+  const { data: accessibilita } = await directus.getItems("accessibilita");
+  const { data: luoghi } = await directus.getItems<ILuogo[]>("luoghi", {
+    fields: [
+      "id",
+      "nome",
+      "slug",
+      "descrizione",
+      "telefono",
+      "email",
+      "pagina_web",
+      "pagina_facebook",
+      "pagina_instagram",
+      "geo_json",
+      "accessibilita.id",
+      "servizi.servizio",
+      "galleria_immagini.directus_file.private_hash",
+      "tipologie.tipologia",
+    ],
+    limit: 300,
+  });
+  const { data: servizi } = await directus.getItems("servizi");
+  const { data: tipologie } = await directus.getItems("tipologie");
 
   return {
     props: {
       accessibilita,
-      luoghi: luoghi.map((l) => ({
-        ...l,
-        accessibilita: l.accessibilita ? l.accessibilita.id : null,
-        galleria_immagini:
-          l.galleria_immagini && l.galleria_immagini.length > 0
-            ? l.galleria_immagini.map(
-                ({ directus_file }) => directus_file.filename_download
-              )
-            : null,
-        servizi: l.servizi.map(({ servizio }) => servizio),
-        tipologie: l.tipologie.map(({ tipologia }) => tipologia),
-      })),
+      luoghi: JSON.parse(
+        JSON.stringify(
+          luoghi.map((l) => ({
+            ...l,
+            //@ts-ignore
+            accessibilita: l.accessibilita ? l.accessibilita.id : null,
+            galleria_immagini: getImageHashes(l),
+            servizi: l.servizi.map(({ servizio }) => servizio),
+            tipologie: l.tipologie.map(({ tipologia }) => tipologia),
+          }))
+        )
+      ),
       servizi,
       tipologie,
     },
   };
 }
 
-const PagButton = styled("button", {
-  padding: "8px",
-  display: "flex",
-  height: "100%",
-  lineHeight: "1em",
-  // flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  // backgroundColor: "#000",
-  // color: "white",
-  width: "50%",
-  fontSize: "12px",
-});
-
+/**
+ * Page Component
+ */
 const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
   /**
    * Props Data Processing
    */
   const places = luoghi;
-  const [css] = useStyletron();
 
   /**
    * Initializing state
    */
-
   const [state, setState] = useState({
-    selAccessibilita: [""],
-    selServizi: [""],
-    selTipologie: [""],
+    selAccessibilita: [],
+    selServizi: [],
+    selTipologie: [],
   });
 
   const [data, setData] = useState({
@@ -100,55 +86,56 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
     selPlace: undefined,
   });
 
+  const isLG = useMediaQuery("lg", { match: "up" });
+
   /**
-   * Filter functions declaration
+   * Filter functions
    */
   const filterAccessibilita = (l) =>
-    state.selAccessibilita.length > 0
-      ? state.selAccessibilita.includes(l.accessibilita)
-      : true;
+    state.selAccessibilita.includes(l.accessibilita);
 
   const filterServizi = (l) =>
-    state.selServizi.length > 0
-      ? l.servizi.some((s) => state.selServizi.includes(s))
-      : true;
+    l.servizi.some((s) => state.selServizi.includes(s));
 
   const filterTipologie = (l) =>
-    state.selTipologie.length > 0
-      ? l.tipologie.some((t) => state.selTipologie.includes(t))
-      : true;
+    l.tipologie.some((t) => state.selTipologie.includes(t));
 
   const filterAll = (l) =>
     filterTipologie(l) || filterAccessibilita(l) || filterServizi(l);
-  // const filters = [filterAccessibilita, filterTipologie];
 
   /**
-   * User Interactivity handles
+   * Utility functions
    */
-  const updateData = () => {
-    const filteredPlaces = places.filter((l) => filterAll(l));
-    setData({
-      places: filteredPlaces,
-      selPlace: filteredPlaces[0],
-    });
-  };
-
   const findPlaceIdx = (arr, placeId) => arr.findIndex((e) => e.id === placeId);
 
   const findPlace = (arr, placeId) => arr[findPlaceIdx(arr, placeId)];
 
+  /**
+   * User Interactivity handles
+   */
   const handleFilters = (property, value) => {
-    // console.log(`Filtering by ${property}: ${value}`);
     setState((prevState) => ({
       ...prevState,
       [property]: value,
     }));
   };
 
-  const handleMarkerClick = (place) => {
+  const handleMarkerClick = (e, place) => {
+    if (e.stopPropagation) e.stopPropagation();
     setData((prevData) => ({
       ...prevData,
       selPlace: findPlace(prevData.places, place),
+    }));
+  };
+
+  const handleNext = () => {
+    const arr = data.places.length;
+    let idx = findPlaceIdx(data.places, data.selPlace.id) + 1;
+
+    idx = idx % arr;
+    setData((prevState) => ({
+      ...prevState,
+      selPlace: data.places[idx],
     }));
   };
 
@@ -168,34 +155,35 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
     }));
   };
 
-  const handleNext = () => {
-    const arr = data.places.length;
-    let idx = findPlaceIdx(data.places, data.selPlace.id) + 1;
-
-    idx = idx % arr;
-    setData((prevState) => ({
-      ...prevState,
-      selPlace: data.places[idx],
-    }));
-  };
-
+  /**
+   * Effects
+   */
   useEffect(() => {
-    updateData();
+    const filteredPlaces = places.filter((l) => filterAll(l));
+    setData({
+      places: filteredPlaces,
+      selPlace: filteredPlaces[0],
+    });
   }, [state]);
 
   return (
     <Page
       id="esplora"
-      className={css({})}
       style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
+        // position: "absolute",
+        // top: 0,
+        // left: 0,
         width: "100%",
         height: "100vh",
         overflow: "hidden",
         paddingBottom: 0,
         paddingTop: 0,
+        marginTop: 0,
+      }}
+      metaTags={{
+        title: "Esplora | greeNEETwork",
+        description:
+          "Esplora la mappa del Parco Metropolitano delle Colline di Napoli e scopri le realtà attive sul territorio",
       }}
     >
       <Head>
@@ -207,111 +195,132 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
         />
       </Head>
       <Row>
-        <Col size={3} h="100vh">
-          <Aside
-            className={css({
+        <Col span={6} style={{ height: "100vh" }}>
+          <aside
+            style={{
+              height: "100%",
+              width: "100%",
               // padding: ".5rem .5rem 4rem .5rem",
-            })}
+            }}
           >
-            <Div
-              bg="#111"
-              h="4rem"
-              m={{ b: ".5rem", l: "6.25rem" }}
-              d="flex"
-              align="center"
-              justify="center"
+            <div
+              style={{
+                background: "#111",
+                height: "4rem",
+                // marginBottom: ".5rem",
+                marginLeft: "6.25rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
               <Text
-                tag="h1"
-                textSize="h6"
-                className={css({
+                h1
+                // textSize="h6"
+                style={{
                   color: "#fff",
+                  fontSize: "1.125rem",
                   fontWeight: 300,
                   letterSpacing: "4px",
                   textTransform: "uppercase",
-                })}
+                  marginBottom: 0,
+                }}
               >
                 Esplora
               </Text>
-            </Div>
-            <Div
-              d="flex"
-              p=".5rem"
-              flexDir="column"
-              justify="space-between"
-              h="calc(100% - 8rem)"
+            </div>
+            <div
+              style={{
+                display: "flex",
+                padding: ".5rem",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "calc(100% - 4rem)",
+              }}
             >
-              <Div>
+              <div>
                 <Text
-                  m={{ b: ".5rem" }}
-                  textSize="12px"
-                  textWeight="400"
-                  // lineHeight="1.25em"
-                  // className={css({
-                  //   lineHeight = "14px",
-                  // })}
+                  style={{
+                    marginBottom: ".5rem",
+                    fontSize: ".75rem",
+                    fontWeight: 400,
+                  }}
                 >
                   Seleziona uno o più filtri di ricerca dai box sottostanti per
                   trovare i luoghi di tuo interesse
                 </Text>
-                {/* <Col size={12}></Col> */}
-                <Div d="flex">
-                  <Filter
-                    name="Accessibilita"
-                    filters={accessibilita}
-                    type="select"
-                    onChange={handleFilters}
-                  />
-                  <Filter
-                    name="Servizi"
-                    filters={servizi}
-                    type="select"
-                    onChange={handleFilters}
-                  />
-                </Div>
 
-                <Filter
-                  filters={tipologie}
-                  name="Tipologie"
-                  type="select"
-                  onChange={handleFilters}
-                />
-              </Div>
-              {/* </Row> */}
+                <Grid.Container gap={1} justify="center">
+                  <Grid xs={24}>
+                    <Filter
+                      name="Accessibilita"
+                      filters={accessibilita}
+                      type="select"
+                      onChange={handleFilters}
+                    />
+                  </Grid>
+                  <Grid xs={24}>
+                    <Filter
+                      name="Servizi"
+                      filters={servizi}
+                      type="select"
+                      onChange={handleFilters}
+                    />
+                  </Grid>
+                  <Grid xs={24}>
+                    <Filter
+                      filters={tipologie}
+                      name="Tipologie"
+                      type="select"
+                      onChange={handleFilters}
+                    />
+                  </Grid>
+                </Grid.Container>
+              </div>
 
               {data.selPlace && (
                 <>
-                  <PlacePreview place={data.selPlace} />
+                  <Card type="place" data={data.selPlace} />
                   <div
-                    className={css({
+                    style={{
                       display: "flex",
-                      // justifyContent: "space-around",
-                      justifyContent: "flex-start",
+                      justifyContent: "space-between",
+                      // justifyContent: "flex-start",
                       width: "100%",
-                      height: "48px",
+                      // height: "48px",
                       // backgroundColor: "#000",
-                    })}
+                    }}
                   >
-                    <PagButton onClick={handlePrev}>
-                      {/* <Icon name="Back" color="#fff" size="24px" /> */}
-                      <Icon name="Back" color="#000" size="24px" />
-                      <span>Precedente</span>
-                    </PagButton>
-                    <PagButton onClick={handleNext}>
-                      {/* <Icon name="Next" color="#fff" size="24px" /> */}
-                      {/* <span>Successivo</span> */}
-                      <span>Successivo</span>
-                      <Icon name="Next" color="#000" size="24px" />
-                    </PagButton>
+                    <Button
+                      auto
+                      ghost
+                      type="success"
+                      onClick={handlePrev}
+                      icon={<ChevronLeft />}
+                      style={{ width: "50%" }}
+                    >
+                      <span>{isLG ? "Precedente" : "Prev"}</span>
+                    </Button>
+                    <Button
+                      auto
+                      ghost
+                      type="secondary"
+                      onClick={handleNext}
+                      iconRight={<ChevronRight />}
+                      style={{ width: "50%" }}
+                    >
+                      <span>{isLG ? "Successivo" : "Next"}</span>
+                    </Button>
                   </div>
                 </>
               )}
-            </Div>
-          </Aside>
+            </div>
+          </aside>
         </Col>
 
-        <Col size={9}>
+        <Col span={18}>
           <DynamicMap
+            // withPopup
             places={data.places}
             selPlace={data.selPlace}
             onMarkerClick={handleMarkerClick}
@@ -322,6 +331,7 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
   );
 };
 
-Esplora.getLayout = getLayout;
+// Esplora.getLayout = getLayout;
+Esplora.noFooter = true;
 
 export default Esplora;

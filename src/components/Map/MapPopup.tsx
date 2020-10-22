@@ -1,19 +1,42 @@
+import React, { useEffect } from "react";
 import Link from "next/link";
+import useSWR from "swr";
 
 import { Popup } from "react-map-gl";
-import { Div, Text, Button, Icon, Anchor } from "atomize";
+import { Text, Button, Link as Anchor, useMediaQuery } from "@geist-ui/react";
+import { ArrowRight } from "@geist-ui/react-icons";
 
 import { Contacts } from "./Contacts";
 import { getCoordinates } from "./utils";
+import { wordSplit } from "core/utils";
 
 export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
   place,
   onClose,
 }) => {
-  const center = getCoordinates(place.geo_json);
+  let center = getCoordinates(place.geo_json);
 
-  // console.log("Popup Place : ", place);
-  // console.log("Popup Place Coord : ", center);
+  const isXS = useMediaQuery("mobile");
+
+  useEffect(() => {
+    center = getCoordinates(place.geo_json);
+  }, [place]);
+
+  const { data: address } = useSWR(
+    center.latitude && center.longitude
+      ? `https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.latitude}&lon=${center.longitude}&zoom=18&accept-language=it`
+      : null
+  );
+
+  useEffect(() => {
+    if (address)
+      fetch("/api/address", {
+        method: "POST",
+        body: JSON.stringify({ id: place.id, address }),
+      })
+        .then((res) => console.log("API Response :", res))
+        .catch((e) => console.error("API Error : " + e));
+  }, [address]);
 
   return (
     <Popup
@@ -23,33 +46,47 @@ export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
       closeOnClick={false}
       onClose={() => onClose(false)}
     >
-      <Div minH="120px" maxH="260px" w={{ xs: "300px" }} p=".5rem">
-        <Text tag="h6" textSize="h6">
-          {place.nome}
-        </Text>
-        <p>{place.descrizione}</p>
+      <div
+        style={{
+          minHeight: "120px",
+          maxHeight: "260px",
+          maxWidth: isXS ? undefined : "38vw",
+          // width: isXS ? "300px" : undefined,
+          padding: ".5rem",
+        }}
+      >
+        <Text h4>{place.nome}</Text>
+        {address && <span>{address.display_name}</span>}
+        <Text>{wordSplit(place.descrizione)}</Text>
         <Contacts place={place} />
-        <Link href="/esplora/[slug]" as={`/esplora/${place.slug}`}>
-          <Anchor>
-            <Button
-              h="2rem"
-              p={{ x: "0.75rem" }}
-              textSize="caption"
-              m={{ r: "0.5rem" }}
-              suffix={
-                <Icon
-                  name="LongRight"
-                  size="16px"
+        <Link
+          href="/esplora/[slug]"
+          as={`/esplora/${place.slug}`}
+          prefetch={false}
+        >
+          <Anchor block>
+            {/* <Button
+              style={{
+                // height: "2rem",
+                // paddingLeft: "0.75rem"
+                // paddingRight: "0.75rem"
+                // textSize="caption"
+                marginRight: "0.5rem",
+              }}
+              iconRight={
+                <ArrowRight
+                  size={16}
                   color="white"
-                  m={{ l: "1rem" }}
+                  // name="LongRight"
+                  // m={{ l: "1rem" }}
                 />
               }
-            >
-              Scopri questo luogo
-            </Button>
+            > */}
+            Scopri questo luogo
+            {/* </Button> */}
           </Anchor>
         </Link>
-      </Div>
+      </div>
     </Popup>
   );
 };

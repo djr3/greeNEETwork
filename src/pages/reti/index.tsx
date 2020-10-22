@@ -5,19 +5,27 @@ import { directus } from "core/cli";
 
 // Page Layout
 import Page from "containers/Main";
-import { useStyletron } from "styletron-react";
 
 // Page Components
-import { Container, Div, Text, Anchor, Button } from "atomize";
-import { Breadcrumbs } from "components/Breadcrumbs";
-// import { Image } from "components/Image";
+import {
+  Row,
+  Col,
+  Text,
+  Card,
+  Image,
+  Link as Anchor,
+  Grid,
+  Divider,
+} from "@geist-ui/react";
+import Breadcrumbs from "components/Breadcrumbs";
 
 // Helpers
-import { defaultMediaQuery } from "core/constants";
-const { xs, sm, md, lg, xl } = defaultMediaQuery;
+import { wordSplit } from "core/utils";
+// import { defaultMediaQuery } from "core/constants";
+// const { xs, sm, md, lg, xl } = defaultMediaQuery;
 
 export async function getStaticProps() {
-  const reti = (await directus.getItems("reti_territoriali")).data;
+  const { data: reti } = await directus.getItems("reti_territoriali");
 
   return {
     props: { reti },
@@ -25,91 +33,65 @@ export async function getStaticProps() {
 }
 
 export default function Reti({ reti }) {
-  const [css] = useStyletron();
+  // const [css] = useStyletron();
   return (
-    <Page id="reti">
-      <Container
-      // className={css({ maxWidth: "calc(100vw - 200px" })}
-      >
-        <Div justify="center" m={{ b: "1.5rem" }}>
-          <Breadcrumbs />
-          <Div tag="hgroup" m={{ b: "1rem" }}>
-            <Text textSize="display2" tag="h1" fontFamily="primary">
-              Reti Territoriali
-            </Text>
-            <Text
-              textSize="body"
-              tag="h5"
-              textWeight="400"
-              textTransform="uppercase"
-              style={{
-                letterSpacing: "1px",
-              }}
-            >
-              Reti locali, nazionali e internazionali attive nel Parco
-              Metropolitano delle Colline di Napoli
-            </Text>
-          </Div>
-        </Div>
-
-        <Div
-          className={css({
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gridTemplateRows: "auto",
-            gridGap: "1.25rem 1.25rem",
-            gridAutoFlow: "dense",
-            maxWidth: "100%",
-            [xs]: { gridTemplateColumns: "1fr" },
-            [sm]: { gridTemplateColumns: "1fr 1fr" },
-            [md]: { gridTemplateColumns: "repeat(2, 1fr)" },
-            [lg]: { gridTemplateColumns: "repeat(3, 1fr)" },
-            [xl]: { gridTemplateColumns: "repeat(4, 1fr)" },
-          })}
-        >
-          {reti.map((rete) => (
-            <Div
-              key={rete.slug}
-              tag="article"
-              p={{}}
-              shadow={3}
-              h="fit-content"
-            >
-              <Div
-                h="150px"
-                bgImg={`/img/reti/${rete.id}.webp`}
-                bgSize="contain"
-                bgRepeat="no-repeat"
-                bgPos="center"
+    <Page
+      id="reti"
+      metaTags={{
+        title: "Reti | greeNEETwork",
+        description:
+          "Reti territoriali attive nella zona del Parco Metropolitano delle Colline di Napoli",
+      }}
+    >
+      <Row justify="center">
+        <Col span={20}>
+          <div style={{ marginBottom: "1.5rem", justifyContent: "center" }}>
+            <Breadcrumbs />
+            <hgroup style={{ marginBottom: "1rem" }}>
+              <Text h1>Reti Territoriali</Text>
+              <Text
+                h5
+                style={{
+                  fontWeight: 400,
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                }}
               >
-                {/* <Image src={`/img/reti/${rete.id}.webp`} alt={"Logo rete"} className={css({height: "100%", width: "100%"})}/> */}
-              </Div>
-              <Div p=".75rem">
-                <Text tag="h3" textSize="subheader" m={{ b: ".5rem" }}>
-                  {rete.nome}
-                </Text>
-                {/* <span>Area geografica : {rete.area_geografica}</span> */}
-                <Text m={{ b: ".5rem" }}>
-                  {rete.descrizione.substr(0, 120) + " ... "}
-                </Text>
-                {/* <a href={rete.sito_web} /> */}
-                <Link href="reti/[slug]" as={`reti/${rete.slug}`}>
-                  <Anchor>
-                    <Button
-                      h="2rem"
-                      p={{ x: "0.75rem" }}
-                      textSize="caption"
-                      // bg="teal"
-                    >
-                      Scopri la rete
-                    </Button>
-                  </Anchor>
-                </Link>
-              </Div>
-            </Div>
-          ))}
-        </Div>
-      </Container>
+                Reti locali, nazionali e internazionali attive nel Parco
+                Metropolitano delle Colline di Napoli
+              </Text>
+            </hgroup>
+          </div>
+
+          <Divider y={4} />
+
+          <Grid.Container gap={2}>
+            {reti.map((rete) => (
+              <Grid key={rete.slug} sm={12} md={8} lg={6}>
+                <Card>
+                  <Link href="reti/[slug]" as={`reti/${rete.slug}`}>
+                    <Anchor>
+                      <Image src={`/img/reti/${rete.id}.webp`} />
+                    </Anchor>
+                  </Link>
+
+                  <Text h3 style={{ marginBottom: ".5rem" }}>
+                    {rete.nome}
+                  </Text>
+                  {/* <span>Area geografica : {rete.area_geografica}</span> */}
+                  <Text>{wordSplit(rete.descrizione, 15)}</Text>
+                  {/* <a href={rete.sito_web} /> */}
+                  <Card.Footer>
+                    <Link href="reti/[slug]" as={`reti/${rete.slug}`}>
+                      <Anchor block>Scopri la rete</Anchor>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </Grid>
+            ))}
+          </Grid.Container>
+        </Col>
+      </Row>
     </Page>
   );
 }

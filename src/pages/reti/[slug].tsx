@@ -1,22 +1,22 @@
 // Core Components
 // import Head from "next/head";
-import Link from "next/link";
 import { directus } from "core/cli";
+import { getImageHashes } from "core/utils";
 
 // Page Layout
-import Page from "containers/Main/Main";
+import Page from "containers/Main";
 
 // Page Components
-import { useStyletron } from "styletron-react";
-import { Image } from "components/Image";
-import { Breadcrumbs } from "components/Breadcrumbs";
-import { Container, Row, Col, Div, Text, Anchor, Icon } from "atomize";
-import { PlacePreview } from "components/Map";
+import Breadcrumbs from "components/Breadcrumbs";
+import Card from "components/Card";
+import Icon from "components/Icon";
+import { Grid, Image, Text, Link as Anchor, Divider } from "@geist-ui/react";
 
 // Generate static pages
 export async function getStaticPaths() {
-  const reti = await (await directus.getItems<{ slug }[]>("reti_territoriali"))
-    .data;
+  const { data: reti } = await directus.getItems<{ slug }[]>(
+    "reti_territoriali"
+  );
 
   const paths = reti.map(({ slug }) => ({
     params: { slug },
@@ -29,86 +29,88 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const rete = await (
-    await directus.getItems<{ luoghi }[]>("reti_territoriali", {
-      filter: { slug: { eq: params.slug } },
-      fields: ["*", "luoghi.luogo.*", "luoghi.luogo.galleria_immagini.*"],
-    })
-  ).data[0];
+  const {
+    data: [rete],
+  } = await directus.getItems<{ luoghi }[]>("reti_territoriali", {
+    filter: { slug: { eq: params.slug } },
+    fields: [
+      "*",
+      "luoghi.luogo.id",
+      "luoghi.luogo.nome",
+      "luoghi.luogo.slug",
+      "luoghi.luogo.descrizione",
+      "luoghi.luogo.galleria_immagini.directus_file.private_hash",
+    ],
+  });
 
   return {
-    props: { rete: { ...rete, luoghi: rete.luoghi.map(({ luogo }) => luogo) } },
+    props: {
+      rete: {
+        ...rete,
+        luoghi: rete.luoghi.map(({ luogo }) => ({
+          ...luogo,
+          galleria_immagini: getImageHashes(luogo),
+        })),
+      },
+    },
   };
 }
 
 export default function Rete({ rete }) {
-  const [css] = useStyletron();
-
-  // console.log("Rete : ", rete);
   return (
     <Page
-      id={`rete`}
-      className={css({
-        overflowY: "auto",
-        padding: "20px",
-        marginBottom: "80px",
-      })}
+      id={"rete_ " + rete.id}
+      metaTags={{
+        title: rete.nome + " | greeNEETwork",
+        description: rete.descrizione,
+      }}
     >
-      <Container className={css({ maxWidth: "30rem" })}>
-        <Row justify="center">
-          <Col size={{ xs: 12, md: 10 }}>
-            <Row>
-              <Col size={4}>
-                <Image
-                  alt={`Logo rete`}
-                  src={`/img/reti/${rete.id}.webp`}
-                  className={css({ maxHeight: "280px", width: "auto" })}
-                />
-              </Col>
-              <Col size={8}>
-                <Text textSize="h1" tag="h1">
-                  {rete.nome}
-                </Text>
-                <pre>
-                  Tipologia : {rete.tipologia}
-                  <br />
-                  Area geografica : {rete.area_geografica}
-                  <br />
-                  <Anchor href={"/goto/" + rete.pagina_web} target="__blank">
-                    <Icon name="Link" size="20px" />
-                    Sito web
-                  </Anchor>
-                </pre>
-                <p>{rete.descrizione}</p>
-              </Col>
-            </Row>
+      <Grid.Container gap={3} justify="center">
+        <Grid xs={22} sm={6}>
+          <Image
+            alt={`Logo rete`}
+            src={`/img/reti/${rete.id}.webp`}
+            style={{ maxHeight: "280px", width: "auto" }}
+          />
+        </Grid>
+        <Grid xs={22} sm={14}>
+          <Breadcrumbs separator="/" withBorders />
+          <Text h1 style={{ lineHeight: 1.125 }}>
+            {rete.nome}
+          </Text>
+          <Text>{rete.descrizione}</Text>
+        </Grid>
+        <Grid xs={22} sm={20}>
+          <pre>
+            Tipologia : {rete.tipologia}
+            <br />
+            Area geografica : {rete.area_geografica}
+            <br />
+            <Anchor href={"/goto/" + rete.pagina_web} target="__blank">
+              <Icon name="Globe" size={20} />
+              Sito web
+            </Anchor>
+          </pre>
+        </Grid>
 
-            <Row>
-              <Breadcrumbs separator="/" withBorders />
-            </Row>
-
-            <Row>
-              <Div m={{ y: "1rem" }}>
-                <Text textSize="h4" tag="h4">
-                  Appartengono a questa rete :
-                </Text>
-              </Div>
-            </Row>
-
-            <Row>
-              {rete.luoghi.map((luogo) => (
-                <Col
-                  key={luogo.id}
-                  tag="article"
-                  size={{ xs: 12, md: 6, lg: 4 }}
-                >
-                  <PlacePreview place={luogo} />
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+        <Grid xs={22} sm={20}>
+          <Text h3>Appartengono a questa rete :</Text>
+          <Divider y={2} />
+          <Grid.Container gap={2}>
+            {rete.luoghi.map((luogo) => (
+              <Grid
+                key={luogo.id}
+                sm={12}
+                lg={8}
+                // component="article"
+                // span={{ xs: 12, md: 6, lg: 4 }}
+              >
+                <Card type="place" data={luogo} />
+              </Grid>
+            ))}
+          </Grid.Container>
+        </Grid>
+      </Grid.Container>
     </Page>
   );
 }

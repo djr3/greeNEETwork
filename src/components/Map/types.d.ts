@@ -15,5 +15,6 @@ export interface MappaProps {
   onStyleLoad?: any;
   selPlace?: any;
   onMarkerClick?: function;
+  onClick?: function;
   withPopup?: boolean;
 }

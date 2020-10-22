@@ -2,16 +2,15 @@
 // PAGE Main Section
 // ------------------------------------------------
 import React, { ReactNode, CSSProperties } from "react";
-import { MetaTags } from "components/MetaTags";
-import { TMetaTags } from "interfaces";
 import { defaultMetaTags } from "core/constants";
+import { MetaTags } from "components/MetaTags";
+import type { TMetaTags } from "@types";
 
 /**
  * PAGE Layout // Inversion of Control
  */
-import { Vertical } from "layouts";
+// import { Vertical } from "layouts";
 import { motion } from "framer-motion";
-import { useStyletron } from "styletron-react";
 
 /**
  * PAGE Types & Utils
@@ -21,38 +20,24 @@ type MainProps = {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
-  metaTags?: TMetaTags;
+  metaTags?: Partial<TMetaTags>;
 };
 
+import styles from "./Main.module.sass";
+
 const PageMain: React.FC<MainProps> = (props) => {
-  const { id, children, className, metaTags, style, ...rest } = props;
-  const [css] = useStyletron();
-  const meta = { ...defaultMetaTags, ...metaTags };
+  const { id, children, className, metaTags, ...rest } = props;
 
   return (
     <motion.main
       id={id || "main"}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={[
-        css({
-          paddingBottom: "6rem",
-          paddingTop: "6rem",
-          minHeight: "calc(100vh - 8rem)",
-          zIndex: -1,
-          ":after": {
-            content: "",
-            display: "table",
-            clear: "both",
-          },
-          ...style,
-        }),
-        className,
-      ].join(" ")}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // exit={{ opacity: 0 }}
+      className={styles.main}
       {...rest}
     >
-      {meta && <MetaTags tags={meta} />}
+      <MetaTags tags={{ ...defaultMetaTags, ...metaTags }} />
       {children}
     </motion.main>
   );

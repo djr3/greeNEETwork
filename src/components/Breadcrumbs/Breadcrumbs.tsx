@@ -1,70 +1,66 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Anchor } from "atomize";
-import { styled } from "styletron-react";
+
+import { Breadcrumbs as BC } from "@geist-ui/react";
+import type { NormalSizes } from "@geist-ui/react/dist/utils/prop-types";
 
 interface BreadcrumbsProps {
   separator?: string;
   withBorders?: boolean;
+  size?: NormalSizes;
 }
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
   separator = "/",
   withBorders = false,
+  size = "medium",
   ...rest
 }) => {
   const router = useRouter();
 
-  const path = ["/", ...router.asPath.split("/").slice(1)];
+  const path = ["/", ...router.asPath.split("?")[0].split("/").slice(1)];
 
   const getPath = (array: string[], idx: number): string => {
-    const path = array.slice(1, idx + 1);
-    return "/" + path.join("/");
+    const url = array.slice(1, idx + 1);
+    return "/" + url.join("/");
   };
 
-  const StyledNav = styled("nav", (props) => ({
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    margin: withBorders ? "1.4rem 0" : null,
-    borderTop: withBorders ? "1px solid #ccc" : "none",
-    borderBottom: withBorders ? "1px solid #ccc" : "none",
-  }));
-
   return (
-    <StyledNav aria-label="breadcrumbs" {...rest}>
-      <ul
-        style={{
-          listStyle: "none",
-          display: "flex",
-          padding: withBorders ? "1rem" : 0,
-          margin: 0,
-          // marginLeft: "1rem",
-        }}
-      >
-        {path.map((curr, idx, arr) => {
-          const isFirst = idx === 0 && curr === "/";
-          const isLast = idx === arr.length - 1;
+    <BC aria-label="breadcrumbs" separator={separator} size={size} {...rest}>
+      {path.map((curr, idx, arr) => {
+        const isFirst = idx === 0 && curr === "/";
+        const isLast = idx === arr.length - 1;
+        if (isLast)
           return (
-            <li
-              key={idx}
-              className={isLast ? "is-active" : undefined}
-              style={{ marginLeft: idx === 0 ? undefined : "10px" }}
-            >
-              <Link href={isLast ? "#" : isFirst ? curr : getPath(arr, idx)}>
-                <Anchor
-                  aria-current={isLast ? "page" : undefined}
-                  textColor="#666"
-                  textTransform="capitalize"
-                >
-                  {curr === "/" ? "Home" : curr}
-                </Anchor>
-              </Link>
-              {!isLast ? ` ${separator} ` : undefined}
-            </li>
+            <BC.Item key={"bc_" + curr + idx} aria-current="page">
+              <span
+                style={{
+                  textTransform: "capitalize",
+                }}
+              >
+                {curr.split("-").join(" ")}
+              </span>
+            </BC.Item>
           );
-        })}
-      </ul>
-    </StyledNav>
+        return (
+          <Link
+            key={"bc_" + curr + idx}
+            href={isFirst ? curr : getPath(arr, idx)}
+            prefetch={false}
+          >
+            <BC.Item
+              nextLink
+              style={{
+                textTransform: "capitalize",
+              }}
+            >
+              {isFirst ? "Home" : curr}
+            </BC.Item>
+          </Link>
+        );
+      })}
+    </BC>
   );
 };
+
+export default Breadcrumbs;

@@ -1,0 +1,21 @@
+/** 
+ * Custom Scrollbar 
+**/
+/* New W3C standard - Currently Firefox-only */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00887a #eee;
+}
+
+/* Chrome/Edge/Safari Fallback */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: #eee;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #00887a;
+  border-radius: 4px;
+  /* border: 1px solid #0002; */
+}
