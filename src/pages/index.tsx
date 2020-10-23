@@ -14,7 +14,7 @@ import { BlockReveal } from "components/Animations";
 
 export default function Home() {
   return (
-    <Page id="index">
+    <Page id="index" style={{ paddingBottom: 0 }}>
       <Row justify="center">
         <Col span={20}>
           <Hero />

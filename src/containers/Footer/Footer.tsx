@@ -3,7 +3,7 @@ import Link from "next/link";
 
 // Container stylesheets
 import cn from "classnames";
-import { Row, Col, Grid, Text, Divider } from "@geist-ui/react";
+import { Row, Col, Grid, Text, Divider, Link as Anchor } from "@geist-ui/react";
 import styles from "./Footer.module.sass";
 
 type Props = {
@@ -35,14 +35,10 @@ const Footer: React.FC<Props> = ({ bg = "dark", className, ...rest }) => {
           <Grid xs>
             <Text h5>Legal</Text>
             <Link href="/privacy">
-              <a className={styles.l1}>
-                <Text>Privacy</Text>
-              </a>
+              <a className={styles.l1}>Privacy</a>
             </Link>
             <Link href="/cookies">
-              <a className={styles.l1}>
-                <Text>Cookies</Text>
-              </a>
+              <a className={styles.l1}>Cookies</a>
             </Link>
           </Grid>
         </Grid.Container>

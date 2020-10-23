@@ -241,7 +241,7 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
               <div>
                 <Text
                   style={{
-                    marginBottom: ".5rem",
+                    margin: ".5rem 0",
                     fontSize: ".75rem",
                     fontWeight: 400,
                   }}
@@ -280,7 +280,7 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
 
               {data.selPlace && (
                 <>
-                  <Card type="place" data={data.selPlace} />
+                  <Card type="place" data={data.selPlace} mini />
                   <div
                     style={{
                       display: "flex",

@@ -11,7 +11,7 @@ const DynamicImage = dynamic(
 );
 const DynamicVideo = dynamic(() => import("react-player"), { ssr: false });
 
-export default function DynamicCard({ data, type }) {
+export default function DynamicCard({ data, type, mini = false }) {
   const isPlace = type === "place";
   return (
     <Card id={"card_" + data.id}>
@@ -20,7 +20,7 @@ export default function DynamicCard({ data, type }) {
           <DynamicImage
             //@ts-ignore
             style={{ objectFit: "cover" }}
-            height={280}
+            height={200}
             src={`https://api.agritettura.org/greeneetwork/assets/${data.galleria_immagini[0]}?key=directus-large-contain`}
           />
         ) : (
@@ -35,9 +35,11 @@ export default function DynamicCard({ data, type }) {
 
       <Card.Content>
         <Text h4>{isPlace ? data.nome : data.titolo}</Text>
-        <Text small type="secondary">
-          {wordSplit(data.descrizione)}
-        </Text>
+        {!mini && (
+          <Text small type="secondary">
+            {wordSplit(data.descrizione)}
+          </Text>
+        )}
       </Card.Content>
 
       <Card.Footer>
