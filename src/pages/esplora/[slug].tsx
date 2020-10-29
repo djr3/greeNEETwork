@@ -1,4 +1,5 @@
 // Core Components
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { directus } from "core/cli";
@@ -19,7 +20,7 @@ import { DynamicMap, getCoordinates } from "components/Map";
 import {
   Tag,
   Text,
-  Image,
+  // Image,
   Divider,
   Link as Anchor,
   Grid,
@@ -152,13 +153,13 @@ export default function Luogo({ luogo, luoghi }) {
       <Row justify="center">
         <Col span={20}>
           <Grid.Container gap={3} justify="center">
-            <Grid xs={24} style={{ height: "auto" }}>
+            {/* <Grid xs={24} style={{ height: "auto" }}>
+            </Grid> */}
+            <Grid xs={24} md={18}>
               {galleria_immagini && (
                 <Slider id={"slider_" + id} images={galleria_immagini} />
               )}
-            </Grid>
-            <Divider y={4} />
-            <Grid xs={24} md={18}>
+              <Divider y={4} />
               <Breadcrumbs separator="/" />
               <Text h1 style={{ margin: "1rem 0", lineHeight: 1.125 }}>
                 {nome}
@@ -304,7 +305,7 @@ export default function Luogo({ luogo, luoghi }) {
                   <Divider y={2} />
                 </>
               )}
-              {reti_territoriali && (
+              {reti_territoriali && reti_territoriali.length > 0 && (
                 <div style={{ display: "block" }}>
                   <Text h5>Reti territoriali di appartenenza :</Text>
 

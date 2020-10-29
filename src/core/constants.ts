@@ -29,11 +29,11 @@ export const defaultMetaTags: TMetaTags = {
 };
 
 export const defaultMenuItems = [
-  { name: "Storie", link: "/storie" },
-  { name: "Esplora", link: "/esplora" },
-  { name: "Itinerari", link: "/itinerari" },
-  { name: "Le Reti", link: "/reti" },
-  { name: "Credits", link: "/credits" },
+  { name: "Esplora", link: "/esplora", description: "Mappa dei luoghi" },
+  { name: "Itinerari", link: "/itinerari", description: "Viaggio digitale" },
+  { name: "Storie", link: "/storie", description: "Racconti dal Parco" },
+  { name: "Reti", link: "/reti", description: "Reti locali attive" },
+  { name: "Credits", link: "/credits", description: "Gruppo di lavoro" },
 ];
 
 export const defaultSocialItems = [

@@ -13,7 +13,13 @@ interface FilterProps {
   onChange: (property, value) => void;
 }
 
-export const Filter = ({ name, filters, type, onChange }: FilterProps) => {
+export const Filter = ({
+  name,
+  filters,
+  type,
+  onChange,
+  ...rest
+}: FilterProps) => {
   const changeFilterState = (property, value) => {
     if (onChange) {
       onChange(property, value);
@@ -53,7 +59,7 @@ export const Filter = ({ name, filters, type, onChange }: FilterProps) => {
       )}
       {type === "select" && (
         <Select
-          size="small"
+          size="mini"
           key={name}
           multiple
           placeholder={name}

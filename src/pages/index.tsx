@@ -1,57 +1,80 @@
 // Core Components
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Page Layout
 import Page from "containers/Main";
 
 // Page Components
 import Player from "react-player";
-import { Row, Col, Text } from "@geist-ui/react";
+import { Grid, Text, Link as Anchor } from "@geist-ui/react";
 
-import Hero from "components/Hero";
-import Section from "components/Section";
+import { Hero, Section1, Section2 } from "components/Index";
 import { BlockReveal } from "components/Animations";
 
 export default function Home() {
+  const [state, setState] = useState(null);
+  useEffect(() => {}, []);
+
   return (
     <Page id="index" style={{ paddingBottom: 0 }}>
-      <Row justify="center">
-        <Col span={20}>
+      <Grid.Container justify="center" style={{ margin: "8rem 0" }}>
+        <Grid xs={22} md={20} lg={18}>
           <Hero />
-        </Col>
-      </Row>
-
-      <Row
-        style={{
-          padding: "4rem 0",
-          background: "linear-gradient(to right, #f0f5e9 35%, #fff 35%)",
-        }}
-      >
-        <Col span={10} offset={4}>
-          <BlockReveal>
+        </Grid>
+      </Grid.Container>
+      <Grid.Container justify="center" style={{ margin: "8rem 0" }}>
+        <Grid
+          xs={20}
+          md={18}
+          lg={16}
+          style={{
+            padding: "4rem",
+            background: "linear-gradient(to left, #dbe7c9 35%, #fff 35%)",
+          }}
+        >
+          <BlockReveal dir="r2l">
             <Text style={{ fontSize: "1.5rem", textAlign: "justify" }}>
               Il Parco Metropolitano delle Colline di Napoli è un parco
               regionale istituito nel 2003. Assieme al Parco Nazionale del
               Vesuvio, al Parco Regionale dei Campi Flegrei, alla Riserva degli
               Astroni e al Bosco di Capodimonte, rappresenta l’infrastruttura
               verde dell’area metropolitana di Napoli. Occupa un quinto del
-              territorio comunale, 2.215 ettari sui 11.750 totali. Comprende la
-              conca dei Pisani, la collina dei Camaldoli, la selva di Chiaiano,
-              lo Scudillo, il vallone San Rocco, Capodimonte e la vigna di San
-              Martino.
+              territorio comunale, 2.215 ettari sui 11.750 totali, e comprende
+              la conca dei Pisani, la collina dei Camaldoli, la selva di
+              Chiaiano, lo Scudillo, il vallone San Rocco, Capodimonte e la
+              vigna di San Martino.
             </Text>
           </BlockReveal>
-        </Col>
-      </Row>
-      <Row
-        style={{
-          margin: "8rem 0",
-          padding: "4rem 0",
-          background: "linear-gradient(to left, #dbe7c9 35%, #fff 35%)",
-        }}
-      >
-        <Col span={10} offset={10}>
-          <BlockReveal dir="r2l">
+        </Grid>
+        {/* <Grid
+          xs={22}
+          md={20}
+          lg={18}
+          style={{
+            margin: "8rem 0",
+            // padding: "0 8rem"
+          }}
+        >
+          <Section2 />
+        </Grid> */}
+        <Grid
+          xs={22}
+          md={20}
+          lg={18}
+          style={{ margin: "8rem 0", padding: "0 2rem" }}
+        >
+          <Section1 />
+        </Grid>
+        <Grid
+          xs={20}
+          md={18}
+          lg={16}
+          style={{
+            padding: "4rem",
+            background: "linear-gradient(to left, #dbe7c9 35%, #fff 35%)",
+          }}
+        >
+          <BlockReveal>
             <Text h2>Un&apos;opportunità per la città e i suoi abitanti</Text>
             <Text style={{ fontSize: "1.25rem", textAlign: "justify" }}>
               Un’area poco conosciuta dai cittadini, interessata da fenomeni di
@@ -63,17 +86,15 @@ export default function Home() {
               domani: ripartire dai valori naturali, rurali e culturali del
               territorio; recuperare ossigeno, cibo di qualità, senso di
               comunità, spazio vitale, benessere; costruire conoscenze,
-              opportunità sostenibili di lavoro, turismo e svago. Collaborare
+              opportunità sostenibili di lavoro, turismo e svago.
+              <a className="l1 l1--big" href="/about">
+                <span>Esplora i luoghi sulla mappa</span>
+              </a>
             </Text>
           </BlockReveal>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={16} offset={4}>
-          <Section />
-        </Col>
-      </Row>
-      {/* <Row justify="center">
+        </Grid>
+
+        {/* <Row justify="center">
         <Col span={20}>
           <Text style={{ fontSize: "1.5rem" }}>
             Luoghi di interesse, itinerari, reti tra operatori del territorio e
@@ -82,19 +103,19 @@ export default function Home() {
           </Text>
         </Col>
       </Row> */}
-      <Row
+      </Grid.Container>
+      <Grid.Container
         justify="center"
         style={{
           backgroundColor: "#000",
-          marginTop: "8rem",
-          paddingTop: "4rem",
+          padding: "4rem",
         }}
       >
-        <Col span={20}>
+        <Grid xs={22} md={20} lg={18}>
           <Player
             url={[
               { src: "/video/UrbanoRurale_720p.webm", type: "video/webm" },
-              { src: "/video/UrbanoRurale_720p.mp4", type: "video/mp4" },
+              // { src: "/video/UrbanoRurale_720p.mp4", type: "video/mp4" },
             ]}
             width="100%"
             height="auto"
@@ -103,8 +124,8 @@ export default function Home() {
               file: { attributes: { poster: "/video/UrbanoRurale_thumb.jpg" } },
             }}
           />
-        </Col>
-      </Row>
+        </Grid>
+      </Grid.Container>
     </Page>
   );
 }

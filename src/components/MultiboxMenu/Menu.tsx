@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { TweenMax, Quint, Quart } from "gsap";
+// import { motion } from "framer-motion";
 import cn from "classnames";
 
 import { times } from "core/utils";
@@ -13,18 +14,19 @@ import Icon from "components/Icon";
 
 import styles from "./Menu.module.sass";
 import Link from "next/link";
+import { useBodyScroll } from "@geist-ui/react";
 
-function refsToArray(ctx, prefix) {
-  var results = [];
-  for (var i = 0; ; i++) {
-    var ref = ctx.refs[prefix + "-" + String(i)];
-    if (ref) results.push(ref);
-    else return results;
-  }
-}
+// function refsToArray(ctx, prefix) {
+//   var results = [];
+//   for (var i = 0; ; i++) {
+//     var ref = ctx.refs[prefix + "-" + String(i)];
+//     if (ref) results.push(ref);
+//     else return results;
+//   }
+// }
 
 const Menu = () => {
-  const [isOpen, setIsOpen] = useState(null);
+  const [isOpen, setIsOpen] = useBodyScroll();
 
   // Container state & hooks
   const router = useRouter();
@@ -80,27 +82,26 @@ const Menu = () => {
       // Direction defined in the HTML data-direction.
       // bt (bottom to top) || tb (top to bottom) || lr (left to right) || rl (right to left)
       const direction = outer.current.dataset.direction;
-      // Using 101% instead of 100% to avoid rendering problems.
       // In order to create the "reveal" effect, the item slides moves in one direction and its inner element in the opposite direction.
       if (direction === "bt") {
-        config.y = "101%";
-        configInner.y = "-101%";
+        config.y = "100%";
+        configInner.y = "-100%";
         configInner.x = "0%";
       } else if (direction === "tb") {
-        config.y = "-101%";
-        configInner.y = "101%";
+        config.y = "-100%";
+        configInner.y = "100%";
         configInner.x = "0%";
       } else if (direction === "lr") {
-        config.x = "-101%";
-        configInner.x = "101%";
+        config.x = "-100%";
+        configInner.x = "100%";
       } else if (direction === "rl") {
-        config.x = "101%";
-        configInner.x = "-101%";
+        config.x = "100%";
+        configInner.x = "-100%";
       } else {
-        config.x = "101%";
-        config.y = "101%";
-        configInner.x = "-101%";
-        configInner.y = "-101%";
+        config.x = "100%";
+        config.y = "100%";
+        configInner.x = "-100%";
+        configInner.y = "-100%";
       }
 
       if (action === "open") {
@@ -175,7 +176,12 @@ const Menu = () => {
   const isDark = "_n";
 
   return (
-    <div className={cn(styles.Menu, isOpen && styles.Menu__open)}>
+    <div
+      className={cn(styles.Menu, isOpen && styles.Menu__open)}
+      // animate={isOpen ? "open" : "closed"}
+      // transition={{ ease: "easeOut", duration: 1 }}
+      // variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
+    >
       <MenuItem className={styles.Item__1} refs={menuItems[0]} direction="bt">
         <NavMenu navMenu={defaultMenuItems} refs={{ navMenu, navMenuItems }} />
         <p
@@ -198,9 +204,11 @@ const Menu = () => {
         </p>
       </MenuItem>
       <MenuItem className={styles.Item__2} refs={menuItems[1]} direction="lr">
-        <div className={styles.ItemMap}></div>
+        <div className={styles.ItemMap} />
         <Link href="/" prefetch={false}>
-          <a className={styles.ItemHoverLink}>Il Parco</a>
+          <a className={styles.ItemHoverLink}>
+            Il Parco Metropolitano delle Colline di Napoli
+          </a>
         </Link>
       </MenuItem>
       <MenuItem className={styles.Item__3} refs={menuItems[2]} direction="bt">
@@ -275,8 +283,10 @@ const Menu = () => {
       </MenuItem>
       <MenuItem className={styles.Item__4} refs={menuItems[3]} direction="rl">
         <p className={cn(styles.Label, styles.Label__topLeft)}>Collabora</p>
-        <a href="#" className={styles.Item__Link}>
-          Scopri come <br /> participare
+        <a href="/esplora/aggiungi" className={styles.Item__Link}>
+          Segnala un
+          <br />
+          luogo
         </a>
       </MenuItem>
       <MenuItem className={styles.Item__5} refs={menuItems[4]} direction="tb">

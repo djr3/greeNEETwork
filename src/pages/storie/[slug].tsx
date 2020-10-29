@@ -175,7 +175,6 @@ export default function Post({ post, posts, luoghi }) {
                 : null}
             </ul>
             <Divider y={2} />
-            <Text h5>Altri post simili</Text>
           </div>
         </Grid>
         {posts && (

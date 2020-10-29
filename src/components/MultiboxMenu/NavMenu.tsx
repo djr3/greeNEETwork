@@ -15,6 +15,7 @@ const NavMenu = ({ navMenu, refs }) => {
         >
           <a className={styles.MainItem} ref={refs.navMenuItems[idx]}>
             {item.name}
+            <span>{item.description}</span>
           </a>
         </Link>
       ))}

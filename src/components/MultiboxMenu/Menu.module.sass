@@ -16,7 +16,7 @@ $color-tagline: #e2e2e2
   
 .Menu
   text-align: center
-  width: 100%
+  width: 100vw
   height: 100vh
   overflow: hidden
   position: fixed
@@ -24,8 +24,8 @@ $color-tagline: #e2e2e2
   left: 0
   z-index: 200
   display: grid
-  grid-template-columns: 100%
-  grid-template-rows: repeat(3, 33.33%)
+  grid-template-columns: 1fr
+  grid-template-rows: repeat(3, 1fr)
   pointer-events: none
 
   a
@@ -58,6 +58,7 @@ $color-tagline: #e2e2e2
 
 .Item__2 .ItemInner
   background: $color-bg-item2
+  align-items: center
 
 .Item__3 .ItemInner
   background: $color-bg-item3
@@ -78,6 +79,13 @@ $color-tagline: #e2e2e2
   transition: color 0.1s
   margin: 0.25rem 0
   display: block
+  line-height: 1.25
+  span
+    display: block
+    font-size: .8rem
+    // font-style: italic
+    text-transform: uppercase
+    letter-spacing: 2px
 
 .SideItem
   position: relative
@@ -111,6 +119,7 @@ $color-tagline: #e2e2e2
   position: relative
   z-index: 1000
   display: block
+  width: min-content
 
   &:hover
     color: $color-link
@@ -159,7 +168,7 @@ $color-tagline: #e2e2e2
 @media screen and (min-width: 53em)
 
   .Menu
-    width: 100%
+    width: 100vw
     height: 100vh
     overflow: hidden
     position: fixed

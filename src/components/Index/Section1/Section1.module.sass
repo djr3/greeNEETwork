@@ -1,0 +1,31 @@
+.grid
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  grid-template-rows: 100% repeat(3, 1fr)
+  gap: 0px 0px
+  min-height: 68vh
+
+  .text
+    background: #ffffff
+    z-index: 20
+    grid-area: 2 / 1 / 4 / 6
+    height: min-content
+    align-self: flex-end
+    @media screen and (min-width: 620px)
+      padding: 1rem
+      grid-area: 2 / 1 / 4 / 4
+    @media screen and (min-width: 900px)
+      grid-area: 2 / 1 / 4 / 3
+
+    h3
+      line-height: 1.25
+      font-size: 2rem
+    
+    p
+      text-align: justify
+      font-size: 1.125rem
+      @media screen and (min-width: 620px)
+        font-size: 1.25rem
+
+  .media
+    grid-area: 1 / 1 / 5 / 6

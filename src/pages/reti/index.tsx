@@ -1,5 +1,6 @@
 // Core Components
 // import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { directus } from "core/cli";
 
@@ -12,7 +13,7 @@ import {
   Col,
   Text,
   Card,
-  Image,
+  // Image,
   Link as Anchor,
   Grid,
   Divider,
@@ -71,7 +72,7 @@ export default function Reti({ reti }) {
                 <Card>
                   <Link href="reti/[slug]" as={`reti/${rete.slug}`}>
                     <Anchor>
-                      <Image src={`/img/reti/${rete.id}.webp`} />
+                      <Image unsized src={`/img/reti/${rete.id}.webp`} />
                     </Anchor>
                   </Link>
 

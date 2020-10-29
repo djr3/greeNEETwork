@@ -67,3 +67,15 @@ export const getImageHashes = (place) => {
     );
   else return [];
 };
+
+export const slugify = (string) => {
+  return string
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+};

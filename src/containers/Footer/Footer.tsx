@@ -24,13 +24,11 @@ const Footer: React.FC<Props> = ({ bg = "dark", className, ...rest }) => {
         <Grid.Container>
           <Grid xs>
             <Text h5>Associazione Agritettura2.0</Text>
-            <Text>Cod.Fisc: 95207960634</Text>
-            <Text>&copy; Copyright 2019.</Text>
+            <Text>&copy; 2019. C.F. 95207960634</Text>
           </Grid>
           <Grid xs>
             <Text h5>Contatti</Text>
             <Text>hello@agritettura.org</Text>
-            <Text>+39 081 1234 5678</Text>
           </Grid>
           <Grid xs>
             <Text h5>Legal</Text>

@@ -31,7 +31,8 @@ export const Vertical = (props) => {
         // socialMenu={defaultSocialItems}
       />
 
-      <ErrorBoundary>{props.children}</ErrorBoundary>
+      {/* <ErrorBoundary></ErrorBoundary> */}
+      {props.children}
 
       {props.noFooter ? null : <Footer bg="dark" />}
     </GeistProvider>

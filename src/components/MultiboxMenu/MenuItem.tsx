@@ -1,5 +1,8 @@
 import React from "react";
 
+// import { motion } from "framer-motion";
+// import { menuItems } from "./variants";
+
 interface MenuItemProps extends React.PropsWithChildren<any> {
   direction: "bt" | "lr" | "rl" | "tb";
   refs: any;
@@ -14,8 +17,17 @@ const MenuItem = ({
   refs,
   style,
 }: MenuItemProps) => {
-  // useEffect(() => {}, [animate]);
   return (
+    // <motion.div
+    //   className={styles.Item + " " + className}
+    //   style={style}
+    //   custom={direction}
+    //   variants={menuItems.outer}
+    // >
+    //   <motion.div className={styles.ItemInner} variants={menuItems.inner}>
+    //     {children}
+    //   </motion.div>
+    // </motion.div>
     <div
       ref={refs.outer}
       className={styles.Item + " " + className}

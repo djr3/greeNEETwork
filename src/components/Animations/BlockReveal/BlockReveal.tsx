@@ -15,7 +15,7 @@ type BlockRevealProps = {
 export const BlockReveal: FC<BlockRevealProps> = ({
   dir = "l2r",
   tag = "div",
-  delay = 1,
+  delay = 0.6,
   duration = 0.9,
   color = "#000",
   className,

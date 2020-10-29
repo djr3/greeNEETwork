@@ -1,5 +1,6 @@
 // Core Components
 // import Head from "next/head";
+import Image from "next/image";
 import { directus } from "core/cli";
 import { getImageHashes } from "core/utils";
 
@@ -10,7 +11,7 @@ import Page from "containers/Main";
 import Breadcrumbs from "components/Breadcrumbs";
 import Card from "components/Card";
 import Icon from "components/Icon";
-import { Grid, Image, Text, Link as Anchor, Divider } from "@geist-ui/react";
+import { Grid, Text, Link as Anchor, Divider } from "@geist-ui/react";
 
 // Generate static pages
 export async function getStaticPaths() {
@@ -68,6 +69,7 @@ export default function Rete({ rete }) {
       <Grid.Container gap={3} justify="center">
         <Grid xs={22} sm={6}>
           <Image
+            unsized
             alt={`Logo rete`}
             src={`/img/reti/${rete.id}.webp`}
             style={{ maxHeight: "280px", width: "auto" }}

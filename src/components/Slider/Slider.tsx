@@ -1,6 +1,7 @@
 // AwSlider React components
 import AwSlider, { AwesomeSliderProps } from "react-awesome-slider";
-import { Image } from "@geist-ui/react";
+// import { Image } from "@geist-ui/react";
+import Image from "next/image";
 
 // AwSlider styles
 import AwSliderStyles from "./Slider.module.scss";
@@ -23,7 +24,7 @@ export const Slider = ({ id, images, ...rest }: SliderProps) => {
           key={"img_" + idx}
           // data-src={pic}
         >
-          <Image src={pic} />
+          <Image src={pic} width={820} height={506} />
         </div>
       ))}
     </AwSlider>
