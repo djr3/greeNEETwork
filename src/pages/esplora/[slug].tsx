@@ -195,11 +195,8 @@ export default function Luogo({ luogo, luoghi }) {
                 }}
               >
                 <SocialShare
-                  url={process.env.VERCEL_URL + router.asPath}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                  }}
+                  url={new URL(process.env.APP_URL + router.asPath).toString()}
+                  style={{ display: "flex", justifyContent: "space-evenly" }}
                 />
                 <Text
                   style={{

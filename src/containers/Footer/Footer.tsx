@@ -22,15 +22,15 @@ const Footer: React.FC<Props> = ({ bg = "dark", className, ...rest }) => {
       <Col span={20}>
         <Divider />
         <Grid.Container>
-          <Grid xs>
+          <Grid xs={24} sm={8}>
             <Text h5>Associazione Agritettura2.0</Text>
             <Text>&copy; 2019. C.F. 95207960634</Text>
           </Grid>
-          <Grid xs>
+          <Grid xs={24} sm={8}>
             <Text h5>Contatti</Text>
             <Text>hello@agritettura.org</Text>
           </Grid>
-          <Grid xs>
+          <Grid xs={24} sm={8}>
             <Text h5>Legal</Text>
             <Link href="/privacy">
               <a className={styles.l1}>Privacy</a>
