@@ -1,6 +1,6 @@
 // Core Components
 import { directus } from "core/cli";
-import { getImageHashes } from "core/utils";
+import { getImageHashes, isProduction } from "core/utils";
 
 // Page Layout
 import Page from "containers/Main";
@@ -143,7 +143,9 @@ export default function Post({ post, posts, luoghi }) {
             style={{ marginTop: "4rem", marginBottom: "1rem", width: "100%" }}
           >
             <SocialShare
-              url={process.env.VERCEL_URL + "/storie/" + slug}
+              url={`${isProduction ? "https://" : ""}${
+                process.env.APP_URL
+              }/storie/${slug}`}
               style={{
                 display: "flex",
                 justifyContent: "space-evenly",

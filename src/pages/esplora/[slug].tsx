@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { directus } from "core/cli";
-import { makeMenu, getImageHashes } from "core/utils";
+import { isProduction, makeMenu, getImageHashes } from "core/utils";
 
 // Types
 import type { ILuogo } from "@types";
@@ -118,6 +118,7 @@ export default function Luogo({ luogo, luoghi }) {
   const {
     id,
     nome,
+    slug,
     descrizione,
     contenuto,
     indirizzo,
@@ -195,7 +196,9 @@ export default function Luogo({ luogo, luoghi }) {
                 }}
               >
                 <SocialShare
-                  url={new URL(process.env.APP_URL + router.asPath).toString()}
+                  url={`${isProduction ? "https://" : ""}${
+                    process.env.APP_URL
+                  }/esplora/${slug}`}
                   style={{ display: "flex", justifyContent: "space-evenly" }}
                 />
                 <Text
