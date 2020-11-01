@@ -1,43 +1,39 @@
 // Core Components
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { directus } from "core/cli";
+import { isProduction, makeMenu, getImageHashes } from "core/utils";
+
+// Types
+import type { ILuogo } from "@types";
 
 // Page Layout
 import Page from "containers/Main";
-import { useStyletron } from "styletron-react";
 
 // Page Components
-import { Image } from "components/Image";
-// import { Slideshow } from "components/Slideshow";
-import { DynamicMap } from "components/Map";
-// import { getCoordinates } from "components/Map/utils";
-import { Breadcrumbs } from "components/Breadcrumbs";
-import { Container, Row, Col, Div, Text, Anchor } from "atomize";
+// TODO : Images + SocialMenu + Address
+import Card from "components/Card";
+import Breadcrumbs from "components/Breadcrumbs";
+import { Slider } from "components/Slider";
+import { DynamicMap, getCoordinates } from "components/Map";
+import {
+  Tag,
+  Text,
+  // Image,
+  Divider,
+  Link as Anchor,
+  Grid,
+  Row,
+  Col,
+} from "@geist-ui/react";
 import { SocialShare, SocialMenu } from "components/Social";
 
-// Carousel
-import Carousel from "@brainhubeu/react-carousel";
-
-// const getAddress = (address) => {
-//   return [
-//     address.road,
-//     address.suburb,
-//     address.city,
-//     address.state,
-//     address.country,
-//   ]
-//     .filter((i) => i != undefined)
-//     .join(", ");
-// };
-
-// Generate static pages
+// Generate Static Pages
 export async function getStaticPaths() {
-  const luoghi = await (
-    await directus.getItems<{ slug: string }[]>("luoghi", {
-      fields: ["id", "slug"],
-    })
-  ).data;
+  const { data: luoghi } = await directus.getItems<
+    Pick<ILuogo, "id" | "slug">[]
+  >("luoghi", { limit: 500, fields: ["id", "slug"] });
 
   const paths = luoghi.map(({ slug }) => ({ params: { slug } }));
 
@@ -45,75 +41,75 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const luogo = await (
-    await directus.getItems<
-      {
-        id: string;
-        geo_json;
-        galleria_immagini;
-        reti_territoriali;
-        servizi;
-        tipologie;
-      }[]
-    >("luoghi", {
-      filter: { slug: { eq: params.slug } },
-      fields: [
-        "id",
-        "nome",
-        "contenuto",
-        "telefono",
-        "email",
-        "pagina_web",
-        "pagina_facebook",
-        "pagina_instagram",
-        "geo_json",
-        "accessibilita.*",
-        "galleria_immagini.directus_file.*",
-        "reti_territoriali.rete_territoriale.*",
-        "servizi.servizio.*",
-        "tipologie.tipologia.*",
-      ],
-    })
-  ).data[0];
+  // Fetch place
+  const {
+    data: [luogo],
+  } = await directus.getItems<ILuogo[]>("luoghi", {
+    filter: { slug: { eq: params.slug } },
+    fields: [
+      "*",
+      "accessibilita.*",
+      "galleria_immagini.directus_file.private_hash",
+      "reti_territoriali.rete_territoriale.*",
+      "servizi.servizio.*",
+      "tipologie.tipologia.*",
+    ],
+  });
 
-  // const { latitude, longitude } = getCoordinates(luogo.geo_json);
+  // Extract coordinates and fetch street address
+  const { latitude, longitude } = getCoordinates(luogo.geo_json);
+  const address = await (
+    await fetch(
+      "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+        latitude +
+        "&lon=" +
+        longitude +
+        "&accept-language=it-IT&zoom=18"
+    )
+  ).json();
 
-  // const { address } = await (
-  //   await fetch(
-  //     "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
-  //       latitude +
-  //       "&lon=" +
-  //       longitude +
-  //       "&accept-language=it-IT&zoom=18"
-  //   )
-  // ).json();
-
-  // const indirizzo = await (
-  //   await directus.updateItem("luoghi", luogo.id, {
-  //     indirizzo: getAddress(address),
-  //   })
-  // ).data.indirizzo;
+  // Fetch places related by typology
+  const { data: luoghi } = await directus.getItems<ILuogo[]>("luoghi", {
+    fields: [
+      "id",
+      "slug",
+      "nome",
+      "descrizione",
+      "galleria_immagini.directus_file.private_hash",
+    ],
+    filter: {
+      id: { neq: luogo.id },
+      "tipologie.tipologia.id": { eq: luogo.tipologie[0].tipologia.id },
+    },
+    limit: 3,
+    sort: "?",
+  });
 
   return {
     props: {
-      luogo: {
-        ...luogo,
-        galleria_immagini:
-          luogo.galleria_immagini && luogo.galleria_immagini.length > 0
-            ? luogo.galleria_immagini.map(
-                ({ directus_file }) => directus_file.filename_download
-              )
-            : null,
-      },
+      luoghi: JSON.parse(
+        JSON.stringify(
+          luoghi.map((l) => ({
+            ...l,
+            galleria_immagini: getImageHashes(l),
+          }))
+        )
+      ),
+      luogo: JSON.parse(
+        JSON.stringify({
+          ...luogo,
+          indirizzo: { address, latitude, longitude },
+          galleria_immagini: getImageHashes(luogo),
+        })
+      ),
     },
   };
 }
 
-export default function Luogo({ luogo }) {
+export default function Luogo({ luogo, luoghi }) {
   /**
    * Hooks
    */
-  const [css] = useStyletron();
   const router = useRouter();
 
   /**
@@ -122,6 +118,8 @@ export default function Luogo({ luogo }) {
   const {
     id,
     nome,
+    slug,
+    descrizione,
     contenuto,
     indirizzo,
     accessibilita,
@@ -141,34 +139,9 @@ export default function Luogo({ luogo }) {
     pagina_facebook,
     pagina_instagram,
   }) => {
-    return new Boolean(
+    return (
       email || telefono || pagina_web || pagina_facebook || pagina_instagram
     );
-  };
-
-  const formatLink = (s: string) => {
-    if (s.includes("http")) return s;
-    if (s.includes("@")) return "mailto:" + s;
-    return "tel:+39" + s;
-  };
-
-  const checkLength = (string) => (string && string.length > 7 ? true : false);
-
-  const makeMenu = (obj): { name: string; link: string }[] => {
-    const menu = [];
-
-    if (checkLength(obj.telefono))
-      menu.push({ name: "Info", link: formatLink(obj.telefono) });
-    if (checkLength(obj.email))
-      menu.push({ name: "Email", link: formatLink(obj.email) });
-    if (checkLength(obj.pagina_web))
-      menu.push({ name: "Home", link: formatLink(obj.pagina_web) });
-    if (checkLength(obj.pagina_facebook))
-      menu.push({ name: "Facebook", link: formatLink(obj.pagina_facebook) });
-    if (checkLength(obj.pagina_instagram))
-      menu.push({ name: "Instagram", link: formatLink(obj.pagina_instagram) });
-
-    return menu;
   };
 
   const socialMenu = makeMenu(luogo);
@@ -176,176 +149,211 @@ export default function Luogo({ luogo }) {
   return (
     <Page
       id={id}
-      className={css({
-        overflowY: "visible",
-        padding: "20px",
-        marginBottom: "4rem",
-      })}
+      metaTags={{ title: nome + " | greeNEETwork", description: descrizione }}
     >
-      <Container>
-        <Row justify="center">
-          <Col size={{ xs: 12 }}>
-            {galleria_immagini && (
-              <Carousel
-                slidesPerPage={2}
-                slidesPerScroll={1}
-                arrows
-                itemWidth={640}
-                infinite
-                centered
-                // offset={4}
-              >
-                {galleria_immagini.length > 0 &&
-                  galleria_immagini.map((i) => <img key={i} src={i} />)}
-              </Carousel>
-            )}
-            {/* {galleria_immagini && <Slideshow images={galleria_immagini} />} */}
-          </Col>
-        </Row>
-      </Container>
-
-      <Container className={css({ maxWidth: "30rem" })}>
-        <Row align="flex-start">
-          <Col size={{ xs: 12, md: 8, lg: 9 }} tag="header">
-            <Div p={{ t: "4rem" }}>
+      <Row justify="center">
+        <Col span={20}>
+          <Grid.Container gap={3} justify="center">
+            {/* <Grid xs={24} style={{ height: "auto" }}>
+            </Grid> */}
+            <Grid xs={24} md={18}>
+              {galleria_immagini && (
+                <Slider id={"slider_" + id} images={galleria_immagini} />
+              )}
+              <Divider y={4} />
               <Breadcrumbs separator="/" />
-              <Text textSize="h1" tag="h1">
+              <Text h1 style={{ margin: "1rem 0", lineHeight: 1.125 }}>
                 {nome}
               </Text>
-              <Text textSize="caption">{indirizzo}</Text>
-            </Div>
-
-            {/* <Text tag="h3" textSize="h3">
-              Dove si trova
-            </Text> */}
-            <Div h="400px" m={{ y: "1rem" }}>
-              <DynamicMap places={[luogo]} selPlace={luogo} />
-            </Div>
-            <Div m={{ y: "3rem" }}>
-              <Text tag="h3" textSize="h3">
-                Descrizione
-              </Text>
-              <div dangerouslySetInnerHTML={{ __html: contenuto }} />
-              {/* <Text m={{ b: "3rem" }}>
-                  {descrizione.split("Tratto da:")[0]}
-                </Text> */}
-              {/* <Text m={{ b: "3rem" }}>
-                  Tratto da : {descrizione.split("Tratto da:")[1]}
-                </Text> */}
-            </Div>
-            {reti_territoriali && reti_territoriali.length > 0 ? (
-              <Row>
-                <Col
-                  p={{ y: "1rem" }}
-                  size={12}
-                  className={css({
-                    marginBottom: "1rem",
-                    borderTop: "1px solid #ccc",
-                    borderBottom: "1px solid #ccc",
-                  })}
+              <Text span>{indirizzo.address.display_name}</Text>
+              <Anchor
+                block
+                icon
+                // href={`https://www.google.com/maps/search/?&api=1&query=${indirizzo.latitude},${indirizzo.longitude}`}
+                href={`https://www.google.com/maps/dir/?&api=1&query=${indirizzo.latitude},${indirizzo.longitude}`}
+                target="_blank"
+              >
+                Indicazioni Stradali
+              </Anchor>
+              {/* </Link> */}
+              <Divider y={4} />
+              <div style={{ height: "350px", marginBlock: "1rem" }}>
+                <DynamicMap places={[luogo]} selPlace={luogo} />
+              </div>
+              <Divider y={4} />
+              <div>
+                <Text h3>Descrizione</Text>
+                <div dangerouslySetInnerHTML={{ __html: contenuto }} />
+                {/* <Text>{contenuto.split("Tratto da:")[0]}</Text> */}
+                {/* <Text>Tratto da : {contenuto.split("Tratto da:")[1]}</Text> */}
+              </div>
+            </Grid>
+            <Grid xs={24} md={6}>
+              <div
+                style={{
+                  marginBottom: "1rem",
+                  width: "100%",
+                }}
+              >
+                <SocialShare
+                  url={`${isProduction ? "https://" : ""}${
+                    process.env.APP_URL
+                  }/esplora/${slug}`}
+                  style={{ display: "flex", justifyContent: "space-evenly" }}
+                />
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontWeight: 400,
+                    fontSize: ".75rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "4px",
+                  }}
                 >
-                  <Text textSize="h5" tag="h5">
-                    Reti territoriali di appartenenza :
-                  </Text>
-                </Col>
-                {reti_territoriali.map(({ rete_territoriale }) => (
-                  <Col
-                    key={rete_territoriale.id}
-                    tag="article"
-                    size={{ xs: 6, md: 4, lg: 3 }}
+                  Condividi sui social
+                </Text>
+              </div>
+
+              <Divider y={2} />
+
+              {accessibilita && (
+                <>
+                  <div
+                    style={{
+                      display: "block",
+                      marginBottom: ".5rem",
+                      padding: ".5rem",
+                    }}
                   >
+                    <Text h4>Accessibilità</Text>
+                    {accessibilita.nome}
+                  </div>
+                  <Divider y={2} />
+                </>
+              )}
+              {tipologie && (
+                <>
+                  <div
+                    style={{
+                      display: "block",
+                      marginBottom: ".5rem",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <Text h4>Tipologia</Text>
+                    {tipologie.map(({ tipologia }) => (
+                      <Tag
+                        type="lite"
+                        key={tipologia.id}
+                        style={{
+                          marginBlockEnd: ".25rem",
+                          marginInlineEnd: ".25rem",
+                        }}
+                      >
+                        {tipologia.nome}
+                      </Tag>
+                    ))}
+                  </div>
+                  <Divider y={2} />
+                </>
+              )}
+              {servizi && (
+                <>
+                  <div
+                    style={{
+                      display: "block",
+                      marginBottom: ".5rem",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <Text h4>Servizi</Text>
+                    {/* <ul style={{ marginLeft: "1rem" }}> */}
+                    {servizi.map(({ servizio }) => (
+                      // <li key={servizio.id}>{servizio.nome}</li>
+                      <Tag
+                        type="lite"
+                        key={servizio.id}
+                        style={{
+                          marginInlineEnd: ".5rem",
+                          marginBlockEnd: ".25rem",
+                        }}
+                      >
+                        {servizio.nome}
+                      </Tag>
+                    ))}
+                    {/* </ul> */}
+                  </div>
+                  <Divider y={2} />
+                </>
+              )}
+              {hasContacts(luogo) && (
+                <>
+                  <div
+                    style={{
+                      display: "block",
+                      marginBottom: ".5rem",
+                      padding: ".5rem",
+                    }}
+                  >
+                    <Text h4>Contatti</Text>
+                    <SocialMenu
+                      menu={socialMenu}
+                      type="icons"
+                      style={{ columns: 3 }}
+                    />
+                  </div>
+                  <Divider y={2} />
+                </>
+              )}
+              {reti_territoriali && reti_territoriali.length > 0 && (
+                <div style={{ display: "block" }}>
+                  <Text h5>Reti territoriali di appartenenza :</Text>
+
+                  {reti_territoriali.map(({ rete_territoriale }) => (
                     <Link
+                      key={rete_territoriale.slug}
                       href="/reti/[slug]"
                       as={`/reti/${rete_territoriale.slug}`}
+                      prefetch={false}
                     >
-                      <Anchor d="flex" align="center" justify="center" h="100%">
-                        {/* <Text textSize="h6" tag="h6">
-                          {rete.nome}
-                        </Text> */}
+                      <Anchor
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          height: "100%",
+                        }}
+                      >
                         <Image
                           src={`/img/reti/${rete_territoriale.id}.webp`}
                           alt={rete_territoriale.nome}
-                          maxH="100%"
-                          w="auto"
+                          height={100}
+                          width={160}
                         />
+                        <Text h5>{rete_territoriale.nome}</Text>
                       </Anchor>
                     </Link>
-                  </Col>
-                ))}
-              </Row>
-            ) : null}
-          </Col>
-
-          <Col size={{ xs: 12, md: 4, lg: 3 }} pos="sticky" top="2rem">
-            <Div p={{ t: "4rem" }} m={{ b: "1rem" }} w="100%">
-              <SocialShare
-                url={process.env.APP_URL + router.asPath}
-                className={css({
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                })}
-              />
-              <Text
-                textAlign="center"
-                textWeight="400"
-                textSize="caption"
-                tag="h6"
-                className={css({
-                  textTransform: "uppercase",
-                  letterSpacing: "4px",
-                })}
-              >
-                Condividi sui social
-              </Text>
-            </Div>
-
-            {/* <Text tag="h3" textSize="h3" m={{ b: "1rem" }}>
-              Dettagli
-            </Text> */}
-            {accessibilita && (
-              <Div d="block" m={{ b: ".5rem" }} p=".5rem">
-                <Text tag="h6" textSize="h6">
-                  Accessibilità
-                </Text>
-                {accessibilita.nome}
-              </Div>
-            )}
-            {tipologie && tipologie.length > 0 ? (
-              <Div d="block" m={{ b: ".5rem" }} p=".5rem">
-                <Text tag="h6" textSize="h6">
-                  Tipologia
-                </Text>
-                <Div tag="ul" m={{ l: "1rem" }}>
-                  {tipologie.map(
-                    ({ tipologia }) =>
-                      tipologia && <li key={tipologia.id}>{tipologia.nome}</li>
-                  )}
-                </Div>
-              </Div>
-            ) : null}
-            {servizi && servizi.length > 0 ? (
-              <Div d="block" m={{ b: ".5rem" }} p=".5rem">
-                <Text tag="h6" textSize="h6">
-                  Servizi
-                </Text>
-                <Div tag="ul" m={{ l: "1rem" }}>
-                  {servizi.map(({ servizio }) => (
-                    <li key={servizio.id}>{servizio.nome}</li>
                   ))}
-                </Div>
-              </Div>
-            ) : null}
-            {hasContacts(luogo) && (
-              <Div d="block" m={{ b: ".5rem" }} p=".5rem">
-                <Text tag="h6" textSize="h6">
-                  Contatti
-                </Text>
-                <SocialMenu menu={socialMenu} type="icons" d="flex" />
-              </Div>
+                </div>
+              )}
+            </Grid>
+            {luoghi && (
+              <Grid xs={24}>
+                <Divider y={2} />
+                <Text h3>Luoghi collegati</Text>
+                <Divider y={2} />
+                <Grid.Container gap={2}>
+                  {luoghi.map((l) => (
+                    <Grid key={l.id} sm={12} lg={8}>
+                      <Card type="place" data={l} />
+                    </Grid>
+                  ))}
+                </Grid.Container>
+              </Grid>
             )}
-          </Col>
-        </Row>
-      </Container>
+          </Grid.Container>
+        </Col>
+      </Row>
     </Page>
   );
 }

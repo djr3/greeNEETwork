@@ -14,7 +14,7 @@
 
 ## Design and Development
 
-I've been hired to redesign, develop and deploy the existing [project's website](http://greeneetwork.it) and the whole IT & software architecture in order to deliver a performant, accessible, future-proof web application which could be useful to end users.
+I was hired to redesign, develop and deploy the existing [project's website](http://greeneetwork.it) and the whole IT & software architecture in order to deliver a performant, accessible, future-proof web application which could be useful to end users.
 
 ### Technical Requirements
 
@@ -35,7 +35,6 @@ The end product had to:
 ### Frontend Software & Libraries
 
 - [NextJS](https://nextjs.org/)
-- [Styletron](https://styletron.org/)
 - [Mapbox](https://www.mapbox.com/)
 - [Framer Motion](https://framer.com/api/motion)
 
@@ -78,4 +77,4 @@ If you modify, remix, transform, or build upon the material, you may not distrib
 
 Copyright 2020 [Danilo JR3 Panaro](https://www.jr3.it). All rights reserved
 
-Follow the author via: [LinkedIn](https://www.linkedin.com/in/danilojr3panaro) - [Twitter](http://www.twitter.com/danilojr3panaro) - [Facebook](http://www.facebook.com/danilo.jr3.panaro) - [GitLab](https://gitlab.com/djr3)
+Follow the author via: [LinkedIn](https://www.linkedin.com/in/danilojr3panaro) - [Facebook](http://www.facebook.com/danilo.jr3.panaro) - [Behance](https://www.behance.net/djr3) - [GitLab](https://gitlab.com/djr3) - [Github](https://github.com/djr3)

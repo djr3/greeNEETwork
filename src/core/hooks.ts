@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useCallback, useEffect, useState, useRef } from "react";
-import { DimensionObject, UseDimensionsHook, UseDimensionsArgs } from "./types";
 import { defaultBreakPoints } from "./constants";
+import type {
+  DimensionObject,
+  UseDimensionsHook,
+  UseDimensionsArgs,
+} from "@types";
 
 /**
  * Utility Functions

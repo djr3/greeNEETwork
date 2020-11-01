@@ -4,19 +4,15 @@ import React from "react";
 import { addParameters, addDecorator, configure } from "@storybook/react";
 import { themes } from "@storybook/theming";
 
-import { Provider as StyletronProvider } from "styletron-react";
-import { Client as Styletron } from "styletron-engine-atomic";
-import { ThemeProvider } from "atomize";
-// import { BaseProvider } from "baseui";
-import { theme } from "../src/styletron";
+import { GeistProvider, CssBaseline } from "@geist-ui/react";
+import { GNW_Theme } from "../src/core/theme";
 
-const engine = new Styletron();
-
-// Add providers for theme and styletron
+// Add providers for theme
 addDecorator((story) => (
-  <StyletronProvider value={engine}>
-    <ThemeProvider theme={theme}>{story()}</ThemeProvider>
-  </StyletronProvider>
+  <GeistProvider theme={GNW_Theme}>
+    <CssBaseline />
+    {story()}
+  </GeistProvider>
 ));
 
 addParameters({

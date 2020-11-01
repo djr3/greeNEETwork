@@ -1,13 +1,14 @@
 import React, { Fragment, FunctionComponent } from "react";
 import Head from "next/head";
 
-import { TMetaTags } from "interfaces";
+import type { TMetaTags } from "@types";
 
 type Props = {
   tags: TMetaTags;
+  pwa?: boolean;
 };
 
-export const MetaTags: FunctionComponent<Props> = ({ tags }) => {
+export const MetaTags: FunctionComponent<Props> = ({ tags, pwa = true }) => {
   return (
     <Fragment>
       <Head>
@@ -90,6 +91,28 @@ export const MetaTags: FunctionComponent<Props> = ({ tags }) => {
 
         {/* The URL of the canonical tags */}
         <link rel="canonical" key="canonical" href={tags.canonical} />
+
+        {/* Progressive Web App */}
+        {pwa && (
+          <>
+            <meta name="application-name" content="greeNEETwork" />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta
+              name="apple-mobile-web-app-status-bar-style"
+              content="default"
+            />
+            <meta name="apple-mobile-web-app-title" content="greeNEETwork" />
+            <meta name="format-detection" content="telephone=no" />
+            <meta name="mobile-web-app-capable" content="yes" />
+            <meta
+              name="msapplication-config"
+              content="/static/icons/browserconfig.xml"
+            />
+            <meta name="msapplication-TileColor" content="#799d43" />
+            <meta name="msapplication-tap-highlight" content="no" />
+            <meta name="theme-color" content="#000000" />
+          </>
+        )}
       </Head>
     </Fragment>
   );

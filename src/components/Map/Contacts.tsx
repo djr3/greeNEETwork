@@ -1,4 +1,10 @@
-import { Div, Icon } from "atomize";
+import {
+  Mail,
+  Facebook,
+  Instagram,
+  Phone,
+  ExternalLink,
+} from "@geist-ui/react-icons";
 
 export function Contacts({ place }) {
   const formatLink = (s: string) => {
@@ -10,36 +16,46 @@ export function Contacts({ place }) {
   const checkLength = (obj, key, IconName) => {
     if (obj[key] && obj[key].length > 7) {
       return (
-        <li className={`icon-${IconName.toLowerCase()}`}>
-          <a href={formatLink(obj[key])} target="_blank" rel="noreferrer">
-            <Icon name={IconName} size={16} /> {key.replace("_", " ")}
+        <li style={{ marginInlineEnd: "1.5rem", listStyle: "none" }}>
+          <a
+            href={formatLink(obj[key])}
+            target="_blank"
+            rel="noreferrer nofollow"
+          >
+            <IconName size={24} color="#000" />
+            {/* {key.replace("_", " ")} */}
           </a>
+          <style jsx>{`
+            .socialIcon {
+              &: before;
+            }
+          `}</style>
         </li>
       );
     }
   };
 
-  const hasContacts = ({
-    email,
-    telefono,
-    pagina_web,
-    pagina_facebook,
-    pagina_instagram,
-  }) => {
-    return new Boolean(
-      email || telefono || pagina_web || pagina_facebook || pagina_instagram
-    );
-  };
+  // const hasContacts = ({
+  //   email,
+  //   telefono,
+  //   pagina_web,
+  //   pagina_facebook,
+  //   pagina_instagram,
+  // }) => {
+  //   return (
+  //     email || telefono || pagina_web || pagina_facebook || pagina_instagram
+  //   );
+  // };
 
   return (
-    <Div tag="address">
-      <Div tag="ul" d="flex">
-        {checkLength(place, "email", "Email")}
-        {checkLength(place, "telefono", "Info")}
-        {checkLength(place, "pagina_web", "Link")}
-        {checkLength(place, "pagina_facebook", "Facebook")}
-        {checkLength(place, "pagina_instagram", "Instagram")}
-      </Div>
-    </Div>
+    <address>
+      <ul style={{ display: "flex", listStyle: "none" }}>
+        {checkLength(place, "email", Mail)}
+        {checkLength(place, "telefono", Phone)}
+        {checkLength(place, "pagina_web", ExternalLink)}
+        {checkLength(place, "pagina_facebook", Facebook)}
+        {checkLength(place, "pagina_instagram", Instagram)}
+      </ul>
+    </address>
   );
 }

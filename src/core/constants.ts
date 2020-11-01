@@ -1,5 +1,5 @@
-import { EPageType, ERobotsContent, TMetaTags } from "../interfaces";
 import { concatenateStrings } from "./helper";
+import { EPageType, ERobotsContent, TMetaTags } from "@types";
 // import { TSocialMenu } from "../components/Social";
 
 export const defaultBreakPoints = {
@@ -20,22 +20,20 @@ export const defaultMediaQuery = {
 export const defaultLocale = "it_IT";
 
 export const defaultMetaTags: TMetaTags = {
-  canonical: process.env.APP_URL as string,
+  canonical: process.env.VERCEL_URL,
   description: "Un nuovo modello di sostenibilità valorizzata dai giovani",
-  image: "https://greeneetwork.agritettura.org/img/logo.png",
+  image: process.env.VERCEL_URL + "/img/logo.png",
   robots: concatenateStrings(ERobotsContent.index, ERobotsContent.follow),
   title: "greeNEETwork",
   type: EPageType.website,
 };
 
 export const defaultMenuItems = [
-  { name: "Storie", link: "/storie" },
-  { name: "Esplora", link: "/esplora" },
-  { name: "Itinerari", link: "/itinerari" },
-  { name: "Le Reti", link: "/reti" },
-  // { name: "Eventi", link: "/eventi" },
-  // { name: "Contatti", link: "/contatti" },
-  { name: "Credits", link: "/credits" },
+  { name: "Esplora", link: "/esplora", description: "Mappa dei luoghi" },
+  { name: "Itinerari", link: "/itinerari", description: "Viaggio digitale" },
+  { name: "Storie", link: "/storie", description: "Racconti dal Parco" },
+  { name: "Reti", link: "/reti", description: "Reti locali attive" },
+  { name: "Credits", link: "/credits", description: "Gruppo di lavoro" },
 ];
 
 export const defaultSocialItems = [

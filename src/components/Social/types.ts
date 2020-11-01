@@ -26,8 +26,8 @@ export interface SocialMenuProps {
 }
 
 export interface ItemProps {
-  name: string;
-  size: number | string;
+  name: "Home" | "Mail" | "Phone" | "Facebook" | "Instagram";
+  size: number;
   color: string;
 }
 
@@ -41,6 +41,7 @@ export interface SocialLinksProps extends ItemProps {
 }
 
 export interface SocialIconsProps extends ItemProps {
+  name: "Home" | "Mail" | "Phone" | "Facebook" | "Instagram";
   [elemName: string]: any;
 }
 

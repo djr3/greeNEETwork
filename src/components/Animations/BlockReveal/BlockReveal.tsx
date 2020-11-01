@@ -1,19 +1,24 @@
 import { createElement, FC, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import cn from "classnames";
 import styles from "./BlockReveal.module.scss";
 
 type BlockRevealProps = {
+  dir?: "l2r" | "r2l" | "t2b" | "b2t";
   color?: string;
   delay?: number;
   duration?: number;
   tag?: string;
+  className?: string;
 };
 
 export const BlockReveal: FC<BlockRevealProps> = ({
+  dir = "l2r",
   tag = "div",
-  delay = 1,
+  delay = 0.6,
   duration = 0.9,
   color = "#000",
+  className,
   children,
 }) => {
   const [isVisible, setVisible] = useState(false);
@@ -30,7 +35,7 @@ export const BlockReveal: FC<BlockRevealProps> = ({
   }, [isVisible]);
 
   return (
-    <span ref={domRef} className={styles.br}>
+    <span ref={domRef} className={cn(styles.br, className)}>
       {createElement(
         // motion[tag],
         tag,
@@ -44,7 +49,11 @@ export const BlockReveal: FC<BlockRevealProps> = ({
         children
       )}
       <span
-        className={isVisible && !isReduced ? styles["br__block"] : undefined}
+        className={
+          isVisible && !isReduced
+            ? cn(styles["br__block"], styles[`br__block--${dir}`])
+            : undefined
+        }
         style={{
           animationDelay: `${delay}s`,
           animationDuration: `${duration}s`,

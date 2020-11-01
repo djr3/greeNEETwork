@@ -1,14 +1,14 @@
 /**
  * App Theme
  */
-import { ThemeProvider, StyleReset } from "atomize";
-import { useStyletron } from "styletron-react";
-import { theme } from "styletron";
+import { GeistProvider, CssBaseline } from "@geist-ui/react";
+import { GNW_Theme } from "core/theme";
 
 /**
  * Containers
  */
-import { AniHeader } from "containers/Header";
+import ErrorBoundary from "components/ErrorBoundary";
+import Header from "containers/Header";
 import Footer from "containers/Footer";
 
 /**
@@ -22,23 +22,20 @@ import {
 // const { xs, sm, md, lg, xl } = defaultMediaQuery;
 
 export const Vertical = (props) => {
-  const [css] = useStyletron();
-
   return (
-    <ThemeProvider theme={theme}>
-      <StyleReset />
-      <AniHeader
-        className={css({
-          position: "fixed",
-          top: 0,
-          zIndex: 1000,
-        })}
+    <GeistProvider theme={GNW_Theme}>
+      <CssBaseline />
+
+      <Header
         navMenu={defaultMenuItems}
         // socialMenu={defaultSocialItems}
       />
+
+      {/* <ErrorBoundary></ErrorBoundary> */}
       {props.children}
-      <Footer bg="dark" />
-    </ThemeProvider>
+
+      {props.noFooter ? null : <Footer bg="dark" />}
+    </GeistProvider>
   );
 };
 

@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 
 export async function buildSitemap() {
-  const hostname = process.env.APP_URL;
+  const hostname = "https://" + process.env.VERCEL_URL;
 
   // Set fields to query via API
   const fields = ["slug"];
@@ -35,9 +35,10 @@ export async function buildSitemap() {
     }
 
     // Dynamic pages data
-    const luoghi = await (
-      await directus.getItems<{ slug }[]>("luoghi", { fields })
-    ).data;
+    const { data: luoghi } = await directus.getItems<{ slug }[]>("luoghi", {
+      fields,
+      limit: 500,
+    });
     // console.log("Luoghi : ", luoghi);
     for (const luogo of luoghi) {
       smStream.write({
@@ -48,9 +49,10 @@ export async function buildSitemap() {
       });
     }
 
-    const reti = await (
-      await directus.getItems<{ slug }[]>("reti_territoriali", { fields })
-    ).data;
+    const { data: reti } = await directus.getItems<{ slug }[]>(
+      "reti_territoriali",
+      { fields }
+    );
     // console.log("Reti : ", reti);
     for (const rete_territoriale of reti) {
       smStream.write({
@@ -61,13 +63,15 @@ export async function buildSitemap() {
       });
     }
 
-    const storie = await (
-      await directus.getItems<{ slug; modified_on }[]>("articoli", {
+    const { data: storie } = await directus.getItems<{ slug; modified_on }[]>(
+      "articoli",
+      {
         fields: ["slug", "modified_on"],
+        limit: 100,
         // Add only the published posts to the sitemap
         filter: { status: { eq: "published" } },
-      })
-    ).data;
+      }
+    );
     for (const storia of storie) {
       smStream.write({
         url: smStream.hostname + "/storie/" + storia.slug,
