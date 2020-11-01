@@ -1,0 +1,49 @@
+$underlineColor: #00b388
+$underlineHeight: 5%
+
+.main
+  background-color: black
+  color: #f0f5e9
+  padding: 4rem 0
+  height: "38vh"
+  width: "100%"
+  background: "#111"
+  font-size: .95em
+
+  .divider
+    background-color: #ffffff
+    height: 1px
+
+  .l1
+    color: #f0f5e9
+    position: relative
+    text-decoration: none
+    display: block
+    display: inline-block
+    width: min-content
+    padding: 1px 2px
+    transition: color ease 0.3s
+    z-index: 1
+    margin-right: 1rem
+
+    &::after 
+      content: ""
+      position: absolute
+      z-index: -1
+      width: 100%
+      height: $underlineHeight
+      left: 0
+      bottom: 0
+      background-color: $underlineColor
+      transition: all ease 0.3s
+
+    &:hover
+      color: black
+      color: white
+
+      &::after
+        height: 100%
+
+  p
+    line-height: 1.25
+    margin: .25rem 0

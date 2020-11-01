@@ -2,9 +2,9 @@ import React from "react";
 // import Head from "next/head";
 
 // Add your GA tracking id in the .env file or hardcode it here
-export const { NEXT_PUBLIC_GA_TRACKING_ID } = process.env;
+export const { NEXT_PUBLIC_GA_TRACKING_ID, NODE_ENV } = process.env;
 
-const isProduction = process.env.NODE_ENV.toLowerCase() === "production";
+const isProduction = NODE_ENV.toLowerCase() === "production";
 
 export function setGoogleTags() {
   return {

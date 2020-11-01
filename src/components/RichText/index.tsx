@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import React from "react";
 // import dynamic from "next/dynamic";
 // import {
@@ -14,25 +13,25 @@ import HTMLParser, {
 // import { Document, BLOCKS, MARKS } from "@contentful/rich-text-types";
 // import { Blockquote } from "../Blockquote";
 // import { Code } from "../Code";
-import { Text } from "atomize";
+import { Text } from "@geist-ui/react";
 // const Code = dynamic(() => import("../Code").then(r => r.Code));
 
 import styles from "./index.module.scss";
 
 export const Blockquote: React.FC = (props) => (
-  <blockquote className={styles.bq}>{props.children}</blockquote>
+  <Text blockquote className={styles.bq}>
+    {props.children}
+  </Text>
 );
 
 const params: Options = {
   transform: (node, index) => {
-    // console.log("Node : ", node);
     if (node.type === "tag" && node.name === "p") {
       return (
         <Text
+          p
           key={`p_${index}`}
-          m={{ y: "1.25rem" }}
-          p={{ b: "1em" }}
-          textSize="paragraph"
+          style={{ margin: "1.25rem 0", paddingBottom: "1em" }}
         >
           {node.children &&
             node.children.map((child, idx, a) =>
@@ -53,7 +52,7 @@ const params: Options = {
     }
     if (node.type === "tag" && ["h2", "h3", "h4", "h5"].includes(node.name)) {
       return (
-        <Text key={index} tag={node.name} textSize={node.name}>
+        <Text key={index} {...node.name} textSize={node.name}>
           {node.children &&
             node.children.map((child, idx) =>
               convertNodeToElement(child, idx, null)

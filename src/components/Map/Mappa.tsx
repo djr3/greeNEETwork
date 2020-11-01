@@ -1,16 +1,13 @@
 // Core Components
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import ReactMapGL, { Source, Layer } from "react-map-gl";
 import useSupercluster from "use-supercluster";
 
 // MapBox Components & Tools
 import { MAPBOX, style } from "./config";
-import {
-  getCoordinates,
-  isInBounds,
-  reshapePlace,
-  reshapePlaces,
-} from "./utils";
+import { getCoordinates, isInBounds, reshapePlaces } from "./utils";
+
+// Map Addons
 import { Pin } from "./Pin";
 import { MapPopup } from "./MapPopup";
 
@@ -30,7 +27,6 @@ export const Mappa: React.FC<MappaProps> = (props) => {
       zoom: 12,
     },
   });
-
   const mapRef = useRef();
 
   // State updater utility function
@@ -41,8 +37,7 @@ export const Mappa: React.FC<MappaProps> = (props) => {
   /**
    * User Interaction Handlers
    */
-  const handleClick = (obj) => {
-    if (props.onMarkerClick) props.onMarkerClick(obj.properties.id);
+  const flyTo = (obj) => {
     setState((prevState) => ({
       ...prevState,
       viewport: {
@@ -51,8 +46,13 @@ export const Mappa: React.FC<MappaProps> = (props) => {
         ...getCoordinates(obj),
         zoom: 17,
       },
-      // showPopup: true,
+      showPopup: true,
     }));
+  };
+
+  const handleClick = (e, obj) => {
+    if (props.onClick) props.onClick(e, obj);
+    if (props.onMarkerClick) props.onMarkerClick(e, obj.id);
   };
 
   const handlePopup = () => {
@@ -60,22 +60,10 @@ export const Mappa: React.FC<MappaProps> = (props) => {
   };
 
   // Render Data
-  // console.log(
-  //   "Mappa Places : ",
-  //   JSON.stringify(
-  //     props.places.map((p) => ({
-  //       ...p.geo_json,
-  //       properties: {
-  //         id: p.id,
-  //         name: p.nome,
-  //         slug: p.slug,
-  //         accessibilita: p.accessibilita,
-  //         tipologie: p.tipologie,
-  //       },
-  //     }))
-  //   )
-  // );
-  const { punti, poligoni, percorsi } = reshapePlaces(props.places);
+  const { punti, poligoni, percorsi } = useMemo(
+    () => reshapePlaces(props.places),
+    [props.places]
+  );
 
   // Map Bounds
   const bounds =
@@ -97,9 +85,10 @@ export const Mappa: React.FC<MappaProps> = (props) => {
 
   useEffect(() => {
     if (props.selPlace) {
-      handleClick(reshapePlace(props.selPlace));
+      const { geo_json } = props.selPlace;
+      geo_json ? flyTo(geo_json) : flyTo(props.selPlace);
     }
-  }, [props.selPlace, mapRef]);
+  }, [props.selPlace]);
 
   return (
     <ReactMapGL
@@ -110,29 +99,25 @@ export const Mappa: React.FC<MappaProps> = (props) => {
         if (
           isInBounds(MAPBOX.maxBounds, viewport.latitude, viewport.longitude)
         ) {
-          mergeState({ viewport, showPopup: false });
+          // mergeState({ viewport, showPopup: false });
+          mergeState({ viewport });
         }
       }}
       ref={mapRef}
     >
-      {clusters.map((cluster, _, clusters) => {
+      {clusters.map((cluster) => {
         const {
           cluster: isCluster,
           point_count: pointCount,
         } = cluster.properties;
-
         if (isCluster) {
           return (
-            <Pin key={cluster.id} place={cluster} onClick={handleClick}>
+            <Pin key={cluster.id} place={cluster}>
               <div
                 style={{
                   color: "#fff",
-                  width: `${
-                    32 + (pointCount / clusters.length) * pointCount
-                  }px`,
-                  height: `${
-                    32 + (pointCount / clusters.length) * pointCount
-                  }px`,
+                  width: `${40 + (pointCount * state.viewport.zoom) / 2}px`,
+                  height: `${40 + (pointCount * state.viewport.zoom) / 2}px`,
                   background: "#04A29B",
                   borderRadius: "50%",
                   padding: "10px",
@@ -168,7 +153,7 @@ export const Mappa: React.FC<MappaProps> = (props) => {
             />
           </Source>
         ))}
-      {props.selPlace && props.withPopup && state.showPopup ? (
+      {props.withPopup && state.showPopup ? (
         <MapPopup place={props.selPlace} onClose={handlePopup} />
       ) : null}
     </ReactMapGL>

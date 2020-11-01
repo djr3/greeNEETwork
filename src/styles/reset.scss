@@ -86,28 +86,6 @@ select {
   }
 }
 
-/** 
- * Custom Scrollbar 
-**/
-/* New W3C standard - Currently Firefox-only */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #00887a #ddd;
-}
-
-/* Chrome/Edge/Safari Fallback */
-*::-webkit-scrollbar {
-  width: 6px;
-}
-*::-webkit-scrollbar-track {
-  background: #ddd;
-}
-*::-webkit-scrollbar-thumb {
-  background-color: #00887a;
-  border-radius: 4px;
-  /* border: 1px solid #0002; */
-}
-
 .BrainhubCarousel__arrows {
   background-color: #00887a !important;
   background-color: #3d3d3d !important;

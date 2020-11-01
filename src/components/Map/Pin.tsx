@@ -37,10 +37,12 @@ export class Pin extends PureComponent<
               background: "transparent",
               width: SIZE + "px",
               height: SIZE + "px",
+              border: "none",
             }}
-            onClickCapture={(e) => {
+            onClick={(e) => {
               e.preventDefault();
-              onClick ? onClick(place) : null;
+              if (onClick)
+                onClick(e, { ...place.properties, geo_json: { ...place } });
             }}
           >
             <svg

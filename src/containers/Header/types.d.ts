@@ -6,4 +6,5 @@ export type PageHeaderProps = {
   socialMenu?: TSocialMenu;
   onClick?: Function;
   className?: string | undefined;
+  style?: any;
 };

@@ -1,51 +1,66 @@
 // Core Components
 import { directus } from "core/cli";
+import { getImageHashes, isProduction } from "core/utils";
 
 // Page Layout
 import Page from "containers/Main";
-import { useStyletron } from "styletron-react";
 
 // Page Components
-import { Container, Row, Col, Div, Text, Icon } from "atomize";
-import { Breadcrumbs } from "components/Breadcrumbs";
+import Breadcrumbs from "components/Breadcrumbs";
+import Card from "components/Card";
+import Icon from "components/Icon";
+import { Grid, Text, Divider } from "@geist-ui/react";
 import { SocialShare } from "components/Social";
 import { RichText } from "components/RichText";
 import ReactPlayer from "react-player";
-import { PlacePreview } from "components/Map";
+
+// Typings
+import type { IPost } from "@types";
 
 export async function getStaticPaths() {
-  const posts = (
-    await directus.getItems<{ slug }[]>("articoli", {
-      filter: { status: { eq: "published" } },
-      fields: ["*", "luoghi.*.*"],
-    })
-  ).data;
+  const { data: posts } = await directus.getItems<{ slug }[]>("articoli", {
+    filter: { status: { eq: "published" } },
+    fields: ["slug"],
+  });
 
   const paths = posts.map(({ slug }) => ({
     params: { slug },
   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const post = (
-    await directus.getItems("articoli", {
-      filter: { slug: { eq: params.slug } },
-      fields: ["*", "luoghi.luogo.*"],
-    })
-  ).data[0];
+  const {
+    data: [post],
+  } = await directus.getItems<IPost[]>("articoli", {
+    filter: { slug: { eq: params.slug } },
+    fields: [
+      "*",
+      "luoghi.luogo.id",
+      "luoghi.luogo.nome",
+      "luoghi.luogo.slug",
+      "luoghi.luogo.descrizione",
+      "luoghi.luogo.galleria_immagini.directus_file.private_hash",
+    ],
+  });
 
-  return {
-    props: { post },
-  };
+  const { data: posts } = await directus.getItems<IPost[]>("articoli", {
+    filter: { id: { neq: post.id }, status: { eq: "published" } },
+    fields: ["id", "slug", "titolo", "descrizione", "video_pillola"],
+    limit: 3,
+    sort: "?",
+  });
+
+  const luoghi = post.luoghi.map(({ luogo }) => ({
+    ...luogo,
+    galleria_immagini: getImageHashes(luogo),
+  }));
+
+  return { props: { post, posts, luoghi } };
 }
 
-export default function Post({ post }) {
-  const [css] = useStyletron();
+export default function Post({ post, posts, luoghi }) {
   const {
     id,
     titolo,
@@ -55,125 +70,130 @@ export default function Post({ post }) {
     descrizione,
     slug,
     video_pillola,
-    luoghi,
   } = post;
-  // console.log("Rest : ", rest);
+
   return (
-    <Page
-      id={id}
-      className={css({ overflowY: "visible", marginBottom: "4rem" })}
-      //@ts-ignore
-      metaTags={{ title: titolo, description: descrizione }}
-    >
+    <Page id={id} metaTags={{ title: titolo, description: descrizione }}>
       {video_pillola && (
-        <Container>
-          <Row>
-            <ReactPlayer url={video_pillola} width="100%" height="450px" />
-          </Row>
-        </Container>
+        <Grid.Container>
+          <ReactPlayer
+            url={video_pillola}
+            controls={false}
+            width="100%"
+            height="61.8vh"
+            config={{ youtube: { playerVars: { showinfo: 0, controls: 0 } } }}
+          />
+        </Grid.Container>
       )}
-      <Container className={css({ maxWidth: "30rem" })}>
-        <Row align="flex-start">
-          <Col size={{ xs: 12, md: 8, lg: 9 }}>
-            <Div m={{ t: "4rem", b: "2rem" }} tag="header">
-              <Breadcrumbs separator="/" />
+
+      <Grid.Container gap={2} justify="center">
+        <Grid xs={22} md={14} lg={14}>
+          <header style={{ marginTop: "4rem" }}>
+            <Breadcrumbs separator="/" />
+            <Text h1 style={{ margin: "1rem 0", lineHeight: 1.125 }}>
+              {titolo}
+            </Text>
+            <div style={{ display: "flex", alignContent: "center" }}>
+              <Icon name="Clock" size={16} style={{ marginRight: ".5rem" }} />
               <Text
-                textSize="h1"
-                tag="h1"
-                m={{ y: ".5rem" }}
-                // className={css({ lineHeight: "1.125em !important" })}
-              >
-                {titolo}
-              </Text>
-              <Div d="flex" align="center">
-                <Icon name="Timestamp" size="16px" m={{ r: ".5rem" }} />
-                <Text
-                  textSize="caption"
-                  textWeight="400"
-                  tag="h6"
-                  d="inline"
-                  className={css({
-                    textTransform: "uppercase",
-                    letterSpacing: "2px",
-                    marginRight: "1rem",
-                  })}
-                >
-                  Pubblicato il :&nbsp;
-                  {new Date(created_on).toLocaleDateString("it", {
-                    // weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </Text>
-                <br />
-                <Text
-                  textSize="caption"
-                  textWeight="400"
-                  tag="h6"
-                  d="inline"
-                  className={css({
-                    textTransform: "uppercase",
-                    letterSpacing: "2px",
-                  })}
-                >
-                  Ultima modifica :&nbsp;
-                  {new Date(modified_on).toLocaleDateString("it", {
-                    // weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </Text>
-              </Div>
-            </Div>
-            <Div>
-              <RichText text={contenuto} />
-            </Div>
-          </Col>
-          <Col
-            size={{ xs: 12, md: 4, lg: 3 }}
-            p="1rem"
-            pos="sticky"
-            top="2rem"
-            tag="aside"
-          >
-            <Div m={{ t: "4rem", b: "1rem" }} w="100%">
-              <SocialShare
-                url={process.env.APP_URL + "/storie/" + slug}
-                className={css({
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                })}
-              />
-              <Text
-                textAlign="center"
-                textWeight="400"
-                textSize="caption"
-                tag="h6"
-                className={css({
+                h6
+                style={{
+                  fontWeight: 400,
+                  letterSpacing: "2px",
                   textTransform: "uppercase",
-                  letterSpacing: "4px",
-                })}
+                  marginRight: "1rem",
+                  display: "inline",
+                }}
               >
-                Condividi sui social
+                Pubblicato il :&nbsp;
+                {new Date(created_on).toLocaleDateString("it", {
+                  // weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </Text>
-            </Div>
-            <Div>
-              <Text>In questo articolo si parla di</Text>
-              <ul className="luoghi_rel">
-                {luoghi && luoghi.length > 0
-                  ? luoghi.map(({ luogo }) => (
-                      <li key={luogo.id}>
-                        <PlacePreview place={luogo} />
-                      </li>
-                    ))
-                  : null}
-              </ul>
-            </Div>
-          </Col>
-        </Row>
-      </Container>
+              <br />
+              <Text
+                h6
+                style={{
+                  fontWeight: 400,
+                  textTransform: "uppercase",
+                  letterSpacing: "2px",
+                  display: "inline",
+                }}
+              >
+                Ultima modifica :&nbsp;
+                {new Date(modified_on).toLocaleDateString("it", {
+                  // weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </Text>
+            </div>
+          </header>
+          <Divider y={4} />
+          <div>
+            <RichText text={contenuto} />
+          </div>
+        </Grid>
+        <Grid xs={22} md={8} lg={6}>
+          <div
+            style={{ marginTop: "4rem", marginBottom: "1rem", width: "100%" }}
+          >
+            <SocialShare
+              url={`${isProduction ? "https://" : ""}${
+                process.env.APP_URL
+              }/storie/${slug}`}
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+              }}
+            />
+            <Text
+              h6
+              style={{
+                textAlign: "center",
+                fontWeight: 400,
+                textTransform: "uppercase",
+                letterSpacing: ".25rem",
+              }}
+            >
+              Condividi sui social
+            </Text>
+          </div>
+          <Divider y={2} />
+          <div>
+            <Text h5>Questo post parla di : </Text>
+            <Divider y={2} />
+            <ul className="luoghi_rel">
+              {luoghi && luoghi.length > 0
+                ? luoghi.map((luogo) => (
+                    <li key={luogo.id}>
+                      <Card type="place" data={luogo} />
+                    </li>
+                  ))
+                : null}
+            </ul>
+            <Divider y={2} />
+          </div>
+        </Grid>
+        {posts && (
+          <Grid xs={22} lg={20}>
+            <Divider y={2} />
+            <Text h3>Storie collegate</Text>
+            <Divider y={2} />
+            <Grid.Container gap={2}>
+              {posts.map((p) => (
+                <Grid key={p.id} sm={12} lg={8}>
+                  <Card type="post" data={p} />
+                </Grid>
+              ))}
+            </Grid.Container>
+          </Grid>
+        )}
+      </Grid.Container>
     </Page>
   );
 }
