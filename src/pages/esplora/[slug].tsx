@@ -314,6 +314,7 @@ export default function Luogo({ luogo, luoghi }) {
                       key={rete_territoriale.slug}
                       href="/reti/[slug]"
                       as={`/reti/${rete_territoriale.slug}`}
+                      prefetch={false}
                     >
                       <Anchor
                         style={{

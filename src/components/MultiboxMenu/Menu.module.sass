@@ -27,6 +27,16 @@ $color-tagline: #e2e2e2
   grid-template-columns: 1fr
   grid-template-rows: repeat(3, 1fr)
   pointer-events: none
+  @media screen and (min-width: 53rem)
+    // width: 100vw
+    // height: 100vh
+    // overflow: hidden
+    // position: fixed
+    // top: 0
+    // left: 0
+    grid-template-columns: 20% 30% 50%
+    grid-template-rows: 60% 40%
+    grid-template-areas: "item3 item2 item1" "item4 item5 item1"
 
   a
     color: #ccc
@@ -61,7 +71,28 @@ $color-tagline: #e2e2e2
   align-items: center
 
 .Item__3 .ItemInner
+  display: flex
   background: $color-bg-item3
+  justify-content: center
+  justify-items: center
+
+  div
+    color: #999
+
+  img
+    height: 3.5rem
+    width: auto
+    margin: .5rem
+
+  p
+    color: #999
+    font-size: .75rem
+    line-height: 1.25
+    margin-top: 0
+    margin-bottom: 0
+    padding-inline-start: .5rem
+    padding-inline-end: .5rem
+
 
 .Item__4 .ItemInner
   background: $color-bg-item4
@@ -72,7 +103,11 @@ $color-tagline: #e2e2e2
 .Item__4, .Item__5, .Label
   display: none
 
+.MainMenu
+  columns: 2
+
 .MainItem
+  break-inside: avoid
   opacity: 0
   position: relative
   overflow: hidden
@@ -80,6 +115,7 @@ $color-tagline: #e2e2e2
   margin: 0.25rem 0
   display: block
   line-height: 1.25
+  min-height: 3rem
   span
     display: block
     font-size: .8rem
@@ -111,7 +147,7 @@ $color-tagline: #e2e2e2
   transition: transform 0.8s cubic-bezier(0.2, 1, 0.8, 1)
 
 .ItemInner:hover .ItemMap
-  transform: scale3d(1.1, 1.1, 1)
+  transform: scale3d(1, 1, 1)
 
 .ItemHoverLink
   font-weight: bold
@@ -166,17 +202,6 @@ $color-tagline: #e2e2e2
   z-index: 1000
 
 @media screen and (min-width: 53em)
-
-  .Menu
-    width: 100vw
-    height: 100vh
-    overflow: hidden
-    position: fixed
-    top: 0
-    left: 0
-    grid-template-columns: 20% 30% 50%
-    grid-template-rows: 60% 40%
-    grid-template-areas: "item3 item2 item1" "item4 item5 item1"
 
   .Item
     height: 100%

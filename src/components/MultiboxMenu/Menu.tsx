@@ -212,74 +212,36 @@ const Menu = () => {
         </Link>
       </MenuItem>
       <MenuItem className={styles.Item__3} refs={menuItems[2]} direction="bt">
-        <div style={{ marginBottom: "1rem" }}>
-          <img
-            style={{
-              height: "4rem",
-              width: "auto",
-              margin: ".5rem",
-            }}
-            src={`/img/logo-t.png`}
-            alt="Logo greeNEETwork"
-          />
+        <div>
+          <img src={`/img/logo-t.png`} alt="Logo greeNEETwork" />
         </div>
         <div
           style={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-evenly",
             alignContent: "center",
           }}
         >
           <img
-            style={{
-              height: "4rem",
-              width: "auto",
-              margin: ".5rem",
-            }}
             src={`/img/cdm${isDark}.svg`}
             alt="Logo Consiglio dei Ministri"
           />
           <a href="http://www.anci.it" target="_blank" rel="noreferrer">
-            <img
-              style={{
-                height: "4rem",
-                width: "auto",
-                margin: ".5rem",
-              }}
-              src={`/img/anci${isDark}.png`}
-              alt="Logo ANCI"
-            />
+            <img src={`/img/anci${isDark}.png`} alt="Logo ANCI" />
           </a>
           <a
             href="https://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/26080"
             target="_blank"
             rel="noreferrer"
           >
-            <img
-              style={{
-                height: "4rem",
-                width: "auto",
-                margin: ".5rem",
-              }}
-              src={`/img/comune${isDark}.png`}
-              alt="Logo Comune di Napoli"
-            />
+            <img src={`/img/comune${isDark}.png`} alt="Logo Comune di Napoli" />
           </a>
         </div>
-        <div>
-          <p
-            style={{
-              fontSize: ".75rem",
-              lineHeight: 1.25,
-              marginBottom: 0,
-              color: "#999",
-            }}
-          >
-            Iniziativa co-finanziata dalla Presidenza del Consiglio dei Ministri
-            - Dipartimento della Gioventù e del Servizio Civile Nazionale e dal
-            Comune di Napoli
-          </p>
-        </div>
+        <p>
+          Iniziativa co-finanziata dalla Presidenza del Consiglio dei Ministri -
+          Dipartimento della Gioventù e del Servizio Civile Nazionale e dal
+          Comune di Napoli
+        </p>
       </MenuItem>
       <MenuItem className={styles.Item__4} refs={menuItems[3]} direction="rl">
         <p className={cn(styles.Label, styles.Label__topLeft)}>Collabora</p>
@@ -290,29 +252,16 @@ const Menu = () => {
         </a>
       </MenuItem>
       <MenuItem className={styles.Item__5} refs={menuItems[4]} direction="tb">
-        <div className={styles.SideMenu}>
+        <a href="/storie/scrivi" className={styles.Item__Link}>
+          Scrivi una
+          <br />
+          storia
+        </a>
+        {/* <div className={styles.SideMenu}>
           <a href="#" className={styles.SideItem}>
             <span className={styles.SideItemInner}>The Gameplay</span>
           </a>
-          <a href="#" className={styles.SideItem}>
-            <span className={styles.SideItemInner}>About LARP</span>
-          </a>
-          <a href="#" className={styles.SideItem}>
-            <span className={styles.SideItemInner}>The Rules</span>
-          </a>
-          <a href="#" className={styles.SideItem}>
-            <span className={styles.SideItemInner}>History</span>
-          </a>
-          <a href="#" className={styles.SideItem}>
-            <span className={styles.SideItemInner}>People</span>
-          </a>
-          <a href="#" className={styles.SideItem}>
-            <span className={styles.SideItemInner}>Join</span>
-          </a>
-          <a href="#" className={styles.SideItem}>
-            <span className={styles.SideItemInner}>...</span>
-          </a>
-        </div>
+        </div> */}
       </MenuItem>
 
       {/* {props.children && items} */}

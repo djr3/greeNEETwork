@@ -9,8 +9,6 @@ import Page from "containers/Main";
 
 // Page Components
 import {
-  Row,
-  Col,
   Text,
   Card,
   // Image,
@@ -44,8 +42,8 @@ export default function Reti({ reti }) {
           "Reti territoriali attive nella zona del Parco Metropolitano delle Colline di Napoli",
       }}
     >
-      <Row justify="center">
-        <Col span={20}>
+      <Grid.Container gap={2} justify="center">
+        <Grid>
           <div style={{ marginBottom: "1.5rem", justifyContent: "center" }}>
             <Breadcrumbs />
             <hgroup style={{ marginBottom: "1rem" }}>
@@ -65,34 +63,39 @@ export default function Reti({ reti }) {
           </div>
 
           <Divider y={4} />
+        </Grid>
+        {reti.map((rete) => (
+          <Grid key={rete.slug} sm={12} md={8} lg={6}>
+            <Card>
+              <Link
+                href="reti/[slug]"
+                as={`reti/${rete.slug}`}
+                prefetch={false}
+              >
+                <Anchor>
+                  <Image unsized src={`/img/reti/${rete.id}.webp`} />
+                </Anchor>
+              </Link>
 
-          <Grid.Container gap={2}>
-            {reti.map((rete) => (
-              <Grid key={rete.slug} sm={12} md={8} lg={6}>
-                <Card>
-                  <Link href="reti/[slug]" as={`reti/${rete.slug}`}>
-                    <Anchor>
-                      <Image unsized src={`/img/reti/${rete.id}.webp`} />
-                    </Anchor>
-                  </Link>
-
-                  <Text h3 style={{ marginBottom: ".5rem" }}>
-                    {rete.nome}
-                  </Text>
-                  {/* <span>Area geografica : {rete.area_geografica}</span> */}
-                  <Text>{wordSplit(rete.descrizione, 15)}</Text>
-                  {/* <a href={rete.sito_web} /> */}
-                  <Card.Footer>
-                    <Link href="reti/[slug]" as={`reti/${rete.slug}`}>
-                      <Anchor block>Scopri la rete</Anchor>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </Grid>
-            ))}
-          </Grid.Container>
-        </Col>
-      </Row>
+              <Text h3 style={{ marginBottom: ".5rem" }}>
+                {rete.nome}
+              </Text>
+              {/* <span>Area geografica : {rete.area_geografica}</span> */}
+              <Text>{wordSplit(rete.descrizione, 15)}</Text>
+              {/* <a href={rete.sito_web} /> */}
+              <Card.Footer>
+                <Link
+                  href="reti/[slug]"
+                  as={`reti/${rete.slug}`}
+                  prefetch={false}
+                >
+                  <Anchor block>Scopri la rete</Anchor>
+                </Link>
+              </Card.Footer>
+            </Card>
+          </Grid>
+        ))}
+      </Grid.Container>
     </Page>
   );
 }

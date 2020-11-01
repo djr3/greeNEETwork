@@ -61,7 +61,14 @@ export default function AddStory({ categorie }) {
   }, [isSubmitted]);
 
   return (
-    <Page id="newPlace">
+    <Page
+      id="newStory"
+      metaTags={{
+        title: "Scrivi una Storia | greeNEETwork",
+        description:
+          "Raccontaci la storia di una realtà operante nel Parco Metropolitano delle Colline di Napoli",
+      }}
+    >
       <Grid.Container gap={2} justify="center">
         <Grid xs={22} md={20}>
           <Breadcrumbs />

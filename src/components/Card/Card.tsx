@@ -44,6 +44,7 @@ export default function DynamicCard({ data, type, mini = false }) {
 
       <Card.Footer>
         <Link
+          prefetch={false}
           href={isPlace ? "/esplora/[slug]" : "/storie/[slug]"}
           as={isPlace ? `/esplora/${data.slug}` : `/storie/${data.slug}`}
         >
