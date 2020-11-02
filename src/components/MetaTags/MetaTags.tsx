@@ -95,6 +95,7 @@ export const MetaTags: FunctionComponent<Props> = ({ tags, pwa = true }) => {
         {/* Progressive Web App */}
         {pwa && (
           <>
+            <link rel="manifest" href="/manifest.json" />
             <meta name="application-name" content="greeNEETwork" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta
@@ -102,8 +103,11 @@ export const MetaTags: FunctionComponent<Props> = ({ tags, pwa = true }) => {
               content="default"
             />
             <meta name="apple-mobile-web-app-title" content="greeNEETwork" />
+
             <meta name="format-detection" content="telephone=no" />
+
             <meta name="mobile-web-app-capable" content="yes" />
+
             <meta
               name="msapplication-config"
               content="/static/icons/browserconfig.xml"
