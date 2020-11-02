@@ -29,6 +29,8 @@ export default function Section1() {
         <Slider
           // id="homeSlider"
           images={images}
+          height={632}
+          width={1024}
           // media={images.map((image) => ({ source: image }))}
         />
       </div>
