@@ -87,7 +87,7 @@ export default function Home() {
               territorio; recuperare ossigeno, cibo di qualità, senso di
               comunità, spazio vitale, benessere; costruire conoscenze,
               opportunità sostenibili di lavoro, turismo e svago.
-              <a className="l1 l1--big" href="/about">
+              <a className="l1 l1--big" href="/esplora">
                 <span>Esplora i luoghi sulla mappa</span>
               </a>
             </Text>

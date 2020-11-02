@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { TweenMax, Quint, Quart } from "gsap";
 // import { motion } from "framer-motion";
 import cn from "classnames";
@@ -213,7 +214,12 @@ const Menu = () => {
       </MenuItem>
       <MenuItem className={styles.Item__3} refs={menuItems[2]} direction="bt">
         <div>
-          <img src={`/img/logo-t.png`} alt="Logo greeNEETwork" />
+          <Image
+            src={`/img/logo-t.png`}
+            alt="Logo greeNEETwork"
+            height={56}
+            width={125}
+          />
         </div>
         <div
           style={{
@@ -222,19 +228,31 @@ const Menu = () => {
             alignContent: "center",
           }}
         >
-          <img
+          <Image
             src={`/img/cdm${isDark}.svg`}
             alt="Logo Consiglio dei Ministri"
+            height={56}
+            width={56}
           />
           <a href="http://www.anci.it" target="_blank" rel="noreferrer">
-            <img src={`/img/anci${isDark}.png`} alt="Logo ANCI" />
+            <Image
+              src={`/img/anci${isDark}.png`}
+              alt="Logo ANCI"
+              height={56}
+              width={56}
+            />
           </a>
           <a
             href="https://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/26080"
             target="_blank"
             rel="noreferrer"
           >
-            <img src={`/img/comune${isDark}.png`} alt="Logo Comune di Napoli" />
+            <Image
+              src={`/img/comune${isDark}.png`}
+              alt="Logo Comune di Napoli"
+              height={56}
+              width={56}
+            />
           </a>
         </div>
         <p>
