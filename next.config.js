@@ -1,5 +1,5 @@
 const withPWA = require("next-pwa");
-const runtimeCaching = require("./utils/cache");
+const runtimeCaching = require("./runtimeCache");
 
 module.exports = withPWA({
   env: {

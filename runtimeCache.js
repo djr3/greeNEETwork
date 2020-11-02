@@ -1,4 +1,4 @@
-export default [
+module.exports = [
   // if you are customizing your runtime cache rules, please note that the
   // first item in the runtime cache configuration array MUST be "start-url"
   {
@@ -39,7 +39,7 @@ export default [
     },
   },
   {
-    urlPattern: /^img\/\/\.(?:jpg|jpeg|svg|png)$/i,
+    urlPattern: /\/img\/.*$/i,
     handler: "CacheFirst",
     options: {
       cacheName: "graphic-image-assets",
