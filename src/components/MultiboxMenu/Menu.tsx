@@ -201,7 +201,13 @@ const Menu = () => {
             styles.Label__vert
           )}
         >
-          made by &nbsp;&nbsp;<a href="https://www.jr3.it">Danilo JR3 Panaro</a>
+          made by &nbsp;&nbsp;
+          <a
+            aria-label="Danilo JR3 Panaro - Web Developer"
+            href="https://www.jr3.it"
+          >
+            Danilo JR3 Panaro
+          </a>
         </p>
       </MenuItem>
       <MenuItem className={styles.Item__2} refs={menuItems[1]} direction="lr">
@@ -234,7 +240,12 @@ const Menu = () => {
             height={56}
             width={56}
           />
-          <a href="http://www.anci.it" target="_blank" rel="noreferrer">
+          <a
+            aria-label="Associazione Nazionale Comuni Italiani"
+            href="http://www.anci.it"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image
               src={`/img/anci${isDark}.png`}
               alt="Logo ANCI"
@@ -243,6 +254,7 @@ const Menu = () => {
             />
           </a>
           <a
+            aria-label="Comune di Napol"
             href="https://www.comune.napoli.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/26080"
             target="_blank"
             rel="noreferrer"
