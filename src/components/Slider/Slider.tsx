@@ -27,9 +27,9 @@ export const Slider = ({ id, images, height, width, ...rest }: SliderProps) => {
           // data-src={pic}
         >
           {height && width ? (
-            <Image key={"img" + idx} src={pic} height={height} width={width} />
+            <Image src={pic} height={height} width={width} />
           ) : (
-            <Image key={"img" + idx} src={pic} unsized />
+            <Image src={pic} unsized />
           )}
         </div>
       ))}
