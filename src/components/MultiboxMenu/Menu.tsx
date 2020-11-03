@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
+// import img from "next/img";
 import { TweenMax, Quint, Quart } from "gsap";
 // import { motion } from "framer-motion";
 import cn from "classnames";
@@ -220,7 +220,7 @@ const Menu = () => {
       </MenuItem>
       <MenuItem className={styles.Item__3} refs={menuItems[2]} direction="bt">
         <div>
-          <Image
+          <img
             src={`/img/logo-t.png`}
             alt="Logo greeNEETwork"
             height={56}
@@ -234,7 +234,7 @@ const Menu = () => {
             alignContent: "center",
           }}
         >
-          <Image
+          <img
             src={`/img/cdm${isDark}.svg`}
             alt="Logo Consiglio dei Ministri"
             height={56}
@@ -246,7 +246,7 @@ const Menu = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <Image
+            <img
               src={`/img/anci${isDark}.png`}
               alt="Logo ANCI"
               height={56}
@@ -259,7 +259,7 @@ const Menu = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <Image
+            <img
               src={`/img/comune${isDark}.png`}
               alt="Logo Comune di Napoli"
               height={56}

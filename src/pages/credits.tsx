@@ -19,11 +19,7 @@ export default function Credits() {
       }}
     >
       <Grid.Container justify="center">
-        <Grid
-          xs={22}
-          md={20}
-          style={{ marginTop: "1rem", marginBottom: "1rem" }}
-        >
+        <Grid xs={22} md={20} style={{ marginTop: "1rem" }}>
           <Breadcrumbs />
 
           <Text h1>Credits</Text>
@@ -62,7 +58,7 @@ export default function Credits() {
             territorio.
           </p>
         </Grid>
-        <Grid xs={24} style={{ marginTop: "1rem" }}>
+        <Grid xs={22} md={20} style={{ marginTop: "1rem" }}>
           <Text h4>Mappatura Luoghi e Reti Attive</Text>
           <ul>
             <li>
@@ -71,7 +67,7 @@ export default function Credits() {
             </li>
           </ul>
         </Grid>
-        <Grid xs={24} md={12} style={{ marginTop: "1rem" }}>
+        <Grid xs={22} md={10} style={{ marginTop: "1rem" }}>
           <Text h4>Digitalizzazione Itinerari</Text>
           <ul>
             <li>Maria Cerreta</li>
@@ -90,7 +86,7 @@ export default function Credits() {
             Federico II
           </p>
         </Grid>
-        <Grid xs={24} md={12} style={{ marginTop: "1rem" }}>
+        <Grid xs={22} md={10} style={{ marginTop: "1rem" }}>
           <Text h4>Esplorazione e restituzione Itinerari</Text>
           <ul>
             <li>Evelina Pessetti</li>
@@ -108,7 +104,7 @@ export default function Credits() {
             <li>Vicky Solli</li>
           </ul>
         </Grid>
-        <Grid xs={24} md={12} style={{ marginTop: "1rem" }}>
+        <Grid xs={22} md={10} style={{ marginTop: "1rem" }}>
           <Text h4>Documentario URBANORURALE</Text>
           <ul>
             <li>
@@ -133,7 +129,7 @@ export default function Credits() {
             </li>
           </ul>
         </Grid>
-        <Grid xs={24} md={12} style={{ marginTop: "1rem" }}>
+        <Grid xs={22} md={10} style={{ marginTop: "1rem" }}>
           <Text h4>
             Design &amp; sviluppo architettura informatica, web application e UI
           </Text>
@@ -149,13 +145,13 @@ export default function Credits() {
             </li>
           </ul>
         </Grid>
-        <Grid xs={24} style={{ marginTop: "1rem" }}>
+        <Grid xs={22} md={20} style={{ marginTop: "1rem" }}>
           <Text h4>Principali fonti di ricerca e bibliografiche</Text>
           <ul>
             <li>
               Parco Metropolitano delle Colline di Napoli, “Piano di gestione
               partecipata per lo sviluppo sostenibile e per la valorizzazione
-              della biodiversità”, D.P.R. 120/2003
+              della biodiversità”, D.P.R. 100/2003
             </li>
             <li>
               Parco Metropolitano delle Colline di Napoli, “La proposta di piano
@@ -174,7 +170,7 @@ export default function Credits() {
             </li>
             <li>
               Progetto “Agritetture 2.0_Sustainability of urban farming in the
-              metropolitan area of Naples” Avv. MIUR n. 391/RIC. 5 luglio 2012
+              metropolitan area of Naples” Avv. MIUR n. 391/RIC. 5 luglio 2010
               Smart cities and communities and social innovation
             </li>
           </ul>

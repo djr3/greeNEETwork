@@ -46,17 +46,7 @@ export default function Home() {
             </Text>
           </BlockReveal>
         </Grid>
-        {/* <Grid
-          xs={22}
-          md={20}
-          lg={18}
-          style={{
-            margin: "8rem 0",
-            // padding: "0 8rem"
-          }}
-        >
-          <Section2 />
-        </Grid> */}
+
         <Grid
           xs={22}
           md={20}
@@ -65,6 +55,7 @@ export default function Home() {
         >
           <Section1 />
         </Grid>
+
         <Grid
           xs={20}
           md={18}
@@ -75,7 +66,7 @@ export default function Home() {
           }}
         >
           <BlockReveal>
-            <Text h2>Un&apos;opportunità per la città e i suoi abitanti</Text>
+            <Text h3>Un&apos;opportunità per la città e i suoi abitanti</Text>
             <Text style={{ fontSize: "1.25rem", textAlign: "justify" }}>
               Un’area poco conosciuta dai cittadini, interessata da fenomeni di
               incuria ed abbandono, eppure popolata da aziende agricole,
@@ -95,15 +86,17 @@ export default function Home() {
         </Grid>
 
         {/* <Row justify="center">
-        <Col span={20}>
-          <Text style={{ fontSize: "1.5rem" }}>
-            Luoghi di interesse, itinerari, reti tra operatori del territorio e
-            storie disegnano una mappa - non esaustiva - per conoscere e
-            promuovere un Parco tutto da scoprire
-          </Text>
-        </Col>
-      </Row> */}
+              <Col span={20}>
+                <Text style={{ fontSize: "1.5rem" }}>
+                  Luoghi di interesse, itinerari, reti tra operatori del territorio e
+                  storie disegnano una mappa - non esaustiva - per conoscere e
+                  promuovere un Parco tutto da scoprire
+                </Text>
+              </Col>
+            </Row> 
+        */}
       </Grid.Container>
+
       <Grid.Container
         justify="center"
         style={{

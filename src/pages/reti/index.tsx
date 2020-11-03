@@ -42,59 +42,61 @@ export default function Reti({ reti }) {
           "Reti territoriali attive nella zona del Parco Metropolitano delle Colline di Napoli",
       }}
     >
-      <Grid.Container gap={2} justify="center">
-        <Grid>
-          <div style={{ marginBottom: "1.5rem", justifyContent: "center" }}>
-            <Breadcrumbs />
-            <hgroup style={{ marginBottom: "1rem" }}>
-              <Text h1>Reti Territoriali</Text>
-              <Text
-                h5
-                style={{
-                  fontWeight: 400,
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                }}
-              >
-                Reti locali, nazionali e internazionali attive nel Parco
-                Metropolitano delle Colline di Napoli
-              </Text>
-            </hgroup>
-          </div>
+      <Grid.Container justify="center">
+        <Grid xs={22} sm={20}>
+          <Breadcrumbs />
+          <hgroup>
+            <Text h1 style={{ lineHeight: 1.125 }}>
+              Reti Territoriali
+            </Text>
+            <Text
+              h5
+              style={{
+                fontWeight: 400,
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              Reti locali, nazionali e internazionali attive nel Parco
+              Metropolitano delle Colline di Napoli
+            </Text>
+          </hgroup>
 
-          <Divider y={4} />
+          <Divider y={3} />
+          <Grid.Container gap={2}>
+            {reti.map((rete) => (
+              <Grid key={rete.slug} xs={24} sm={12} md={8} lg={6}>
+                <Card>
+                  <Link
+                    href="reti/[slug]"
+                    as={`reti/${rete.slug}`}
+                    prefetch={false}
+                  >
+                    <Anchor>
+                      <Image unsized src={`/img/reti/${rete.id}.webp`} />
+                    </Anchor>
+                  </Link>
+
+                  <Text h3 style={{ marginBottom: ".5rem" }}>
+                    {rete.nome}
+                  </Text>
+                  {/* <span>Area geografica : {rete.area_geografica}</span> */}
+                  <Text>{wordSplit(rete.descrizione, 15)}</Text>
+                  {/* <a href={rete.sito_web} /> */}
+                  <Card.Footer>
+                    <Link
+                      href="reti/[slug]"
+                      as={`reti/${rete.slug}`}
+                      prefetch={false}
+                    >
+                      <Anchor block>Scopri la rete</Anchor>
+                    </Link>
+                  </Card.Footer>
+                </Card>
+              </Grid>
+            ))}
+          </Grid.Container>
         </Grid>
-        {reti.map((rete) => (
-          <Grid key={rete.slug} sm={12} md={8} lg={6}>
-            <Card>
-              <Link
-                href="reti/[slug]"
-                as={`reti/${rete.slug}`}
-                prefetch={false}
-              >
-                <Anchor>
-                  <Image unsized src={`/img/reti/${rete.id}.webp`} />
-                </Anchor>
-              </Link>
-
-              <Text h3 style={{ marginBottom: ".5rem" }}>
-                {rete.nome}
-              </Text>
-              {/* <span>Area geografica : {rete.area_geografica}</span> */}
-              <Text>{wordSplit(rete.descrizione, 15)}</Text>
-              {/* <a href={rete.sito_web} /> */}
-              <Card.Footer>
-                <Link
-                  href="reti/[slug]"
-                  as={`reti/${rete.slug}`}
-                  prefetch={false}
-                >
-                  <Anchor block>Scopri la rete</Anchor>
-                </Link>
-              </Card.Footer>
-            </Card>
-          </Grid>
-        ))}
       </Grid.Container>
     </Page>
   );

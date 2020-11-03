@@ -56,7 +56,7 @@ module.exports = [
       cacheName: "static-image-assets",
       expiration: {
         maxEntries: 64,
-        maxAgeSeconds: 24 * 60 * 60, // 24 hours
+        maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
       },
     },
   },
