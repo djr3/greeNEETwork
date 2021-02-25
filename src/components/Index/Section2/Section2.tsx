@@ -22,7 +22,7 @@ export default function Section2() {
           suggeriscono soluzioni per un nuovo equilibrio tra uomo e natura,
           descrivono un ventaglio di alternative e proposte, di attività e
           servizi per tutti, a due passi dal centro della città.
-          <a className="l1 l1--big" href="/storie">
+          <a aria-label="Leggi le Storie" className="l1 l1--big" href="/storie">
             <span>Leggi le storie</span>
           </a>
         </Text>

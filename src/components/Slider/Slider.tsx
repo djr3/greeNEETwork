@@ -9,9 +9,11 @@ import AwSliderStyles from "./Slider.module.scss";
 interface SliderProps extends AwesomeSliderProps {
   id?: string;
   images: string[];
+  height?: number;
+  width?: number;
 }
 
-export const Slider = ({ id, images, ...rest }: SliderProps) => {
+export const Slider = ({ id, images, height, width, ...rest }: SliderProps) => {
   const pictures = images.map((image) => {
     if (!image) return;
     if (image.includes("http") || image.startsWith("/")) return image;
@@ -24,7 +26,11 @@ export const Slider = ({ id, images, ...rest }: SliderProps) => {
           key={"img_" + idx}
           // data-src={pic}
         >
-          <Image src={pic} width={820} height={506} />
+          {height && width ? (
+            <Image src={pic} height={height} width={width} />
+          ) : (
+            <Image src={pic} unsized />
+          )}
         </div>
       ))}
     </AwSlider>

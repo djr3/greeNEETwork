@@ -102,6 +102,7 @@ export default function Rete({ rete }) {
             {rete.luoghi.map((luogo) => (
               <Grid
                 key={luogo.id}
+                xs={24}
                 sm={12}
                 lg={8}
                 // component="article"

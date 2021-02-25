@@ -5,7 +5,7 @@ import { directus } from "core/cli";
 import Page from "containers/Main";
 
 // Page Components
-import { Row, Col, Grid, Text } from "@geist-ui/react";
+import { Grid, Text, Divider } from "@geist-ui/react";
 import Breadcrumbs from "components/Breadcrumbs";
 import Card from "components/Card";
 
@@ -31,11 +31,13 @@ export default function Storie({ posts }) {
         description: "Racconti dal Parco Metropolitano delle Colline di Napoli",
       }}
     >
-      <Row justify="center">
-        <Col span={20}>
+      <Grid.Container justify="center">
+        <Grid xs={22} sm={20}>
           <Breadcrumbs />
           <hgroup>
-            <Text h1>Storie</Text>
+            <Text h1 style={{ lineHeight: 1.125 }}>
+              Storie
+            </Text>
             <Text
               h5
               style={{
@@ -48,6 +50,8 @@ export default function Storie({ posts }) {
             </Text>
           </hgroup>
 
+          <Divider y={3} />
+
           <Grid.Container gap={2}>
             {posts.map((post) => (
               <Grid key={post.id} xs={24} sm={12} lg={8} xl={6}>
@@ -55,8 +59,8 @@ export default function Storie({ posts }) {
               </Grid>
             ))}
           </Grid.Container>
-        </Col>
-      </Row>
+        </Grid>
+      </Grid.Container>
     </Page>
   );
 }

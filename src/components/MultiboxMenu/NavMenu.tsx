@@ -13,7 +13,11 @@ const NavMenu = ({ navMenu, refs }) => {
           as={item.link}
           prefetch={false}
         >
-          <a className={styles.MainItem} ref={refs.navMenuItems[idx]}>
+          <a
+            aria-label={item.name}
+            className={styles.MainItem}
+            ref={refs.navMenuItems[idx]}
+          >
             {item.name}
             <span>{item.description}</span>
           </a>

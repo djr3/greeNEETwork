@@ -18,6 +18,7 @@ export function Contacts({ place }) {
       return (
         <li style={{ marginInlineEnd: "1.5rem", listStyle: "none" }}>
           <a
+            aria-label={IconName}
             href={formatLink(obj[key])}
             target="_blank"
             rel="noreferrer nofollow"

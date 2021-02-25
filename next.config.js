@@ -1,4 +1,5 @@
 const withPWA = require("next-pwa");
+const runtimeCaching = require("./runtimeCache");
 
 module.exports = withPWA({
   env: {
@@ -9,6 +10,7 @@ module.exports = withPWA({
     dest: "public",
     // An array of glob pattern strings to exclude files in the public folder from being precached.
     publicExcludes: ["!video/UrbanoRurale_720p.webm"],
+    runtimeCaching,
   },
   images: {
     domains: ["api.agritettura.org"],
