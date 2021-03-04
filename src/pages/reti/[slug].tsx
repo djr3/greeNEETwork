@@ -72,7 +72,7 @@ export default function Rete({ rete }) {
             unsized
             alt={`Logo rete`}
             src={`/img/reti/${rete.id}.webp`}
-            style={{ maxHeight: "280px", width: "auto" }}
+            // style={{ maxHeight: "280px", width: "auto" }}
           />
         </Grid>
         <Grid xs={22} sm={14}>

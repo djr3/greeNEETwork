@@ -47,3 +47,42 @@ $underlineHeight: 5%
   p
     line-height: 1.25
     margin: .25rem 0
+
+.top
+  display: flex
+  align-items: center
+  align-content: center
+
+  &_item
+    display: flex
+    flex-direction: column
+    justify-content: center
+    height: 300px
+    width: 100%
+    padding: 2rem !important
+    transition: all 0.3s
+    background-color: #070707
+    color: white
+    border: 1px solid #7771
+    &:hover
+      color: black
+      background-color: #00b388
+      background-color: #799d43
+      cursor: pointer
+
+    h4
+      margin-top: .5rem
+      font-size: 1.25em
+
+.bottom
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-top: 2rem
+
+  &_nav
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    margin: 2.5rem 0

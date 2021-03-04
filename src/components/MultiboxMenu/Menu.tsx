@@ -300,7 +300,7 @@ const Menu = () => {
         className={styles.Button}
         aria-label="Apri Menu Navigazione"
       >
-        <Icon name={isOpen ? "X" : "Menu"} color="#666" />
+        <Icon name={isOpen ? "X" : "Menu"} color="#808080" />
       </Button>
     </div>
   );

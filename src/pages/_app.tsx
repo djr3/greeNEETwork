@@ -1,9 +1,9 @@
 // System Elements
 import { Page } from "@types";
-import Router from "next/router";
+// import Router from "next/router";
 
 // Data & Constants
-// import { defaultMetaTags } from "../core/constants";
+// import { defaultMetaTags } from "core/constants";
 
 // Global Components
 import { Vertical } from "layouts";
@@ -15,6 +15,7 @@ import { AnimatePresence } from "framer-motion";
 
 // App Styles
 import "styles/app.scss";
+import "inter-ui/Inter (web)/inter.css";
 
 /**
  * Application, Error & User Tracking Systems
@@ -41,15 +42,9 @@ function greeNEETwork({ Component, pageProps, router }) {
       );
 
   return (
-    <>
-      {/* <GeistProvider>
-      <CssBaseline /> */}
-      {/* <MetaTags tags={defaultMetaTags} /> */}
-      <AnimatePresence exitBeforeEnter>
-        {getLayout(<Component {...pageProps} key={router.route} />)}
-      </AnimatePresence>
-      {/* </GeistProvider> */}
-    </>
+    <AnimatePresence exitBeforeEnter>
+      {getLayout(<Component {...pageProps} key={router.route} />)}
+    </AnimatePresence>
   );
 }
 export default greeNEETwork;

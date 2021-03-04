@@ -1,7 +1,7 @@
 // AwSlider React components
 import AwSlider, { AwesomeSliderProps } from "react-awesome-slider";
 // import { Image } from "@geist-ui/react";
-import Image from "next/image";
+// import Image from "next/image";
 
 // AwSlider styles
 import AwSliderStyles from "./Slider.module.scss";
@@ -19,18 +19,16 @@ export const Slider = ({ id, images, height, width, ...rest }: SliderProps) => {
     if (image.includes("http") || image.startsWith("/")) return image;
     return `https://api.agritettura.org/greeneetwork/assets/${image}?key=slider`;
   });
+  // console.log("Pictures : ", pictures);
   return (
     <AwSlider key={id} cssModule={AwSliderStyles} bullets={false} {...rest}>
       {pictures.map((pic, idx) => (
-        <div
-          key={"img_" + idx}
-          // data-src={pic}
-        >
-          {height && width ? (
+        <div key={"img_" + idx} data-src={pic}>
+          {/* {height && width ? (
             <Image src={pic} height={height} width={width} />
           ) : (
             <Image src={pic} unsized />
-          )}
+          )} */}
         </div>
       ))}
     </AwSlider>

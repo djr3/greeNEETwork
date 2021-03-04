@@ -3,7 +3,8 @@ import Link from "next/link";
 
 // Container stylesheets
 import cn from "classnames";
-import { Row, Col, Grid, Text, Divider, Link as Anchor } from "@geist-ui/react";
+import { Row, Col, Text, Link as Anchor } from "@geist-ui/react";
+
 import styles from "./Footer.module.sass";
 
 type Props = {
@@ -19,27 +20,38 @@ const Footer: React.FC<Props> = ({ bg = "dark", className, ...rest }) => {
       className={cn(styles.main, className)}
       {...rest}
     >
-      <Col span={20}>
-        <Divider />
-        <Grid.Container>
-          <Grid xs={24} sm={8}>
-            <Text h5>Associazione Agritettura2.0</Text>
-            <Text>&copy; 2019. C.F. 95207960634</Text>
-          </Grid>
-          <Grid xs={24} sm={8}>
-            <Text h5>Contatti</Text>
-            <Text>hello@agritettura.org</Text>
-          </Grid>
-          <Grid xs={24} sm={8}>
-            <Text h5>Legal</Text>
-            <Link href="/privacy">
-              <a className={styles.l1}>Privacy</a>
-            </Link>
-            <Link href="/cookies">
-              <a className={styles.l1}>Cookies</a>
-            </Link>
-          </Grid>
-        </Grid.Container>
+      <Col span={20} className={styles.bottom}>
+        <img src="/img/a_ll_fluo.svg" width={200} />
+
+        <nav className={styles.bottom_nav}>
+          <Link href="/">
+            <Anchor className={styles.l1}>Home</Anchor>
+          </Link>
+          <Link href="/esplora">
+            <Anchor className={styles.l1}>Luoghi</Anchor>
+          </Link>
+          <Link href="/itinerari">
+            <Anchor className={styles.l1}>Itinerari</Anchor>
+          </Link>
+          <Link href="/storie">
+            <Anchor className={styles.l1}>Storie</Anchor>
+          </Link>
+          <Link href="/reti">
+            <Anchor className={styles.l1}>Reti</Anchor>
+          </Link>
+          <Link href="/credits">
+            <Anchor className={styles.l1}>Credits</Anchor>
+          </Link>
+        </nav>
+        <Text>&copy; 2019. Associazione Agritettura2.0. C.F. 95207960634</Text>
+        <div>
+          <Link href="/privacy">
+            <a className={styles.l1}>Privacy</a>
+          </Link>
+          <Link href="/cookies">
+            <a className={styles.l1}>Cookies</a>
+          </Link>
+        </div>
       </Col>
     </Row>
   );

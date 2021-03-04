@@ -10,6 +10,7 @@ export default function Section1() {
   for (let index = 0; index < 10; index++) {
     images.push(`/img/slider/2.${index + 1}.jpg`);
   }
+  console.log("Images : ", images);
 
   return (
     <div className={styles.grid}>

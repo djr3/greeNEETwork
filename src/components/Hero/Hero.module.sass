@@ -1,0 +1,83 @@
+.main
+  width: 100%
+  min-height: 100vh
+  color: #fff
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  text-align: center
+  @media screen and (min-width: 620px)
+    align-items: flex-start
+    text-align: left
+  // @media screen and (min-width: 900px)
+  //   min-height: 68vh
+  //   padding-top: 1rem
+
+  .description
+    width: min-content
+    min-width: 81vw
+    // max-width: 100%
+    margin-bottom: 2rem
+    font-size: clamp(1rem, 2.5vw, 1.75rem)
+    @media screen and (min-width: 340px)
+      min-width: 62vw
+
+  .title
+    font-size: clamp(1.75rem, 9vw, 3.5rem)
+    margin-top: 2.5rem
+    line-height: 1
+    height: min-content
+    width: min-content
+    text-transform: uppercase
+    font-weight: 700
+    color: white
+    letter-spacing: 1px
+    // @media screen and (min-width: 650px)
+    //   font-size: 4vw
+    //   padding: 1.5rem
+    @media screen and (min-width: 900px)
+      margin-top: 4rem
+    //   font-size: 3vw
+    // @media screen and (min-width: 1280px)
+    //   font-size: 3vw
+
+@keyframes sdFadeInDown
+  0%
+    opacity: 0
+    transform: translateY(-10px)
+  100%
+    opacity: 1
+    transform: translateY(5px)
+
+.scrolldown
+  display: none
+  position: relative
+  // bottom: 2rem
+  margin-top: 3rem
+  margin-bottom: 2rem
+  left: calc(50% - 1rem)
+  left: 0
+  width: 2rem
+  height: 3.5rem
+  z-index: 10
+  pointer-events: none
+  @media screen and (min-width: 680px)
+    display: block
+  &_graphic
+    width: 2rem
+    height: 3.5rem
+    border-radius: 10rem
+    border: .15rem solid white
+    animation: sdFadeInDown 1s 2s ease both
+    &:before
+      content: ""
+      width: 0
+      height: 0
+      display: block
+      border: .15rem solid white
+      border-radius: 10rem
+      position: absolute
+      left: calc(50% - .15rem)
+      top: .525rem
+      animation: sdFadeInDown 2s ease both infinite

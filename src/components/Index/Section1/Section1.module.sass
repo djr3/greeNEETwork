@@ -1,31 +1,45 @@
 .grid
-  display: grid
-  grid-template-columns: repeat(5, 1fr)
-  grid-template-rows: 100% repeat(3, 1fr)
+  // grid-template-rows: repeat(3, 1fr)
   gap: 0px 0px
   min-height: 68vh
+  display: flex
+  flex-direction: column-reverse
+  @media screen and (min-width: 620px)
+    display: grid
+    grid-template-columns: repeat(5, 1fr)
+    grid-template-rows: 1fr 4rem 4rem 1fr 
 
   .text
     background: #ffffff
     z-index: 20
-    grid-area: 2 / 1 / 4 / 6
+    grid-area: 4 / 1 / 4 / 6
     height: min-content
-    align-self: flex-end
+    align-self: flex-start
+    padding: 1.25rem
     @media screen and (min-width: 620px)
       padding: 1rem
-      grid-area: 2 / 1 / 4 / 4
+      grid-area: 3 / 1 / 5 / 5
     @media screen and (min-width: 900px)
-      grid-area: 2 / 1 / 4 / 3
+      grid-area: 3 / 1 / 5 / 4
 
     h3
-      line-height: 1.25
-      font-size: 2rem
+      font-size: 2.5rem
+      font-weight: 700
+      // @media screen and (min-width: 620px)
+      //   font-size: 1.75rem
     
     p
       text-align: justify
-      font-size: 1.125rem
+      // font-size: 1.25rem
+      line-height: 1.25
+      letter-spacing: .5px
       @media screen and (min-width: 620px)
-        font-size: 1.25rem
+        // font-weight: 500
+        font-size: 1.2rem
 
   .media
-    grid-area: 1 / 1 / 5 / 6
+    grid-area: 1 / 1 / 4 / 6
+    @media screen and (min-width: 620px)
+      grid-area: 1 / 1 / 4 / 6
+    @media screen and (min-width: 900px)
+      grid-area: 1 / 2 / 4 / 6

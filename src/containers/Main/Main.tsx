@@ -5,6 +5,7 @@ import React, { ReactNode, CSSProperties } from "react";
 import { defaultMetaTags } from "core/constants";
 import { MetaTags } from "components/MetaTags";
 import type { TMetaTags } from "@types";
+import cn from "classnames";
 
 /**
  * PAGE Layout // Inversion of Control
@@ -34,7 +35,7 @@ const PageMain: React.FC<MainProps> = (props) => {
       // initial={{ opacity: 0 }}
       // animate={{ opacity: 1 }}
       // exit={{ opacity: 0 }}
-      className={styles.main}
+      className={cn(styles.main, className)}
       {...rest}
     >
       <MetaTags tags={{ ...defaultMetaTags, ...metaTags }} />

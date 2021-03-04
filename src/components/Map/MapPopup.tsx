@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import useSWR from "swr";
+// import useSWR from "swr";
 
 import { Popup } from "react-map-gl";
-import { Text, Button, Link as Anchor, useMediaQuery } from "@geist-ui/react";
-import { ArrowRight } from "@geist-ui/react-icons";
+import { Text, Link as Anchor, useMediaQuery } from "@geist-ui/react";
+// import { ArrowRight } from "@geist-ui/react-icons";
 
 import { Contacts } from "./Contacts";
 import { getCoordinates } from "./utils";
@@ -14,19 +14,25 @@ export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
   place,
   onClose,
 }) => {
+  let address = null;
   let center = getCoordinates(place.geo_json);
 
   const isXS = useMediaQuery("mobile");
 
   useEffect(() => {
     center = getCoordinates(place.geo_json);
+    if (center.latitude && center.longitude) {
+      address = fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.latitude}&lon=${center.longitude}&zoom=18&accept-language=it`
+      ).then((r) => r.json());
+    }
   }, [place]);
 
-  const { data: address } = useSWR(
-    center.latitude && center.longitude
-      ? `https://nominatim.openstreetmap.org/reverse?format=json&lat=${center.latitude}&lon=${center.longitude}&zoom=18&accept-language=it`
-      : null
-  );
+  // const { data: address } = useSWR(
+  //   center.latitude && center.longitude
+  //     ?
+  //     : null
+  // );
 
   useEffect(() => {
     if (address)

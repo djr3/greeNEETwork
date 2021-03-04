@@ -23,7 +23,7 @@ import {
 
 export const Vertical = (props) => {
   return (
-    <GeistProvider theme={GNW_Theme}>
+    <GeistProvider themes={[GNW_Theme]} themeType="gnw_light">
       <CssBaseline />
 
       <Header
