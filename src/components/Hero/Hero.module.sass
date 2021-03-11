@@ -1,31 +1,18 @@
 .main
-  width: 100%
-  min-height: 100vh
   color: #fff
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  text-align: center
-  @media screen and (min-width: 620px)
-    align-items: flex-start
-    text-align: left
-  // @media screen and (min-width: 900px)
-  //   min-height: 68vh
-  //   padding-top: 1rem
-
-  .description
-    width: min-content
-    min-width: 81vw
-    // max-width: 100%
-    margin-bottom: 2rem
-    font-size: clamp(1rem, 2.5vw, 1.75rem)
-    @media screen and (min-width: 340px)
-      min-width: 62vw
+  min-height: calc(62vh - 4rem)
+  // margin-top: 4rem
+  padding-top: 4rem
+  margin-bottom: 2rem
+  @media screen and (min-width: 650px)
+  //   align-items: flex-start
+  @media screen and (min-width: 900px)
+    max-width: 38vw
+    padding-top: 1rem
 
   .title
     font-size: clamp(1.75rem, 9vw, 3.5rem)
-    margin-top: 2.5rem
+    margin-top: 1.5rem
     line-height: 1
     height: min-content
     width: min-content
@@ -33,14 +20,50 @@
     font-weight: 700
     color: white
     letter-spacing: 1px
-    // @media screen and (min-width: 650px)
+    @media screen and (min-width: 650px)
     //   font-size: 4vw
     //   padding: 1.5rem
     @media screen and (min-width: 900px)
-      margin-top: 4rem
+      // margin-top: 4rem
     //   font-size: 3vw
-    // @media screen and (min-width: 1280px)
+    @media screen and (min-width: 1280px)
     //   font-size: 3vw
+
+  .description
+    font-size: clamp(1rem, 2.5vw, 1.5rem)
+    // font-weight: 300
+    line-height: 1.5
+    margin-right: 2rem
+    // @media screen and (min-width: 340px)
+    //   min-width: 62vw  
+
+  .c2a
+    display: flex
+    align-content: center
+    align-items: center
+
+.wrapper
+  // overflow: hidden
+  width: 100%
+  height: min-content
+  position: relative
+  padding-top: 56.25% // Ratio 100 / (1920 / 1080)
+  // margin-top: 4rem
+  @media screen and (min-width: 650px)
+  @media screen and (min-width: 900px)
+
+  .player
+    position: absolute
+    top: 0
+    left: 0
+    border: 0
+    background: url(/video/UrbanoRurale_thumb.jpg)
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    @media screen and (min-width: 900px)
+      top: 4rem
+    // box-shadow: 10px 10px 15px 5px rgba(128,128,128,0.3)
 
 @keyframes sdFadeInDown
   0%
@@ -51,19 +74,13 @@
     transform: translateY(5px)
 
 .scrolldown
-  display: none
-  position: relative
-  // bottom: 2rem
-  margin-top: 3rem
-  margin-bottom: 2rem
-  left: calc(50% - 1rem)
-  left: 0
+  display: block
+  margin-right: 2rem
   width: 2rem
   height: 3.5rem
   z-index: 10
   pointer-events: none
-  @media screen and (min-width: 680px)
-    display: block
+
   &_graphic
     width: 2rem
     height: 3.5rem

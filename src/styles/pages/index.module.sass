@@ -1,0 +1,111 @@
+.main
+  padding-bottom: 0 !important
+  margin-top: 0 !important
+  // background-color: #f4f4f4
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.85)), url(/img/parco_sat_green.jpg)
+  background-attachment: fixed
+  background-position: 0% 0%
+  background-repeat: no-repeat
+  background-size: cover
+
+  .hero
+    border-bottom-right-radius:8rem
+    border-bottom-left-radius: 8rem
+    flex-direction: column
+    height: 100vh
+    @media screen and (min-width: 650px)
+
+    @media screen and (min-width: 900px)
+      flex-direction: row
+      align-content: center
+      align-items: center
+
+  .section
+    margin-top: 6rem !important
+    margin-bottom: 6rem !important
+
+  .infoBox
+    position: relative
+    flex-direction: column
+    background: linear-gradient(to left, #dbe7c9 35%, #fff 35%)
+    &_inner
+      // min-height: 38vh
+      padding: 1rem
+      @media screen and (min-width: 768px)
+        padding: 1.75rem
+        max-width: 65%
+      @media screen and (min-width: 900px)
+        padding: 2rem
+        max-width: 65%
+  // & h3
+  //   line-height: 1.125
+
+    .heading
+      font-size: 2.5rem
+      font-weight: 700
+      line-height: 1.125
+
+    .textDisplay
+      font-size: 1.25rem
+      font-weight: 400
+      text-align: justify
+      // line-height: 1.75
+
+.sectionRound
+  // border-radius: 8rem
+  // background-color: white
+  min-height: 68vh
+
+  .galleryBox
+    // margin: 8rem 0
+    @media screen and (min-width: 650px)
+      padding: 0 2rem
+
+    // & div[class*="Section1_text_"]
+    //   background-color: #dbe7c9 !important
+
+.grid
+  // grid-template-rows: repeat(3, 1fr)
+  gap: 0px 0px
+  min-height: 68vh
+  display: flex
+  flex-direction: column-reverse
+  @media screen and (min-width: 650px)
+    display: grid
+    grid-template-columns: repeat(5, 1fr)
+    grid-template-rows: 1fr 4rem 4rem 1fr 
+
+  .textBox
+    background: #ffffff
+    z-index: 20
+    grid-area: 4 / 1 / 4 / 6
+    height: min-content
+    align-self: flex-start
+    padding: 1.25rem
+    @media screen and (min-width: 650px)
+      padding: 2rem
+      grid-area: 3 / 1 / 5 / 5
+    @media screen and (min-width: 900px)
+      grid-area: 3 / 1 / 5 / 4
+
+    // h3
+    //   font-size: 2.5rem
+    //   font-weight: 700
+    //   // @media screen and (min-width: 650px)
+    //   //   font-size: 1.75rem
+    
+    // p
+    //   text-align: justify
+    //   // font-size: 1.25rem
+    //   line-height: 1.25
+    //   letter-spacing: .5px
+    //   @media screen and (min-width: 650px)
+    //     // font-weight: 500
+    //     font-size: 1.2rem
+
+  .media
+    grid-area: 1 / 1 / 4 / 6
+    @media screen and (min-width: 650px)
+      grid-area: 1 / 1 / 4 / 6
+    @media screen and (min-width: 900px)
+      grid-area: 1 / 2 / 4 / 6

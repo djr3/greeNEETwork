@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { directus } from "core/cli";
-import { isProduction, makeMenu, getImageHashes } from "core/utils";
+import { isProduction, makeMenu, getImageHashes, imageUrls } from "core/utils";
 
 // Types
 import type { ILuogo } from "@types";
@@ -15,6 +15,7 @@ import Page from "containers/Main";
 // TODO : Images + SocialMenu + Address
 import Card from "components/Card";
 import Breadcrumbs from "components/Breadcrumbs";
+// import { Carousel } from "components/Carousel";
 import { Slider } from "components/Slider";
 import { DynamicMap, getCoordinates } from "components/Map";
 import {
@@ -154,10 +155,31 @@ export default function Luogo({ luogo, luoghi }) {
       <Row justify="center">
         <Col span={20}>
           <Grid.Container gap={3} justify="center">
-            {/* <Grid xs={24} style={{ height: "auto" }}>
-            </Grid> */}
-            <Grid xs={24} md={18}>
+            <Grid xs={24} md={18} direction="column">
               {galleria_immagini && (
+                // <Carousel
+                //   loop
+                //   margin={20}
+                //   autoWidth
+                //   center
+                //   lazyLoad
+                //   dots={false}
+                //   nav
+                //   items={1}
+                // >
+                //   {imageUrls(galleria_immagini).map((img, idx) => (
+                //       <img
+                //         key={img + idx}
+                //         src={img}
+                //         alt={"Immagine parco " + idx}
+                //         layout="fixed"
+                //         objectFit="fill"
+                //         width="712px"
+                //         height="400px"
+                //       />
+                //     ))
+                //   }
+                // </Carousel>
                 <Slider id={"slider_" + id} images={galleria_immagini} />
               )}
               <Divider y={4} />
@@ -188,7 +210,7 @@ export default function Luogo({ luogo, luoghi }) {
                 {/* <Text>Tratto da : {contenuto.split("Tratto da:")[1]}</Text> */}
               </div>
             </Grid>
-            <Grid xs={24} md={6}>
+            <Grid xs={24} md={6} direction="column">
               <div
                 style={{
                   marginBottom: "1rem",
@@ -305,7 +327,7 @@ export default function Luogo({ luogo, luoghi }) {
                   <Divider y={2} />
                 </>
               )}
-              {reti_territoriali && reti_territoriali.length > 0 && (
+              {reti_territoriali && (
                 <div style={{ display: "block" }}>
                   <Text h5>Reti territoriali di appartenenza :</Text>
 
@@ -327,10 +349,12 @@ export default function Luogo({ luogo, luoghi }) {
                         <Image
                           src={`/img/reti/${rete_territoriale.id}.webp`}
                           alt={rete_territoriale.nome}
-                          height={100}
-                          width={160}
+                          height={120}
+                          width={120}
                         />
-                        <Text h5>{rete_territoriale.nome}</Text>
+                        <Text h5 style={{ marginInline: ".5rem" }}>
+                          {rete_territoriale.nome}
+                        </Text>
                       </Anchor>
                     </Link>
                   ))}
@@ -338,7 +362,7 @@ export default function Luogo({ luogo, luoghi }) {
               )}
             </Grid>
             {luoghi && (
-              <Grid xs={24}>
+              <Grid xs={24} direction="column">
                 <Divider y={2} />
                 <Text h3>Luoghi collegati</Text>
                 <Divider y={2} />

@@ -19,7 +19,7 @@ export default function Privacy() {
       }}
     >
       <Grid.Container justify="center">
-        <Grid xs={22} md={20}>
+        <Grid xs={22} md={20} direction="column">
           <Breadcrumbs />
           <Text h1>Informativa sulla Privacy</Text>
           <section>
@@ -76,7 +76,7 @@ export default function Privacy() {
               Applicazione ha lo scopo di fornire il Servizio richiesto
               dall'Utente, oltre a qualsiasi altro scopo descritto nel presente
               documento e nella{" "}
-              <Link href="/cookies">
+              <Link prefetch={false} href="/cookies">
                 <Anchor>Politica sui Cookie</Anchor>
               </Link>
               , se disponibile.

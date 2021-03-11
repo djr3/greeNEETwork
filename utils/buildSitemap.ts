@@ -4,7 +4,7 @@ import fs from "fs";
 import path from "path";
 
 export async function buildSitemap() {
-  const hostname = "https://" + process.env.VERCEL_URL;
+  const hostname = "https://" + process.env.APP_URL;
 
   // Set fields to query via API
   const fields = ["slug"];

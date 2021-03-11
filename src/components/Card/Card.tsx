@@ -48,7 +48,7 @@ export default function DynamicCard({ data, type, mini = false }) {
           href={isPlace ? "/esplora/[slug]" : "/storie/[slug]"}
           as={isPlace ? `/esplora/${data.slug}` : `/storie/${data.slug}`}
         >
-          <Anchor block type="success">
+          <Anchor block type="secondary">
             {isPlace ? "Scopri luogo" : "Leggi la storia"}
           </Anchor>
         </Link>

@@ -5,7 +5,6 @@ export const GNW_Theme = Themes.createFromLight({
     radius: "0",
   },
   palette: {
-    secondary: "#799d43",
     success: "#00b388",
   },
   type: "gnw_light",

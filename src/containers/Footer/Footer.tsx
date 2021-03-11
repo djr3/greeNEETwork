@@ -24,31 +24,31 @@ const Footer: React.FC<Props> = ({ bg = "dark", className, ...rest }) => {
         <img src="/img/a_ll_fluo.svg" width={200} />
 
         <nav className={styles.bottom_nav}>
-          <Link href="/">
+          <Link prefetch={false} href="/">
             <Anchor className={styles.l1}>Home</Anchor>
           </Link>
-          <Link href="/esplora">
+          <Link prefetch={false} href="/esplora">
             <Anchor className={styles.l1}>Luoghi</Anchor>
           </Link>
-          <Link href="/itinerari">
+          <Link prefetch={false} href="/itinerari">
             <Anchor className={styles.l1}>Itinerari</Anchor>
           </Link>
-          <Link href="/storie">
+          <Link prefetch={false} href="/storie">
             <Anchor className={styles.l1}>Storie</Anchor>
           </Link>
-          <Link href="/reti">
+          <Link prefetch={false} href="/reti">
             <Anchor className={styles.l1}>Reti</Anchor>
           </Link>
-          <Link href="/credits">
+          <Link prefetch={false} href="/credits">
             <Anchor className={styles.l1}>Credits</Anchor>
           </Link>
         </nav>
         <Text>&copy; 2019. Associazione Agritettura2.0. C.F. 95207960634</Text>
         <div>
-          <Link href="/privacy">
+          <Link prefetch={false} href="/privacy">
             <a className={styles.l1}>Privacy</a>
           </Link>
-          <Link href="/cookies">
+          <Link prefetch={false} href="/cookies">
             <a className={styles.l1}>Cookies</a>
           </Link>
         </div>

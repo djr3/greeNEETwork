@@ -32,7 +32,7 @@ export default function Storie({ posts }) {
       }}
     >
       <Grid.Container justify="center">
-        <Grid xs={22} sm={20}>
+        <Grid xs={22} sm={20} direction="column">
           <Breadcrumbs />
           <hgroup>
             <Text h1 style={{ lineHeight: 1.125 }}>

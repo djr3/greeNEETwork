@@ -87,7 +87,7 @@ export default function Post({ post, posts, luoghi }) {
       )}
 
       <Grid.Container gap={2} justify="center">
-        <Grid xs={22} md={14} lg={14}>
+        <Grid xs={22} md={14} lg={14} direction="column">
           <header style={{ marginTop: "4rem" }}>
             <Breadcrumbs separator="/" />
             <Text h1 style={{ margin: "1rem 0", lineHeight: 1.125 }}>
@@ -138,7 +138,7 @@ export default function Post({ post, posts, luoghi }) {
             <RichText text={contenuto} />
           </div>
         </Grid>
-        <Grid xs={22} md={8} lg={6}>
+        <Grid xs={22} md={8} lg={6} direction="column">
           <div
             style={{ marginTop: "4rem", marginBottom: "1rem", width: "100%" }}
           >
@@ -180,7 +180,7 @@ export default function Post({ post, posts, luoghi }) {
           </div>
         </Grid>
         {posts && (
-          <Grid xs={22} lg={20}>
+          <Grid xs={22} lg={20} direction="column">
             <Divider y={2} />
             <Text h3>Storie collegate</Text>
             <Divider y={2} />

@@ -7,7 +7,7 @@ import { GNW_Theme } from "core/theme";
 /**
  * Containers
  */
-import ErrorBoundary from "components/ErrorBoundary";
+// import ErrorBoundary from "components/ErrorBoundary";
 import Header from "containers/Header";
 import Footer from "containers/Footer";
 
@@ -31,9 +31,8 @@ export const Vertical = (props) => {
         // socialMenu={defaultSocialItems}
       />
 
-      {/* <ErrorBoundary></ErrorBoundary> */}
       {props.children}
-
+      {/* <ErrorBoundary>{props.children}</ErrorBoundary> */}
       {props.noFooter ? null : <Footer bg="dark" />}
     </GeistProvider>
   );

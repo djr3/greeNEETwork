@@ -68,23 +68,19 @@ export async function getStaticProps() {
  */
 const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
   /**
-   * Props Data Processing
-   */
-  const places = luoghi;
-
-  /**
    * Initializing state
    */
-  const [state, setState] = useState({
+  const initialData = { places: luoghi, selPlace: undefined };
+
+  const initialState = {
     selAccessibilita: [],
     selServizi: [],
     selTipologie: [],
-  });
+  };
 
-  const [data, setData] = useState({
-    places,
-    selPlace: undefined,
-  });
+  const [state, setState] = useState(initialState);
+
+  const [data, setData] = useState(initialData);
 
   const isLG = useMediaQuery("lg", { match: "up" });
 
@@ -159,7 +155,7 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
    * Effects
    */
   useEffect(() => {
-    const filteredPlaces = places.filter((l) => filterAll(l));
+    const filteredPlaces = luoghi.filter((l) => filterAll(l));
     setData({
       places: filteredPlaces,
       selPlace: filteredPlaces[0],
@@ -294,7 +290,7 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
                     <Button
                       auto
                       ghost
-                      type="success"
+                      type="secondary"
                       onClick={handlePrev}
                       icon={<ChevronLeft />}
                       style={{ width: "50%" }}

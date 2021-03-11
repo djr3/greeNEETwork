@@ -20,9 +20,9 @@ export const defaultMediaQuery = {
 export const defaultLocale = "it_IT";
 
 export const defaultMetaTags: TMetaTags = {
-  canonical: process.env.VERCEL_URL,
+  canonical: process.env.APP_URL,
   description: "Un nuovo modello di sostenibilità valorizzata dai giovani",
-  image: process.env.VERCEL_URL + "/img/logo.png",
+  image: process.env.APP_URL + "/img/logo.png",
   robots: concatenateStrings(ERobotsContent.index, ERobotsContent.follow),
   title: "greeNEETwork",
   type: EPageType.website,

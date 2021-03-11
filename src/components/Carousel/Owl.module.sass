@@ -4,7 +4,7 @@
 .theme
 	// Styling Next and Prev buttons
 	.nav
-		margin-top: 10px
+		// margin-top: 10px
 		text-align: center
 		-webkit-tap-highlight-color: transparent
 
@@ -16,16 +16,43 @@
 			background: $nav-background
 			display: inline-block
 			cursor: pointer
-			border-radius: 3px
+			// border-radius: 3px
 
 			&:hover
 				background: $nav-background-hover
+				background: #799d43
 				color:$nav-color-hover
 				text-decoration: none
+				transition: all 0.3s ease
 			
 		.disabled 
 			opacity: $nav-disabled-opacity
 			cursor: default
+
+		.prev, .next
+			margin: 0
+			position: absolute
+			display: flex
+			align-items: center
+			justify-content: center
+			top: 0
+			height: 100%
+			width: 48px
+			border-radius: 0
+			text-align: center
+			line-height: 30px
+			color: $dot-background-active
+			background: #111
+			border: 0
+			padding: 1rem
+			cursor: pointer
+			z-index: 5
+			span
+				font-size: 2.5rem
+				line-height: 1
+
+		.next
+			left: calc(100% - 48px)
 		
 	// Styling dots
 	.nav.disabled + .owl-dots 
@@ -53,10 +80,12 @@
 			&.active, &:hover
 				span
 					background: $dot-background-active
+					trasition: all .3s
+					color: #111
 
-// .stage
-//   position: relative
-//   touch-action: manipulation
+.stage
+	position: relative
+	touch-action: manipulation
 //   & div.owl-item
 //     opacity: 0 !important
 //     transform: scale(0.6)

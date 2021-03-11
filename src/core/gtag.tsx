@@ -1,10 +1,7 @@
 import React from "react";
-// import Head from "next/head";
+import { isProduction } from "./utils";
 
-// Add your GA tracking id in the .env file or hardcode it here
-export const { NEXT_PUBLIC_GA_TRACKING_ID, NODE_ENV } = process.env;
-
-const isProduction = NODE_ENV.toLowerCase() === "production";
+export const TRACKING_ID = process.env.NEXT_PUBLIC_TRACKING_ID;
 
 export function setGoogleTags() {
   return {
@@ -12,7 +9,7 @@ export function setGoogleTags() {
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', '${NEXT_PUBLIC_GA_TRACKING_ID}');
+      gtag('config', '${TRACKING_ID}');
     `,
   };
 }
@@ -20,10 +17,10 @@ export function setGoogleTags() {
 export function setGoogleTagsAMP() {
   return {
     vars: {
-      account: NEXT_PUBLIC_GA_TRACKING_ID,
-      gtag_id: NEXT_PUBLIC_GA_TRACKING_ID,
+      account: TRACKING_ID,
+      gtag_id: TRACKING_ID,
       config: {
-        [NEXT_PUBLIC_GA_TRACKING_ID]: { groups: "default" },
+        [TRACKING_ID]: { groups: "default" },
       },
     },
     triggers: {
@@ -39,7 +36,7 @@ export function setGoogleTagsAMP() {
 export const trackPageView = (url) => {
   if (isProduction) {
     // @ts-ignore
-    window.gtag("config", NEXT_PUBLIC_GA_TRACKING_ID, {
+    window.gtag("config", TRACKING_ID, {
       page_path: url,
     });
   }
@@ -76,7 +73,7 @@ export const GoogleTags = () => {
     <React.Fragment key="googletags">
       <script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${NEXT_PUBLIC_GA_TRACKING_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${TRACKING_ID}`}
         key="gtag"
       />
       <script dangerouslySetInnerHTML={setGoogleTags()} />

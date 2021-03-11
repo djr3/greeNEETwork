@@ -79,3 +79,10 @@ export const slugify = (string) => {
     .replace(/^-+/, "")
     .replace(/-+$/, "");
 };
+
+export const imageUrls = (images: string[]) => {
+  return images.map((img) => {
+    if (img.includes("http") || img.startsWith("/")) return img;
+    return `https://api.agritettura.org/greeneetwork/assets/${img}?key=slider`;
+  });
+};

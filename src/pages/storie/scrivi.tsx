@@ -70,7 +70,7 @@ export default function AddStory({ categorie }) {
       }}
     >
       <Grid.Container gap={2} justify="center">
-        <Grid xs={22} md={20}>
+        <Grid xs={22} md={20} direction="column">
           <Breadcrumbs />
           <hgroup>
             <Text h1>Scrivi una storia</Text>
@@ -92,9 +92,9 @@ export default function AddStory({ categorie }) {
           </p>
         </Grid>
         {isSubmitted ? (
-          <Grid xs={22} md={20}>
+          <Grid xs={22} md={20} direction="column">
             <Note
-              type="success"
+              type="secondary"
               label={false}
               className=""
               small={false}
@@ -112,7 +112,7 @@ export default function AddStory({ categorie }) {
           </Grid>
         ) : (
           <>
-            <Grid xs={22} md={10}>
+            <Grid xs={22} md={10} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "titolo")}
@@ -142,7 +142,7 @@ export default function AddStory({ categorie }) {
               </div>
             </Grid> */}
 
-            <Grid xs={22} md={10}>
+            <Grid xs={22} md={10} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "video_pillola")}
@@ -159,7 +159,7 @@ export default function AddStory({ categorie }) {
                 </Text>
               </div>
             </Grid>
-            <Grid xs={22} md={20}>
+            <Grid xs={22} md={20} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Text h5>Introduzione</Text>
                 <Textarea
@@ -173,7 +173,7 @@ export default function AddStory({ categorie }) {
                 </Text>
               </div>
             </Grid>
-            <Grid xs={22} md={20}>
+            <Grid xs={22} md={20} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Text h5>Contenuto della Storia</Text>
                 <Textarea
@@ -183,8 +183,10 @@ export default function AddStory({ categorie }) {
                 />
               </div>
             </Grid>
-            <Grid xs={22} md={20}>
-              <Button onClick={handleSubmit}>Invia</Button>
+            <Grid xs={22} md={20} direction="column">
+              <Button type="secondary-light" onClick={handleSubmit}>
+                Invia
+              </Button>
             </Grid>
           </>
         )}

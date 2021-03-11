@@ -69,7 +69,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
   return (
     <Page id="newPlace">
       <Grid.Container gap={2} justify="center">
-        <Grid xs={22} md={20}>
+        <Grid xs={22} md={20} direction="column">
           <Breadcrumbs />
           <hgroup>
             <Text h1>Segnala un Luogo</Text>
@@ -90,9 +90,9 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
           </p>
         </Grid>
         {isSubmitted ? (
-          <Grid xs={22} md={20}>
+          <Grid xs={22} md={20} direction="column">
             <Note
-              type="success"
+              type="secondary"
               label={false}
               className=""
               small={false}
@@ -110,7 +110,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
           </Grid>
         ) : (
           <>
-            <Grid xs={22} md={8}>
+            <Grid xs={22} md={8} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "nome")}
@@ -122,7 +122,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Input>
               </div>
             </Grid>
-            <Grid xs={11} md={6}>
+            <Grid xs={22} sm={11} md={6} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Text h5>Servizi</Text>
                 <Select
@@ -141,7 +141,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Select>
               </div>
             </Grid>
-            <Grid xs={11} md={6}>
+            <Grid xs={22} sm={11} md={6} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Text h5>Accessibilità</Text>
                 <Select
@@ -159,7 +159,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Select>
               </div>
             </Grid>
-            <Grid xs={11} md={6}>
+            <Grid xs={22} md={6} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Text h5>Tipologia</Text>
                 <Select
@@ -178,7 +178,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Select>
               </div>
             </Grid>
-            <Grid xs={22} md={8}>
+            <Grid xs={22} md={8} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "indirizzo")}
@@ -190,7 +190,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Input>
               </div>
             </Grid>
-            <Grid xs={11} md={6}>
+            <Grid xs={22} sm={11} md={6} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "telefono")}
@@ -202,7 +202,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Input>
               </div>
             </Grid>
-            <Grid xs={11} md={6}>
+            <Grid xs={22} sm={11} md={10} lg={5} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "email")}
@@ -215,7 +215,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Input>
               </div>
             </Grid>
-            <Grid xs={22} md={8}>
+            <Grid xs={22} md={10} lg={5} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "pagina_web")}
@@ -227,7 +227,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Input>
               </div>
             </Grid>
-            <Grid xs={22} md={6}>
+            <Grid xs={22} sm={11} md={10} lg={5} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "pagina_facebook")}
@@ -239,7 +239,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Input>
               </div>
             </Grid>
-            <Grid xs={22} md={6}>
+            <Grid xs={22} sm={11} md={10} lg={5} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Input
                   onChange={(e) => handleInput(e, "pagina_instagram")}
@@ -251,7 +251,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 </Input>
               </div>
             </Grid>
-            <Grid xs={22} md={20}>
+            <Grid xs={22} md={20} direction="column">
               <div style={{ marginBottom: "1rem" }}>
                 <Text h5>Descrizione</Text>
                 <Textarea
@@ -261,8 +261,10 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                 />
               </div>
             </Grid>
-            <Grid xs={22}>
-              <Button onClick={handleSubmit}>Invia</Button>
+            <Grid xs={22} md={20} direction="column">
+              <Button type="secondary-light" onClick={handleSubmit}>
+                Invia
+              </Button>
             </Grid>
           </>
         )}

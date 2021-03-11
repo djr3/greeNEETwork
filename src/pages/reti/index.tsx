@@ -8,18 +8,12 @@ import { directus } from "core/cli";
 import Page from "containers/Main";
 
 // Page Components
-import {
-  Text,
-  Card,
-  // Image,
-  Link as Anchor,
-  Grid,
-  Divider,
-} from "@geist-ui/react";
+import { Text, Card, Link as Anchor, Grid, Divider } from "@geist-ui/react";
 import Breadcrumbs from "components/Breadcrumbs";
 
 // Helpers
 import { wordSplit } from "core/utils";
+import Masonry from "components/Masonry/Masonry";
 // import { defaultMediaQuery } from "core/constants";
 // const { xs, sm, md, lg, xl } = defaultMediaQuery;
 
@@ -32,7 +26,6 @@ export async function getStaticProps() {
 }
 
 export default function Reti({ reti }) {
-  // const [css] = useStyletron();
   return (
     <Page
       id="reti"
@@ -43,7 +36,7 @@ export default function Reti({ reti }) {
       }}
     >
       <Grid.Container justify="center">
-        <Grid xs={22} sm={20}>
+        <Grid xs={22} sm={20} direction="column">
           <Breadcrumbs />
           <hgroup>
             <Text h1 style={{ lineHeight: 1.125 }}>
@@ -63,39 +56,66 @@ export default function Reti({ reti }) {
           </hgroup>
 
           <Divider y={3} />
-          <Grid.Container gap={2}>
+
+          <Masonry
+            breakpointCols={{
+              default: 5,
+              440: 1,
+              650: 2,
+              900: 3,
+              1280: 4,
+              1440: 5,
+              // 1920: 6,
+            }}
+          >
             {reti.map((rete) => (
-              <Grid key={rete.slug} xs={24} sm={12} md={8} lg={6}>
-                <Card>
+              <Card key={rete.slug} style={{ marginBlockEnd: "1.25rem" }}>
+                <header>
                   <Link
                     href="reti/[slug]"
                     as={`reti/${rete.slug}`}
                     prefetch={false}
                   >
-                    <Anchor>
-                      <Image unsized src={`/img/reti/${rete.id}.webp`} />
+                    <Anchor
+                      style={{
+                        textAlign: "center",
+                        alignSelf: "center",
+                        justifyContent: "center",
+                        justifySelf: "center",
+                      }}
+                    >
+                      <Image
+                        layout="intrinsic"
+                        objectFit="contain"
+                        src={`/img/reti/${rete.id}.webp`}
+                        height="450"
+                        width="450"
+                      />
                     </Anchor>
                   </Link>
+                </header>
 
-                  <Text h3 style={{ marginBottom: ".5rem" }}>
+                <Card.Content>
+                  <Text h3 style={{ marginBottom: ".5rem", lineHeight: 1.125 }}>
                     {rete.nome}
                   </Text>
                   {/* <span>Area geografica : {rete.area_geografica}</span> */}
                   <Text>{wordSplit(rete.descrizione, 15)}</Text>
                   {/* <a href={rete.sito_web} /> */}
-                  <Card.Footer>
-                    <Link
-                      href="reti/[slug]"
-                      as={`reti/${rete.slug}`}
-                      prefetch={false}
-                    >
-                      <Anchor block>Scopri la rete</Anchor>
-                    </Link>
-                  </Card.Footer>
-                </Card>
-              </Grid>
+                </Card.Content>
+
+                <Card.Footer>
+                  <Link
+                    href="reti/[slug]"
+                    as={`reti/${rete.slug}`}
+                    prefetch={false}
+                  >
+                    <Anchor block>Scopri la rete</Anchor>
+                  </Link>
+                </Card.Footer>
+              </Card>
             ))}
-          </Grid.Container>
+          </Masonry>
         </Grid>
       </Grid.Container>
     </Page>
