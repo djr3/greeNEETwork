@@ -3,71 +3,40 @@
   float: left;
   overflow: hidden;
   position: relative;
+  transition-property: transform;
+  transition-duration: 1.2s;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  
+  &.animated {
+    transform: translate(0, 0);
+    animation-name: show-img-1;
+
+    &:after { animation-name: slide-bg-2; }
+  }
+
+  &:after {
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: left top;
+    transform: scale(0.05, 0);
+    animation-duration: 1s;
+  }
+
+  &.masker {
+    &:after { background-color: #eee; }
+  }
 }
+
 .reveal-effect > * {
   animation-duration: 1s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   position: relative;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-  -webkit-animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-}
-.reveal-effect > * {
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-}
-.reveal-effect {
-  -webkit-transition-property: -webkit-transform;
-  transition-property: -webkit-transform;
-  transition-property: transform;
-  transition-property: transform, -webkit-transform;
-}
-.reveal-effect {
-  transition-duration: 1.2s;
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-  -webkit-transition-duration: 1.2s;
-  -webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-.reveal-effect.animated {
-  -webkit-transform: translate(0, 0);
-  transform: translate(0, 0);
-}
-.reveal-effect.animated * {
-  -webkit-animation-name: show-img-1;
-  animation-name: show-img-1;
-}
-.reveal-effect:after {
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-}
-.reveal-effect:after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.reveal-effect:after {
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
-  -webkit-transform: scale(0.05, 0);
-  transform: scale(0.05, 0);
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  animation-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-}
-.reveal-effect.masker:after {
-  background-color: #eee;
-}
-.reveal-effect.animated:after {
-  -webkit-animation-name: slide-bg-2;
-  animation-name: slide-bg-2;
 }

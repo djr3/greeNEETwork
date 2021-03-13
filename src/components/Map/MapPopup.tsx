@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-// import useSWR from "swr";
 
 import { Popup } from "react-map-gl";
 import { Text, Link as Anchor, useMediaQuery } from "@geist-ui/react";
-// import { ArrowRight } from "@geist-ui/react-icons";
 
 import { Contacts } from "./Contacts";
 import { getCoordinates } from "./utils";
@@ -27,12 +25,6 @@ export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
       ).then((r) => r.json());
     }
   }, [place]);
-
-  // const { data: address } = useSWR(
-  //   center.latitude && center.longitude
-  //     ?
-  //     : null
-  // );
 
   useEffect(() => {
     if (address)
@@ -57,7 +49,6 @@ export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
           minHeight: "120px",
           maxHeight: "260px",
           maxWidth: isXS ? undefined : "38vw",
-          // width: isXS ? "300px" : undefined,
           padding: ".5rem",
         }}
       >
@@ -70,27 +61,7 @@ export const MapPopup: React.FC<{ place: any; onClose: any }> = ({
           as={`/esplora/${place.slug}`}
           prefetch={false}
         >
-          <Anchor block>
-            {/* <Button
-              style={{
-                // height: "2rem",
-                // paddingLeft: "0.75rem"
-                // paddingRight: "0.75rem"
-                // textSize="caption"
-                marginRight: "0.5rem",
-              }}
-              iconRight={
-                <ArrowRight
-                  size={16}
-                  color="white"
-                  // name="LongRight"
-                  // m={{ l: "1rem" }}
-                />
-              }
-            > */}
-            Scopri questo luogo
-            {/* </Button> */}
-          </Anchor>
+          <Anchor block>Scopri questo luogo</Anchor>
         </Link>
       </div>
     </Popup>

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-import { Link as Anchor, Card, Text } from "@geist-ui/react";
+import { Link as Anchor, Card as GCard, Text } from "@geist-ui/react";
 import { wordSplit } from "core/utils";
 
 const DynamicImage = dynamic(
@@ -11,10 +11,10 @@ const DynamicImage = dynamic(
 );
 const DynamicVideo = dynamic(() => import("react-player"), { ssr: false });
 
-export default function DynamicCard({ data, type, mini = false }) {
+export default function Card({ data, type, mini = false }) {
   const isPlace = type === "place";
   return (
-    <Card id={"card_" + data.id}>
+    <GCard id={"card_" + data.id}>
       <header>
         {isPlace ? (
           <DynamicImage
@@ -33,16 +33,16 @@ export default function DynamicCard({ data, type, mini = false }) {
         )}
       </header>
 
-      <Card.Content>
+      <GCard.Content>
         <Text h4>{isPlace ? data.nome : data.titolo}</Text>
         {!mini && (
           <Text small type="secondary">
             {wordSplit(data.descrizione)}
           </Text>
         )}
-      </Card.Content>
+      </GCard.Content>
 
-      <Card.Footer>
+      <GCard.Footer>
         <Link
           prefetch={false}
           href={isPlace ? "/esplora/[slug]" : "/storie/[slug]"}
@@ -52,7 +52,7 @@ export default function DynamicCard({ data, type, mini = false }) {
             {isPlace ? "Scopri luogo" : "Leggi la storia"}
           </Anchor>
         </Link>
-      </Card.Footer>
-    </Card>
+      </GCard.Footer>
+    </GCard>
   );
 }

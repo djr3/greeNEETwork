@@ -280,7 +280,7 @@ export default function Credits() {
               <a
                 rel="noopener noreferrer nofollow"
                 target="_blank"
-                href="http://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies"
+                href="https://windows.microsoft.com/it-it/windows-vista/block-or-allow-cookies"
               >
                 Microsoft Internet Explorer
               </a>
@@ -299,7 +299,7 @@ export default function Credits() {
               <a
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                href="http://www.youronlinechoices.eu/"
+                href="https://www.youronlinechoices.eu/"
               >
                 Your Online Choices
               </a>

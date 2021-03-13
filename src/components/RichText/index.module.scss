@@ -12,14 +12,9 @@ $teal: #00887a;
   font-size: 1rem;
   line-height: 1.6em;
   margin-bottom: 2em;
-  // font-family: 'Roboto', serif;
-  // font-size: $base-font-size;
-  // line-height: $base-line-height;
-  // font-weight: 100;
   &:before,
   &:after {
     content: "\201C";
-    // font-family: 'Sanchez';
     color: lighten($black, 40%);
   }
   &:after {
@@ -34,9 +29,8 @@ $teal: #00887a;
   padding: 40px;
   margin-top: 20px;
   margin-bottom: 40px;
-  background: #282828;
   position: relative;
   color: #fff;
-  background: url("/images/quote-bg.svg") left top no-repeat #282828;
+  background: #282828 url("/images/quote-bg.svg") left top no-repeat;
   background-size: contain;
 }

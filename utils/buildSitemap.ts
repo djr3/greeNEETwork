@@ -39,7 +39,7 @@ export async function buildSitemap() {
       fields,
       limit: 500,
     });
-    // console.log("Luoghi : ", luoghi);
+
     for (const luogo of luoghi) {
       smStream.write({
         url: smStream.hostname + "/esplora/" + luogo.slug,

@@ -5,7 +5,7 @@
   }
   47% {
     transform-origin: left;
-    animation-mode: forwards;
+    animation-fill-mode: forwards;
     transform: scaleX(1);
   }
   50% {
@@ -24,7 +24,7 @@
   }
   47% {
     transform-origin: right;
-    animation-mode: forwards;
+    animation-fill-mode: forwards;
     transform: scaleX(1);
   }
   50% {
@@ -43,7 +43,7 @@
   }
   47% {
     transform-origin: bottom;
-    animation-mode: forwards;
+    animation-fill-mode: forwards;
     transform: scaleY(1);
   }
   50% {
@@ -62,7 +62,7 @@
   }
   47% {
     transform-origin: top;
-    animation-mode: forwards;
+    animation-fill-mode: forwards;
     transform: scaleY(1);
   }
   50% {
@@ -83,14 +83,6 @@
     opacity: 1;
   }
 }
-// @keyframes hide {
-//   from {
-//     opacity: 1;
-//   }
-//   to {
-//     opacity: 0;
-//   }
-// }
 
 .br {
   position: relative;
@@ -112,10 +104,7 @@
     right: 0;
     transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
     animation-fill-mode: both;
-    // transform: scaleY(0);
-    // transform: scaleX(0);
-    // animation-name: moveFw;
-    // transform-origin: left;
+
     &--l2r {
       animation-name: moveFw;
     }

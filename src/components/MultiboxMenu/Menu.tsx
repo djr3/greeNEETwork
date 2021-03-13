@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
-// import img from "next/img";
 import { TweenMax, Quint, Quart } from "gsap";
-// import { motion } from "framer-motion";
 import cn from "classnames";
 
 import { times } from "core/utils";
@@ -16,15 +14,6 @@ import Icon from "components/Icon";
 import styles from "./Menu.module.sass";
 import Link from "next/link";
 import { useBodyScroll } from "@geist-ui/react";
-
-// function refsToArray(ctx, prefix) {
-//   var results = [];
-//   for (var i = 0; ; i++) {
-//     var ref = ctx.refs[prefix + "-" + String(i)];
-//     if (ref) results.push(ref);
-//     else return results;
-//   }
-// }
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useBodyScroll();
@@ -287,14 +276,8 @@ const Menu = () => {
           <br />
           storia
         </a>
-        {/* <div className={styles.SideMenu}>
-          <a href="#" className={styles.SideItem}>
-            <span className={styles.SideItemInner}>The Gameplay</span>
-          </a>
-        </div> */}
       </MenuItem>
 
-      {/* {props.children && items} */}
       <Button
         onClick={handleClick}
         className={styles.Button}

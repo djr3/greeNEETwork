@@ -5,9 +5,9 @@ import { directus } from "core/cli";
 // Page Layout
 import Page from "containers/Main";
 import {
+  // Select,
   Grid,
   Input,
-  Select,
   Note,
   Text,
   Textarea,
@@ -18,12 +18,7 @@ import {
 // Page Components
 import Breadcrumbs from "components/Breadcrumbs";
 
-export async function getStaticProps() {
-  const { data: categorie } = await directus.getItems("categorie");
-  return { props: { categorie } };
-}
-
-export default function AddStory({ categorie }) {
+export default function AddStory() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [articolo, setArticolo] = useState({
     titolo: "",
@@ -38,10 +33,6 @@ export default function AddStory({ categorie }) {
   ) => {
     if (e.persist) e.persist();
     setArticolo((prevState) => ({ ...prevState, [k]: e.target.value }));
-  };
-
-  const handleFilters = (value, key) => {
-    setArticolo((prevState) => ({ ...prevState, [key]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -92,7 +83,7 @@ export default function AddStory({ categorie }) {
           </p>
         </Grid>
         {isSubmitted ? (
-          <Grid xs={22} md={20} direction="column">
+          <Grid xs={22} md={20} lg={18} direction="column">
             <Note
               type="secondary"
               label={false}
@@ -100,10 +91,10 @@ export default function AddStory({ categorie }) {
               small={false}
               filled={false}
             >
-              <Text h4>Il tuo luogo è stato inviato con successo</Text>
+              <Text h4>La tua storia è stata inviata con successo</Text>
               <Text>
-                A breve verrà revisionato dal nostro staff. Se ritenuto congruo,
-                verrà pubblicato e sarà visualizzabile da tutto il network
+                A breve verrà revisionata dal nostro staff. Se approvata, verrà
+                pubblicata e sarà visualizzabile da tutto il network
               </Text>
               <Anchor block href="/">
                 Torna alla Home
@@ -123,24 +114,6 @@ export default function AddStory({ categorie }) {
                 </Input>
               </div>
             </Grid>
-            {/* <Grid xs={11} md={6}>
-              <div style={{ marginBottom: "1rem" }}>
-                <Text h5>Categoria</Text>
-                <Select
-                  size="small"
-                  key="servizi"
-                  multiple
-                  width="100%"
-                  onChange={(val) => handleFilters(val, "categoria")}
-                >
-                  {categorie.map((filter) => (
-                    <Select.Option key={filter.id} value={filter.id}>
-                      {filter.nome}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </div>
-            </Grid> */}
 
             <Grid xs={22} md={10} direction="column">
               <div style={{ marginBottom: "1rem" }}>

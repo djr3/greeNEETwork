@@ -1,9 +1,4 @@
 import React from "react";
-// import dynamic from "next/dynamic";
-// import {
-//   documentToReactComponents,
-//   Options,
-// } from "@contentful/rich-text-react-renderer";
 import HTMLParser, {
   // processNodes,
   convertNodeToElement,

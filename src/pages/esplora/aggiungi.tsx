@@ -57,6 +57,12 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
     setIsSubmitted(true);
   };
 
+  const renderFilter = (filter) => (
+    <Select.Option key={filter.id} value={filter.id}>
+      {filter.nome}
+    </Select.Option>
+  );
+
   useEffect(() => {
     if (isSubmitted) {
       console.log("State : ", place);
@@ -133,11 +139,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                   width="100%"
                   onChange={(val) => handleFilters(val, "servizi")}
                 >
-                  {servizi.map((filter) => (
-                    <Select.Option key={filter.id} value={filter.id}>
-                      {filter.nome}
-                    </Select.Option>
-                  ))}
+                  {servizi.map(renderFilter)}
                 </Select>
               </div>
             </Grid>
@@ -151,11 +153,7 @@ export default function AddPlace({ accessibilita, servizi, tipologie }) {
                   width="100%"
                   onChange={(val) => handleFilters(val, "accessibilita")}
                 >
-                  {accessibilita.map((filter) => (
-                    <Select.Option key={filter.id} value={filter.id}>
-                      {filter.nome}
-                    </Select.Option>
-                  ))}
+                  {accessibilita.map(renderFilter)}
                 </Select>
               </div>
             </Grid>

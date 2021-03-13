@@ -166,9 +166,6 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
     <Page
       id="esplora"
       style={{
-        // position: "absolute",
-        // top: 0,
-        // left: 0,
         width: "100%",
         height: "100vh",
         overflow: "hidden",
@@ -192,18 +189,11 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
       </Head>
       <Row>
         <Col span={6} style={{ height: "100vh" }}>
-          <aside
-            style={{
-              height: "100%",
-              width: "100%",
-              // padding: ".5rem .5rem 4rem .5rem",
-            }}
-          >
+          <aside style={{ height: "100%", width: "100%" }}>
             <div
               style={{
                 background: "#111",
                 height: "4rem",
-                // marginBottom: ".5rem",
                 marginLeft: "6.25rem",
                 display: "flex",
                 alignItems: "center",
@@ -212,7 +202,6 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
             >
               <Text
                 h1
-                // textSize="h6"
                 style={{
                   color: "#fff",
                   fontSize: "1.125rem",
@@ -281,10 +270,7 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
                     style={{
                       display: "flex",
                       justifyContent: "space-between",
-                      // justifyContent: "flex-start",
                       width: "100%",
-                      // height: "48px",
-                      // backgroundColor: "#000",
                     }}
                   >
                     <Button
@@ -316,7 +302,6 @@ const Esplora = ({ accessibilita, luoghi, servizi, tipologie }) => {
 
         <Col span={18}>
           <DynamicMap
-            // withPopup
             places={data.places}
             selPlace={data.selPlace}
             onMarkerClick={handleMarkerClick}

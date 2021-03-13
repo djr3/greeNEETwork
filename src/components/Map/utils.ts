@@ -31,24 +31,10 @@ export const reshapePlace = (p) => {
   }
 
   if (features) {
-    // const percorso = features.map(({ geometry }) =>
-    //   geometry.coordinates.map((c) => [c[1], c[0]])
-    // );
     return {
       id: p.id,
       data: p.geo_json,
       data_url: p.geojson_url,
-      // pickable: true,
-      // stroked: false,
-      // filled: true,
-      // extruded: true,
-      // lineWidthScale: 20,
-      // lineWidthMinPixels: 2,
-      // getFillColor: [160, 160, 180, 200],
-      // getLineColor: "#799d43",
-      // getRadius: 100,
-      // getLineWidth: 1,
-      // getElevation: 30,
     };
   }
 

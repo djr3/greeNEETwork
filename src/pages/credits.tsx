@@ -3,7 +3,8 @@ import React from "react";
 
 // Page Layout
 import Page from "containers/Main";
-import { Grid, Text } from "@geist-ui/react";
+import Grid from "@geist-ui/react/dist/grid";
+import Text from "@geist-ui/react/dist/text";
 
 // Page Components
 import Breadcrumbs from "components/Breadcrumbs";
@@ -28,16 +29,8 @@ export default function Credits() {
               La mappatura del Parco (Luoghi, Itinerari, Reti Attive e Storie),
               il documentario URBANORURALE e la pagina internet che li ospita
               sono stati realizzati dall’associazione di promozione sociale
-              Agritettura 2.0 come partner del progetto&nbsp;
-              <a
-                href="http://www.greeneetwork.it"
-                target="_blank"
-                rel="noreferrer"
-                className="l1"
-              >
-                GreeNEETwork
-              </a>
-              , Programma ANCI Restart.
+              Agritettura 2.0 come partner del progetto greeNEETwork, Programma
+              ANCI Restart.
             </p>
             <p>
               Il Progetto promuove un modello di valorizzazione sostenibile per

@@ -3,9 +3,9 @@ import OwlCarousel, { OwlCarouselProps } from "react-owl-carousel";
 
 import "owl.carousel/dist/assets/owl.carousel.css";
 
-import styles from "./Owl.module.sass";
+import styles from "./Carousel.module.sass";
 
-function Carousel(props: OwlCarouselProps) {
+export default function Carousel(props: OwlCarouselProps) {
   const { children, ...rest } = props;
   return (
     <OwlCarousel
@@ -25,4 +25,3 @@ function Carousel(props: OwlCarouselProps) {
     </OwlCarousel>
   );
 }
-export default Carousel;

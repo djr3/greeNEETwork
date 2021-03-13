@@ -4,7 +4,6 @@ export interface MappaState {
   center: { lng: number; lat: number };
   fitBounds?: any;
   places?: ILuogo[];
-  // selPlace?: string;
   viewport: {
     latitude: number;
     longitude: number;

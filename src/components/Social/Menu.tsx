@@ -9,29 +9,6 @@ import type {
   SocialLinksProps,
 } from "./types";
 
-// const StyledMenuLink = styled("a", (props: ) =>
-//   props.iconsOnly
-//     ? {
-//         padding: ".5rem",
-//         height: "2.5rem",
-//         width: "2.5rem",
-//         backgroundColor: "black",
-//         margin: ".25rem",
-//       }
-//     : {
-//         display: "block",
-//         lineHeight: "1.5rem",
-//       }
-// );
-
-// const SocialMenu = props: SocialMenuProps => {
-//   const iconProps = {
-//     size: iconsOnly ? "1.5rem" : "1rem",
-//     color: iconsOnly ? "white" : "black",
-//   };
-
-// }
-
 const SocialIcon = ({ name, color, size, ...props }: SocialIconsProps) => {
   return <Icon name={name} color={color} size={size} {...props} />;
 };
@@ -42,12 +19,7 @@ export const SocialLink: React.FC<SocialLinksProps> = ({
   color,
   ...textProps
 }) => (
-  <Text
-    span
-    style={{ fontSize: size, color }}
-    //  textSize={size} textColor={color}
-    {...textProps}
-  >
+  <Text span style={{ fontSize: size, color }} {...textProps}>
     {name}
   </Text>
 );
@@ -73,7 +45,6 @@ const SocialMenuItem: React.FC<SocialMenuItemProps> = ({
   const itemProps = {
     name: item.name,
     color: props.color ? props.color : "inherit",
-    // size: props.size ? props.size + "px" : undefined,
     size: props.size,
     ...props,
   };

@@ -36,18 +36,6 @@ export function Contacts({ place }) {
     }
   };
 
-  // const hasContacts = ({
-  //   email,
-  //   telefono,
-  //   pagina_web,
-  //   pagina_facebook,
-  //   pagina_instagram,
-  // }) => {
-  //   return (
-  //     email || telefono || pagina_web || pagina_facebook || pagina_instagram
-  //   );
-  // };
-
   return (
     <address>
       <ul style={{ display: "flex", listStyle: "none" }}>

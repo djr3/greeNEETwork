@@ -22,17 +22,17 @@ export const menuItems = {
         case "bt":
           config.y = "-100";
           config.x = 0;
-        // return { y: "-100%", x: 0, ...transitionOpen };
+          break;
         case "tb":
           config.y = "100%";
           config.x = 0;
-        // return { y: "100%", x: 0 };
+          break;
         case "lr":
           config.x = "100%";
-        // return { x: "100%" };
+          break;
         case "rl":
           config.x = "-100%";
-        // return { x: "-100%" };
+          break;
         default:
           break;
       }
@@ -46,16 +46,16 @@ export const menuItems = {
       switch (dir) {
         case "bt":
           config.y = "100%";
-        // return { y: "100%" };
+          break;
         case "tb":
           config.y = "-100%";
-        // return { y: "-100%" };
+          break;
         case "lr":
           config.x = "-100%";
-        // return { x: "-100%" };
+          break;
         case "rl":
           config.x = "100%";
-        // return { x: "100%" };
+          break;
         default:
           break;
       }

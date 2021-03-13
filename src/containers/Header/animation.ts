@@ -6,7 +6,6 @@ export const variants = {
         duration: 350,
         type: "spring",
         stiffness: 50,
-        // restDelta: 2,
       },
     },
     closed: {

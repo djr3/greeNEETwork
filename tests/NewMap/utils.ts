@@ -26,63 +26,6 @@ export const getCoordinates = (place, key?: "lat" | "long") => {
   } else return place;
 };
 
-// export const reshapePlace = (p: GeoJSON) => {
-//   const { geo_json, tipologie, ...props } = p;
-//   const { geometry, features } = geo_json;
-
-//   if (geo_json.properties) {
-//     delete geo_json.properties;
-//   }
-
-//   if (features) {
-//     // const percorso = features.map(({ geometry }) =>
-//     //   geometry.coordinates.map((c) => [c[1], c[0]])
-//     // );
-//     return {
-//       id: p.id,
-//       data: p.geo_json,
-//       data_url: p.geojson_url,
-//       // pickable: true,
-//       // stroked: false,
-//       // filled: true,
-//       // extruded: true,
-//       // lineWidthScale: 20,
-//       // lineWidthMinPixels: 2,
-//       // getFillColor: [160, 160, 180, 200],
-//       // getLineColor: "#799d43",
-//       // getRadius: 100,
-//       // getLineWidth: 1,
-//       // getElevation: 30,
-//     };
-//   }
-
-//   if (geometry && geometry.type === "Point") {
-//     return {
-//       ...geo_json,
-//       tipologie,
-//       properties: { ...props, cluster: false },
-//     };
-//   }
-
-//   if (geometry && geometry.type === "Polygon") {
-//     return {
-//       ...centroid(geo_json),
-//       tipologie,
-//       properties: { ...props, cluster: false },
-//     };
-//   }
-// };
-
-// export const reshapePlace = (place : GeoJSON) => {
-//   switch (place.type) {
-//     case "Polygon"
-//       return {}
-//     default:
-//       break;
-//   }
-
-// }
-
 interface Places {
   points: GeoJSON.Point[];
   polygons: GeoJSON.Polygon[];
@@ -102,11 +45,6 @@ export const reshapePlaces = (
   const lines = [];
 
   places.forEach((p) => {
-    // const place = reshapePlace(p);
-    // if (place.data) percorsi.push(place);
-    // if (place.geometry && place.geometry.type === "Point") punti.push(place);
-    // if (place.geometry && place.geometry.type === "Polygon")
-    //   poligoni.push(place);
     switch (p.type) {
       case "Point":
         points.push(p);

@@ -1,6 +1,6 @@
 import { Select, Checkbox, Radio } from "@geist-ui/react";
 
-type Filter = {
+type TFilter = {
   id: string;
   nome: string;
   slug: string;
@@ -8,7 +8,7 @@ type Filter = {
 
 interface FilterProps {
   name?: string;
-  filters: Filter[];
+  filters: TFilter[];
   type: "select" | "checkbox" | "radio";
   onChange: (property, value) => void;
 }

@@ -130,10 +130,7 @@ $content-background-color: #1c1c1c;
       top: 0;
       left: 0;
     }
-    // > div {
-    //   position: relative;
-    //   z-index: 1;
-    // }
+
     &--enter {
       // On content enter
     }
@@ -339,13 +336,11 @@ $content-background-color: #1c1c1c;
     }
     &:before {
       transform-origin: 100% 100% 0;
-      // background-color: rgba(76, 177, 6, 0.75);
       top: -50%;
       transform: rotate(-45deg);
     }
     &:after {
       transform-origin: 100% 0% 0;
-      // background-color: rgba(255, 247, 43, 0.75);
       top: 50%;
       transform: rotate(45deg);
     }

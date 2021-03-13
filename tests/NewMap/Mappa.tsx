@@ -24,18 +24,9 @@ interface IMapProps {
 
 const Mappa: FC<IMapProps> = (props) => {
   const [state, setState] = useState({
-    // showPopup: props.selPlace ? true : false,
     viewport: {
-      latitude:
-        // props.selPlace
-        // ? getCoordinates(props.selPlace.geo_json).latitude
-        // : 40.867263,
-        40.875419237904225,
-      longitude:
-        // props.selPlace
-        // ? getCoordinates(props.selPlace.geo_json).longitude
-        // : 14.225853,
-        14.259288500000025,
+      latitude: 40.875419237904225,
+      longitude: 14.259288500000025,
       zoom: 13,
     },
   });
@@ -57,10 +48,6 @@ const Mappa: FC<IMapProps> = (props) => {
    */
   const handleClick = (e: React.SyntheticEvent<HTMLElement>, obj: GeoJSON) => {
     if (e.isDefaultPrevented) return;
-    // if (e.isPropagationStopped) return;
-    // if (e.stopPropagation) e.stopPropagation();
-    // if (props.onClick) props.onClick(obj);
-    // if (props.onMarkerClick) props.onMarkerClick(obj.properties.id);
     setState((prevState) => ({
       ...prevState,
       viewport: {
@@ -69,7 +56,6 @@ const Mappa: FC<IMapProps> = (props) => {
         ...getCoordinates(obj),
         zoom: 17,
       },
-      // showPopup: true,
     }));
   };
 

@@ -5,7 +5,6 @@ import { directus } from "core/cli";
 
 // Page Layout & Style
 import Page from "containers/Main";
-// import { getLayout } from "layouts/Horizontal";
 
 // Page Components
 import { DynamicMap } from "components/Map";
@@ -13,7 +12,6 @@ import { Row, Col, Text, Collapse } from "@geist-ui/react";
 
 // Typings
 import type { IItinerario, ILuogo, IPercorso } from "@types";
-// import Aside from "containers/Aside/Aside";
 
 // Styled Items
 const StyledItem = (props) => (
@@ -30,13 +28,6 @@ const StyledItem = (props) => (
       }
       li:before {
         content: " ";
-        // position: relative;
-        // left: -1rem;
-        // display: inline-block;
-        // width: 15px;
-        // height: 15px;
-        // border-radius: 7.5px;
-        // background-color: #69b6d5;
       }
     `}</style>
   </li>
@@ -128,10 +119,6 @@ const Itinerari = (props: Props) => {
       setSelPlace(v);
   };
 
-  // function filterPlaces(items) {
-  //   return items.filter((i) => i.itinerari.some((t) => selItinerary === t));
-  // }
-
   const filterPlaces = (items) =>
     useMemo(
       () => items.filter((i) => i.itinerari.some((t) => selItinerary === t)),
@@ -157,11 +144,6 @@ const Itinerari = (props: Props) => {
     <Page
       id="itinerari"
       style={{
-        // width: "100%",
-        // position: "fixed",
-        // top: 0,
-        // left: 0,
-        // overflow: "hidden",
         paddingBottom: 0,
         marginTop: 0,
       }}
@@ -182,7 +164,6 @@ const Itinerari = (props: Props) => {
                 style={{
                   background: "#111",
                   height: "4rem",
-                  // marginBottom: ".5rem",
                   marginLeft: "6.25rem",
                   display: "flex",
                   alignItems: "center",
@@ -261,7 +242,6 @@ const Itinerari = (props: Props) => {
             selPlace={selPlace}
             onClick={handlePlace}
             withPopup
-            // onMarkerClick={handlePlace}
           />
           {/* <MemoMap /> */}
         </Col>

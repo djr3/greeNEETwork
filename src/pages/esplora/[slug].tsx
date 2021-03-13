@@ -1,9 +1,8 @@
 // Core Components
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { directus } from "core/cli";
-import { isProduction, makeMenu, getImageHashes, imageUrls } from "core/utils";
+import { isProduction, makeMenu, getImageHashes } from "core/utils";
 
 // Types
 import type { ILuogo } from "@types";
@@ -15,7 +14,6 @@ import Page from "containers/Main";
 // TODO : Images + SocialMenu + Address
 import Card from "components/Card";
 import Breadcrumbs from "components/Breadcrumbs";
-// import { Carousel } from "components/Carousel";
 import { Slider } from "components/Slider";
 import { DynamicMap, getCoordinates } from "components/Map";
 import {
@@ -109,11 +107,6 @@ export async function getStaticProps({ params }) {
 
 export default function Luogo({ luogo, luoghi }) {
   /**
-   * Hooks
-   */
-  const router = useRouter();
-
-  /**
    * Data Props Processing
    */
   const {
@@ -157,29 +150,6 @@ export default function Luogo({ luogo, luoghi }) {
           <Grid.Container gap={3} justify="center">
             <Grid xs={24} md={18} direction="column">
               {galleria_immagini && (
-                // <Carousel
-                //   loop
-                //   margin={20}
-                //   autoWidth
-                //   center
-                //   lazyLoad
-                //   dots={false}
-                //   nav
-                //   items={1}
-                // >
-                //   {imageUrls(galleria_immagini).map((img, idx) => (
-                //       <img
-                //         key={img + idx}
-                //         src={img}
-                //         alt={"Immagine parco " + idx}
-                //         layout="fixed"
-                //         objectFit="fill"
-                //         width="712px"
-                //         height="400px"
-                //       />
-                //     ))
-                //   }
-                // </Carousel>
                 <Slider id={"slider_" + id} images={galleria_immagini} />
               )}
               <Divider y={4} />

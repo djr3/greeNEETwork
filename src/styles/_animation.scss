@@ -1,7 +1,7 @@
 @keyframes moveFw {
   47% {
     transform-origin: left;
-    animation-mode: forwards;
+    animation-fill-mode: forwards;
     transform: scaleX(1);
   }
   50% {
@@ -17,7 +17,7 @@
 @keyframes moveBw {
   47% {
     transform-origin: right;
-    animation-mode: forwards;
+    animation-fill-mode: forwards;
     transform: scaleX(1);
   }
   50% {

@@ -8,7 +8,6 @@ export const FadeIn2 = ({
   delay = 0,
   ...props
 }) => {
-  // const Component = wrapperElement;
   let compRef = useRef(null);
   const distance = 200;
   let fadeDirection;

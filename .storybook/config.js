@@ -1,5 +1,4 @@
 import React from "react";
-// import "./../src/styles/app.sass";
 
 import { addParameters, addDecorator, configure } from "@storybook/react";
 import { themes } from "@storybook/theming";

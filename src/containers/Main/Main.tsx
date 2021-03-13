@@ -10,7 +10,6 @@ import cn from "classnames";
 /**
  * PAGE Layout // Inversion of Control
  */
-// import { Vertical } from "layouts";
 import { motion } from "framer-motion";
 
 /**

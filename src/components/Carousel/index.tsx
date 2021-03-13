@@ -1,3 +1,3 @@
 import dynamic from "next/dynamic";
 
-export const Carousel = dynamic(() => import("./OwlCarousel"), { ssr: false });
+export const Carousel = dynamic(() => import("./Carousel"), { ssr: false });
